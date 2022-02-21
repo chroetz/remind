@@ -9,14 +9,18 @@
 ########################################################################################################
 
 # Please provide all files and paths relative to the folder where start_coupled is executed
-path_remind <- paste0(getwd(),"/")   # provide path to REMIND. Default: the actual path which the script is started from
-path_magpie <- "/p/projects/piam/abrahao/GSCF_dk/magpie/"
+path_remind <- normalizePath("./", mustWork=TRUE)
+path_magpie <- normalizePath("../magpie/", mustWork=TRUE)
 
 # Paths to the files where scenarios are defined
 # path_settings_remind contains the detailed configuration of the REMIND scenarios
 # path_settings_coupled defines which runs will be started, coupling infos, and optimal gdx and report information that overrides path_settings_remind
-path_settings_coupled <- paste0(path_remind,"config/scenario_config_coupled_SSPSDP.csv")
-path_settings_remind  <- paste0(path_remind,"config/scenario_config_SSPSDP.csv")
+path_settings_coupled <- normalizePath(
+  file.path(path_remind, "config/scenario_config_coupled_test.csv"),
+  mustWork=TRUE)
+path_settings_remind  <- normalizePath(
+  file.path(path_remind, "config/scenario_config_test.csv"),
+  mustWork=TRUE)
 
 # You can put a prefix in front of the names of your runs, this will turn e.g. "SSP2-Base" into "prefix_SSP2-Base".
 # This allows storing results of multiple coupled runs (which have the same scenario names) in the same MAgPIE and REMIND output folders.
@@ -26,8 +30,12 @@ prefix_runname <- "C_"
 # If there are existing runs you would like to take the gdxes (REMIND) or reportings (REMIND or MAgPIE) from, provide the path here and the name prefix below.
 # Note: the scenario names of the old runs have to be identical to the runs that are to be started. If they differ please provide the names of the old scenarios in the
 # file that you specified on path_settings_coupled (scenario_config_coupled_xxx.csv).
-path_remind_oldruns <- paste0(path_remind,"output/")
-path_magpie_oldruns <- paste0(path_magpie,"output/")
+path_remind_oldruns <- normalizePath(
+  file.path(path_remind, "output/"),
+  mustWork=TRUE)
+path_magpie_oldruns <- normalizePath(
+  file.path(path_magpie, "output/"),
+  mustWork=TRUE)
 
 # If you want the script to find gdxs or reports of older runs as starting point for new runs please
 # provide the prefix of the old run names so the script can find them.
@@ -182,9 +190,9 @@ for(scen in common){
   # configure MAgPIE according to magpie_scen (scenario needs to be available in scenario_config.cfg)
   if(!is.null(scenarios_coupled[scen, "magpie_scen"])) cfg_mag <- setScenario(cfg_mag,c(trimws(unlist(strsplit(scenarios_coupled[scen, "magpie_scen"],split = ",|\\|"))),"coupling"),scenario_config=paste0(path_magpie,"config/scenario_config.csv"))
   cfg_mag <- check_config(cfg_mag, reference_file=paste0(path_magpie,"config/default.cfg"),modulepath = paste0(path_magpie,"modules/"))
-  
+
   # GHG prices will be set to zero (in start_run() of MAgPIE) until and including the year specified here
-  cfg_mag$mute_ghgprices_until <- scenarios_coupled[scen, "no_ghgprices_land_until"] 
+  cfg_mag$mute_ghgprices_until <- scenarios_coupled[scen, "no_ghgprices_land_until"]
 
   # if provided use ghg prices for land (MAgPIE) from a different REMIND run than the one MAgPIE runs coupled to
   path_mif_ghgprice_land <- NULL
@@ -200,7 +208,7 @@ for(scen in common){
         cfg_mag$path_to_report_ghgprices <- path_mif_ghgprice_land
     }
   }
-  
+
   # How to provide the exogenous TC to MAgPIE:
   # Running MAgPIE with exogenous TC requires a path with exogenous TC. Using exo_indc_MAR17 the path is chosen via c13_tau_scen.
   # Using exo_JUN13 the path is given in the file modules/13_tc/exo_JUN13/input/tau_scenario.csv
@@ -283,7 +291,7 @@ for(scen in common){
   if ("path_gdx_carbonprice" %in% colnames(settings_remind)) { if (!is.na(settings_remind[scen,"path_gdx_carbonprice"])){
     has_carbonprice_path <- TRUE
   }}
-  
+
   if (has_carbonprice_path) {
     cp_start_now <- (substr(settings_remind[scen,"path_gdx_carbonprice"], nchar(settings_remind[scen,"path_gdx_carbonprice"])-3, nchar(settings_remind[scen,"path_gdx_carbonprice"])) == ".gdx"
                 | is.na(settings_remind[scen,"path_gdx_carbonprice"]))
@@ -297,12 +305,12 @@ for(scen in common){
       cfg_rem$files2export$start['input_ref.gdx'] <- paste0(path_remind,"output/",prefix_runname,settings_remind[scen,"path_gdx_ref"],"-rem-",max_iterations,"/fulldata.gdx")
       cfg_rem$files2export$start['input_bau.gdx'] <- paste0(path_remind,"output/",prefix_runname,settings_remind[scen,"path_gdx_bau"],"-rem-",max_iterations,"/fulldata.gdx")
 
-      # Also add path to carbon price gdx if given one 
+      # Also add path to carbon price gdx if given one
       if (has_carbonprice_path) {
         cfg_rem$files2export$start['input_carbonprice.gdx'] <- paste0(path_remind,"output/",prefix_runname,settings_remind[scen,"path_gdx_carbonprice"],"-rem-",max_iterations,"/fulldata.gdx")
       }
 
-      # If the preceding run has already finished (= its gdx file exist) start 
+      # If the preceding run has already finished (= its gdx file exist) start
       # the current run immediately. This might be the case e.g. if you started
       # the NDC run in a first batch and now want to start the subsequent policy
       # runs by hand after the NDC has finished.
