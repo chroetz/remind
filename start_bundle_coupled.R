@@ -80,11 +80,13 @@ readArgs("test")
 ####################################################
 # Read-in the switches table, use first column as row names
 
-scenarios_coupled <- read.csv2(path_settings_coupled, stringsAsFactors = FALSE, row.names=1, na.strings="")
+scenarios_coupled <- read.csv2(
+  path_settings_coupled, stringsAsFactors = FALSE, row.names=1, na.strings="")
 
 # Read in
 
-settings_remind <- read.csv2(path_settings_remind, stringsAsFactors = FALSE, row.names=1, na.strings="")
+settings_remind <- read.csv2(
+  path_settings_remind, stringsAsFactors = FALSE, row.names=1, na.strings="")
 
 # Choose which scenarios to start: select rows according to "subset" and columns according to "select" (not used in the moment)
 scenarios_coupled  <- subset(scenarios_coupled, subset=(start == "1"))
@@ -101,6 +103,13 @@ if (!identical(common,character(0))) {
   cat("The following ",length(common)," scenarios will be started:\n")
   cat(common,sep="\n")
 }
+
+cat("rownames(settings_remind)\n")
+print(rownames(settings_remind))
+cat("rownames(scenarios_coupled)\n")
+print(rownames(scenarios_coupled))
+cat("common\n")
+print(common)
 
 ####################################################
 ######## PREPARE AND START COUPLED RUNS ############
