@@ -33,7 +33,7 @@ if (any(grepl("^00LOCK.*", list.files(.libPaths()[1])))) {
 # to the model output folder. Otherwise, the run itself will again use the
 # default library set!
 
-# snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_01"
+snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_02_21"
 # snapshot <- latest_snapshot
 
 if(exists("snapshot") && file.exists(snapshot)) {
