@@ -32,10 +32,10 @@ prefix_runname <- "C_"
 # file that you specified on path_settings_coupled (scenario_config_coupled_xxx.csv).
 path_remind_oldruns <- normalizePath(
   file.path(path_remind, "output/"),
-  mustWork=TRUE)
+  mustWork=FALSE)
 path_magpie_oldruns <- normalizePath(
   file.path(path_magpie, "output/"),
-  mustWork=TRUE)
+  mustWork=FALSE)
 
 # If you want the script to find gdxs or reports of older runs as starting point for new runs please
 # provide the prefix of the old run names so the script can find them.
