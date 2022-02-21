@@ -263,11 +263,11 @@ for (scen in common) {
       c(trimws(unlist(
         strsplit(scenarios_coupled[scen, "magpie_scen"], split = ",|\\|")
       )), "coupling"),
-      scenario_config = paste0(path_magpie, "config/scenario_config.csv"))
+      scenario_config = file.path(path_magpie, "config/scenario_config.csv"))
   cfg_mag <- check_config(
     cfg_mag,
-    reference_file = paste0(path_magpie, "config/default.cfg"),
-    modulepath = paste0(path_magpie, "modules/"))
+    reference_file = file.path(path_magpie, "config/default.cfg"),
+    modulepath = file.path(path_magpie, "modules/"))
 
   # GHG prices will be set to zero (in start_run() of MAgPIE) until and including the year specified here
   cfg_mag$mute_ghgprices_until <- scenarios_coupled[scen, "no_ghgprices_land_until"]
@@ -280,13 +280,11 @@ for (scen in common) {
                  nchar(scenarios_coupled[scen, "path_mif_ghgprice_land"]) - 3,
                  nchar(scenarios_coupled[scen, "path_mif_ghgprice_land"])) == ".mif") {
         # if real file is given (has ".mif" at the end) take it for path_mif_ghgprice_land
-        path_mif_ghgprice_land <-
-          scenarios_coupled[scen, "path_mif_ghgprice_land"]
+        path_mif_ghgprice_land <- scenarios_coupled[scen, "path_mif_ghgprice_land"]
       } else {
         # if no real file is given but a reference to another scenario (that has to run first) create path to the reference scenario
-        path_mif_ghgprice_land <-
-          paste0(
-            path_remind,
+        path_mif_ghgprice_land <- file.path(
+          path_remind, paste0(
             "output/",
             prefix_runname,
             scenarios_coupled[scen, "path_mif_ghgprice_land"],
@@ -298,7 +296,7 @@ for (scen in common) {
             "-rem-",
             max_iterations,
             ".mif"
-          )
+          ))
       }
       cfg_mag$path_to_report_ghgprices <- path_mif_ghgprice_land
     }
@@ -359,10 +357,8 @@ for (scen in common) {
       scenarios_coupled[scen, "path_gdx_bau"]
     cat(
       "Replacing gdx_bau information with those specified in\n  ",
-      path_settings_coupled,
-      "\n  ",
-      settings_remind[scen, "path_gdx_bau"],
-      "\n"
+      path_settings_coupled, "\n  ",
+      settings_remind[scen, "path_gdx_bau"], "\n"
     )
   }
 
@@ -371,10 +367,8 @@ for (scen in common) {
       scenarios_coupled[scen, "path_gdx_ref"]
     cat(
       "Replacing gdx_ref information with those specified in\n  ",
-      path_settings_coupled,
-      "\n  ",
-      settings_remind[scen, "path_gdx_ref"],
-      "\n"
+      path_settings_coupled, "\n  ",
+      settings_remind[scen, "path_gdx_ref"], "\n"
     )
   }
 
@@ -432,38 +426,32 @@ for (scen in common) {
     # if no real file is given but a reference to another scenario (that has to run first) create path for input_ref and input_bau
     # using the scenario names given in the columns path_gdx_ref and path_gdx_ref in the REMIND standalone scenario config
     cfg_rem$files2export$start['input_ref.gdx'] <-
-      paste0(
-        path_remind,
+      file.path(path_remind, paste0(
         "output/",
         prefix_runname,
         settings_remind[scen, "path_gdx_ref"],
         "-rem-",
         max_iterations,
-        "/fulldata.gdx"
-      )
+        "/fulldata.gdx"))
     cfg_rem$files2export$start['input_bau.gdx'] <-
-      paste0(
-        path_remind,
+      file.path(path_remind, paste0(
         "output/",
         prefix_runname,
         settings_remind[scen, "path_gdx_bau"],
         "-rem-",
         max_iterations,
-        "/fulldata.gdx"
-      )
+        "/fulldata.gdx"))
 
     # Also add path to carbon price gdx if given one
     if (has_carbonprice_path) {
       cfg_rem$files2export$start['input_carbonprice.gdx'] <-
-        paste0(
-          path_remind,
+        file.path(path_remind, paste0(
           "output/",
           prefix_runname,
           settings_remind[scen, "path_gdx_carbonprice"],
           "-rem-",
           max_iterations,
-          "/fulldata.gdx"
-        )
+          "/fulldata.gdx"))
     }
 
     # If the preceding run has already finished (= its gdx file exist) start
