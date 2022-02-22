@@ -17,12 +17,12 @@ path_magpie <-
 # path_settings_remind contains the detailed configuration of the REMIND scenarios
 # path_settings_coupled defines which runs will be started, coupling infos, and optimal gdx and report information that overrides path_settings_remind
 path_settings_coupled <- normalizePath(
-  file.path(path_remind, "config/scenario_config_coupled_test.csv"),
+  file.path(path_remind, "config/scenario_config_coupled_TestCoupled.csv"),
   winslash = "/",
   mustWork = TRUE
 )
 path_settings_remind  <- normalizePath(
-  file.path(path_remind, "config/scenario_config_test.csv"),
+  file.path(path_remind, "config/scenario_config_TestCoupled.csv"),
   winslash = "/",
   mustWork = TRUE
 )
