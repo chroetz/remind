@@ -577,24 +577,18 @@ for (scen in common) {
   if (start_now) {
     # Start SSP2-Base and SSP2-NDC as priority jobs since ALL subsequent runs depend on them
     #qos <- ifelse(grepl("SSP2-(NDC|Base)",runname),"priority","short")
-    if (!exists("test"))
-      system(
-        paste0(
-          "sbatch --qos=",
-          qos,
-          " --job-name=",
-          runname,
-          " --output=",
-          runname,
-          ".log --mail-type=END --comment=REMIND-MAgPIE --tasks-per-node=",
-          nr_of_regions,
-          " --wrap=\"Rscript start_coupled.R coupled_config=",
-          runname,
-          ".RData\""
-        )
-      )
-    else
-      cat("Test mode: run NOT submitted to the cluster\n")
+    if (!exists("test")) {
+      system(paste0(
+          "sbatch",
+          " --qos=", qos,
+          " --job-name=", runname,
+          " --output=", runname, ".log",
+          " --mail-type=END",
+          " --comment=REMIND-MAgPIE",
+          " --tasks-per-node=", nr_of_regions,
+          " --wrap=\"Rscript start_coupled.R coupled_config=", runname,".RData\""
+        ))
+    } else cat("Test mode: run NOT submitted to the cluster\n")
   } else {
     cat(
       paste0(
