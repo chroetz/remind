@@ -15,8 +15,8 @@ path_magpie <- paste0(getwd(),"/../magpie/")
 # Paths to the files where scenarios are defined
 # path_settings_remind contains the detailed configuration of the REMIND scenarios
 # path_settings_coupled defines which runs will be started, coupling infos, and optimal gdx and report information that overrides path_settings_remind
-path_settings_coupled <- paste0(path_remind,"config/scenario_config_coupled_TestCoupled.csv")
-path_settings_remind  <- paste0(path_remind,"config/scenario_config_TestCoupled.csv")
+path_settings_coupled <- paste0(path_remind,"config/scenario_config_coupled_LimitedCDR.csv")
+path_settings_remind  <- paste0(path_remind,"config/scenario_config_LimitedCDR.csv")
 
 # You can put a prefix in front of the names of your runs, this will turn e.g. "SSP2-Base" into "prefix_SSP2-Base".
 # This allows storing results of multiple coupled runs (which have the same scenario names) in the same MAgPIE and REMIND output folders.
@@ -219,24 +219,31 @@ for(scen in common){
   #cfg_rem$gms$biomass <- "magpie_linear"
 
   # Configure Afforestation in MAgPIE
-  # if (grepl("-aff760",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to 760\n")
-  #    cfg_mag$gms$s32_max_aff_area <- 760
-  #} else if (grepl("-aff900",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to 900\n")
-  #    cfg_mag$gms$s32_max_aff_area <- 900
-  #} else if (grepl("-affInf",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to Inf\n")
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #} else if (grepl("-cost2",scen)) {
-  #    cat("Setting MAgPIE cprice_red_factor to 0.2\n")
-  #    cfg_mag$gms$s56_cprice_red_factor <- 0.2
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #} else if (grepl("-cost3",scen)) {
-  #    cat("Setting MAgPIE cprice_red_factor to 0.3\n")
-  #    cfg_mag$gms$s56_cprice_red_factor <- 0.3
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #}
+  if (grepl("-aff760",scen)) {
+      cat("Setting MAgPIE max_aff_area to 760\n")
+      cfg_mag$gms$s32_max_aff_area <- 760
+  } else if (grepl("-aff900",scen)) {
+      cat("Setting MAgPIE max_aff_area to 900\n")
+      cfg_mag$gms$s32_max_aff_area <- 900
+  } else if (grepl("-affInf",scen)) {
+      cat("Setting MAgPIE max_aff_area to Inf\n")
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-cost2",scen)) {
+      cat("Setting MAgPIE cprice_red_factor to 0.2\n")
+      cfg_mag$gms$s56_cprice_red_factor <- 0.2
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-cost3",scen)) {
+      cat("Setting MAgPIE cprice_red_factor to 0.3\n")
+      cfg_mag$gms$s56_cprice_red_factor <- 0.3
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-affSust",scen)) {
+      cat("Setting MAgPIE max_aff_area to 375\n")
+      cfg_mag$gms$s32_max_aff_area  <- 500 #valid for NPI/NDC + C price driven Afforestation area
+      cfg_mag$gms$c32_aff_mask <- "onlytropical" #applicable only for C price driven Afforestation
+  } else if (grepl("-RefAff",scen)){
+    cat("Setting MAgPIE to REF afforestation\n")
+    cfg_mag$gms$s56_c_price_induced_aff <- 0
+  }
 
   #cfg$logoption  <- 2  # Have the log output written in a file (not on the screen)
 
