@@ -662,6 +662,19 @@ prepare <- function() {
     margs_manipulateThis <- c(margs_manipulateThis, 
                                 list(c("vm_shBioFe.M", "!!vm_shBioFe.M")))
 
+    # OR: renamed for sectoral taxation
+    levs_manipulateThis <- c(levs_manipulateThis,
+                             list(c("vm_emiCO2_sector.L", "vm_emiCO2Sector.L")),
+                             list(c("v21_taxrevCO2_sector.L", "v21_taxrevCO2Sector.L")))
+    margs_manipulateThis <- c(margs_manipulateThis,
+                             list(c("vm_emiCO2_sector.M", "vm_emiCO2Sector.M")),
+                             list(c("v21_taxrevCO2_sector.M", "v21_taxrevCO2Sector.M")),
+                             list(c("q_emiCO2_sector.M", "q_emiCO2Sector.M")),
+                             list(c("q21_taxrevCO2_sector.M", "q21_taxrevCO2Sector.M")))
+    fixings_manipulateThis <- c(fixings_manipulateThis,
+                             list(c("vm_emiCO2_sector.FX", "vm_emiCO2Sector.FX")),
+                             list(c("v21_taxrevCO2_sector.FX", "v21_taxrevCO2Sector.FX")))
+
     #RP filter out regipol items
     if(grepl("off", cfg$gms$cm_implicitFE, ignore.case = T)){
       margs_manipulateThis <- c(margs_manipulateThis,
@@ -683,7 +696,6 @@ prepare <- function() {
                                                                "$include \"fixings.gms\";",
                                                                "$include \"margs.gms\";",
                                                                "$onlisting", sep = "\n"))))
-
 
     # Perform actual manipulation on levs.gms, fixings.gms, and margs.gms in
     # single, respective, parses of the texts.
@@ -852,7 +864,7 @@ run <- function(start_subsequent_runs = TRUE) {
   # to facilitate debugging, look which files were created.
   message("Model summary:")
   # Print REMIND runtime
-  message("  gams_runtime is ", gams_runtime, "")
+  message("  gams_runtime is ", round(gams_runtime,1), " ", units(gams_runtime), ".")
   if (! file.exists("full.gms")) {
     message("! full.gms does not exist, so the REMIND GAMS code was not generated.")
   } else {
@@ -896,7 +908,7 @@ run <- function(start_subsequent_runs = TRUE) {
   # Use the name to check whether it is a coupled run (TRUE if the name ends with "-rem-xx")
   coupled_run <- grepl("-rem-[0-9]{1,2}$",cfg$title)
   # Don't start subsequent runs form here if REMIND runs coupled. They are started in start_coupled.R instead.
-  start_subsequent_runs <- start_subsequent_runs & !coupled_run
+  start_subsequent_runs <- (start_subsequent_runs | isTRUE(cfg$restart_subsequent_runs)) & !coupled_run
 
   if (start_subsequent_runs & (length(rownames(cfg$RunsUsingTHISgdxAsInput)) > 0)) {
     # track whether any subsequent run was actually started
@@ -907,7 +919,7 @@ run <- function(start_subsequent_runs = TRUE) {
 
     # fulldatapath may be written into gdx paths of subsequent runs
     fulldatapath <- paste0(cfg_main$remind_folder,"/",cfg_main$results_folder,"/fulldata.gdx")
-    possible_pathes_to_gdx <- c("input.gdx", "input_ref.gdx", "input_bau.gdx", "input_carbonprice.gdx")
+    possible_pathes_to_gdx <- c("input.gdx", "input_ref.gdx", "input_refpolicycost.gdx", "input_bau.gdx", "input_carbonprice.gdx")
 
     # Loop possible subsequent runs, saving path to fulldata.gdx of current run (== cfg_main$title) to their cfg files
 
