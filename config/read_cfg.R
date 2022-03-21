@@ -237,19 +237,20 @@ createModuleRmd <- function(name, description, default) {
   paste0(
     "### ", num, "_", nm, " {-}\n",
     "\n",
-    "TODO: a one line description\n",
+    "--\n",
     "\n",
-    "**Description:** \n",
+    "```{r}\n",
+    "cfg$gms$", nm, " <- ", default, "\n",
+    "```\n",
     "\n",
     "**Possible Values:** \n",
     "\n",
     str_replace_all(descr, "\\*\\s?\\(([a-zA-Z0-9_]+)\\)", "* `\"\\1\"`"), "\n",
     "\n",
-    "**Default:** `", default, "`\n",
+    "**Description:** \n",
     "\n",
-    "```{r}\n",
-    "cfg$gms$", nm, " <- ", default, "\n",
-    "```\n",
+    "--\n",
+    "\n",
     "\n")
 }
 
@@ -259,54 +260,97 @@ createNonGmsRmd <- function(name, description, default) {
     "\n",
     description, "\n", # one line description to be copied into GAMS
     "\n",
-    "**Description:**\n", # long description
-    "\n",
-    "**Possible Values:**\n",
-    "\n",
-    "**Default:** `", default, "`\n",
-    "\n",
     "```{r}\n",
     "cfg$", name, " <- ", default, "\n",
     "```\n",
+    "\n",
+    "**Possible Values:**\n",
+    "\n",
+    "--\n",
+    "\n",
+    "**Description:**\n", # long description
+    "\n",
+    "--\n",
+    "\n",
     "\n")
 }
 
 createGmsRmd <- function(name, description, default) {
   description %>%
-    str_trim() %>%
-    str_remove("^\\\"") %>%
-    str_remove("\\\"$") %>%
     str_trim() ->
     descr
+  short <- NA
+  pval <- "--"
+  if (length(descr) == 1 && !is.na(descr)) {
+    split <- str_split(descr, "\n")[[1]]
+    if (str_detect(split[1], "^\".*\"$")) {
+      short <- str_sub(split[1], 2, -2)
+      descr <- paste0(split[-1], collapse="\n")
+    }
+  }
   if (name %in% switches) {
     descr2 <- switchDescription[name == switches]
-    if (is.na(descr)) {
-      descr <- descr2
-    } else if (!is.na(descr2) && descr != descr2) {
-      descr <- paste0(descr, "\n", descr2)
+    if (str_detect(descr2, "^\".*\"$")) descr2 <- str_sub(descr2, 2, -2)
+    if (is.na(short)) {
+      short <- descr2
+    } else if (short != descr2) {
+      descr <- paste0(descr2, "\n", descr)
+    }
+  }
+  if (is.na(short)) short <- "--"
+  if (length(descr) == 1 && !is.na(descr)) {
+    split <- str_split(descr, "\n")[[1]] %>% str_trim()
+    itemLines <- str_detect(split, "^\\([^\\)]+\\):")
+    if (any(itemLines)) {
+      first <- which(itemLines)[1]
+      end <- first
+      for (i in first:length(itemLines)) {
+        if (itemLines[i]) {
+          end <- i
+        } else {
+          break
+        }
+      }
+      pval <- paste0(paste0("* ", split[first:end]), collapse="\n")
+      if (first > 1 || end < length(split))
+        descr <- paste0(split[-(first:end)], collapse="\n")
+      else
+        descr <- "--"
     }
   }
   paste0(
     "### ", name, " {-}\n",
     "\n",
-    if (name %in% flags) {
-      "*Compiler Flag*\n"
-    } else {
-      "*Switch*\n"
-    },
-    "\n",
-    descr, "\n", # one line description to be copied into GAMS
-    "\n",
-    "**Description:**\n", # long description
-    "\n",
-    "**Possible Values:**\n",
-    "\n",
-    "**Default:** `", default, "`\n",
+    short, "\n", # one line description to be copied into GAMS
     "\n",
     "```{r}\n",
     "cfg$gms$", name, " <- ", default, "\n",
     "```\n",
+    "\n",
+    "**Possible Values:**\n",
+    "\n",
+    markNames(pval), "\n",
+    "\n",
+    "**Description:**\n", # long description
+    "\n",
+    markNames(descr), "\n",
+    "\n",
     "\n")
+}
+
+
+modules <- cfgDescr %>% filter(isModule) %>% pull(description)
+pattern <- "^\\*+\\-+\\s+([0-9]{2})_([a-zA-Z0-9_]+)\\s*\\-+"
+x <- str_match(modules, pattern)
+modulesFullName <- paste0(x[,2], "_", x[,3])
+
+allNames <- c(
+  modulesFullName,
+  cfgDescr %>% filter(!isModule) %>% pull(name))
+
+markNames <- function(str) {
+  for (nm in allNames) str <- str_replace_all(str, paste0("(", nm, ")"), "\\[\\1\\]")
+  str
 }
 
 cfgDescr %>%
@@ -356,7 +400,10 @@ rmd <- c(
   "\n\n# Modules\n\n",
   "\n\n## General\n\n",
   cfgDescrModule$rmd,
-  "\n\n# GAMS Parameters\n\n",
+  "\n\n# GAMS Switches\n\n",
   "\n\n## General\n\n",
-  cfgDescrGms$rmd)
+  cfgDescrGms %>% filter(! name %in% flags) %>% pull(rmd),
+  "\n\n# GAMS Compiler Flags\n\n",
+  "\n\n## General\n\n",
+  cfgDescrGms %>% filter(name %in% flags) %>% pull(rmd))
 writeLines(rmd, "out.rmd")
