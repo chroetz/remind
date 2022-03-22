@@ -1,7 +1,7 @@
 parse_rmd <- function(path) {
   lines <- readLines(path)
   line <- paste0(lines, collapse="\n")
-  sections <- str_split(line, "\\n# ")[[1]]
+  sections <- strsplit(line, "\\n# ")[[1]]
   res <- lapply(sections[-1], parse_section)
   nms <- sapply(res, function(x) x$name)
   contents <- lapply(res, function(x) x$content)
@@ -10,9 +10,9 @@ parse_rmd <- function(path) {
 }
 
 parse_section <- function(section) {
-  sec_lines <- str_split(section, "\\n")[[1]]
+  sec_lines <- strsplit(section, "\\n")[[1]]
   title <- sec_lines[1]
-  subsections <- str_split(section, "\\n## ")[[1]]
+  subsections <- strsplit(section, "\\n## ")[[1]]
   res <- lapply(subsections[-1], parse_subsection)
   nms <- sapply(res, function(x) x$name)
   contents <- lapply(res, function(x) x$content)
@@ -21,9 +21,9 @@ parse_section <- function(section) {
 }
 
 parse_subsection <- function(subsection) {
-  subsec_lines <- str_split(subsection, "\\n")[[1]]
+  subsec_lines <- strsplit(subsection, "\\n")[[1]]
   subtitle <- subsec_lines[1]
-  subsubsections <- str_split(subsection, "\\n### ")[[1]]
+  subsubsections <- strsplit(subsection, "\\n### ")[[1]]
   res <- lapply(subsubsections[-1], parse_subsubsection)
   nms <- sapply(res, function(x) x$name)
   names(res) <- nms
@@ -32,14 +32,14 @@ parse_subsection <- function(subsection) {
 
 
 parse_subsubsection <- function(subsubsection) {
-  lns <- trimws(str_split(subsubsection, "\\n")[[1]])
+  lns <- trimws(strsplit(subsubsection, "\\n")[[1]])
   lns <- lns[nchar(lns)>0]
   name <- gsub(" {-}", "", lns[1], fixed=TRUE)
   chunk_start <- which(startsWith(lns, "```{r"))[1]
   chunk_end <- which(startsWith(lns, "```") & seq_along(lns) > chunk_start)[1]
   chunk_inner <- lns[(chunk_start+1):(chunk_end-1)]
-  default <- str_split(paste0(chunk_inner, collapse="\n"), "<-")[[1]][2]
-  default <- str_split(default, "#")[[1]][1]
+  default <- strsplit(paste0(chunk_inner, collapse="\n"), "<-")[[1]][2]
+  default <- strsplit(default, "#")[[1]][1]
   default <- trimws(default)
   if (chunk_start <= 2) {
     short <-  ""
@@ -78,6 +78,6 @@ parse_subsubsection <- function(subsubsection) {
   return(res)
 }
 
-path <- "out.Rmd"
+path <- "config/defaultConfig.Rmd"
 config <- parse_rmd(path)
 flags <- unlist(config$`GAMS Compiler Flags`, recursive = FALSE, use.names = FALSE)
