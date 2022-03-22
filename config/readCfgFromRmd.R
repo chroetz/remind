@@ -1,4 +1,4 @@
-readDefaultConfig <- function(path = "config/defaultConfig.Rmd") {
+readCfgFromRmd <- function(path = "config/defaultConfig.Rmd") {
   tmpFile <- tempfile()
   knitr::purl(path, documentation=0, output=tmpFile, quiet=TRUE)
   env <- new.env()
