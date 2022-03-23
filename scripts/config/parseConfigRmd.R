@@ -1,3 +1,27 @@
+#' Parse a Config Rmd File
+#'
+#' Reads in a config-Rmd-file and parses its content to obtain a nested list
+#' object containing the information in the file, including config parameter
+#' names, default values, and their descriptions. It requires the Rmd to have a
+#' specific structure, see below.
+#'
+#' The input Rmd must use three levels of sections (#, ##, and ###). The first
+#' two structure the content. Each parameter is a depth 3 section (###).
+#'
+#' Each parameter section starts with \code{### <NAME> {-}} followed by a
+#' one-line short description (without markdown) followed by an R-code chunk
+#' setting its default value. Thereafter two paragraphs are expected: One
+#' starting with \code{**Description:**} for a longer description and one
+#' starting with \code{**Possible Values:**}. These paragraphs may contain
+#' markdown.
+#'
+#' @param path A single string. The path to the config-Rmd-file.
+#' @return A nested list resembling the section structure of the input document.
+#'   At depth 3 of the list, the information on the parameters is stored in as
+#'   list with entries \code{name} (title of the section and name of the
+#'   parameter), \code{default} (the default value from the R-code chunk),
+#'   \code{short} (the one line short description), \code{possibleValues}, and
+#'   \code{description}.
 parseConfigRmd <- function(path) {
   lines <- readLines(path)
   line <- paste0(lines, collapse="\n")
@@ -77,7 +101,3 @@ parseSubsubsection <- function(subsubsection) {
     description = descr)
   return(res)
 }
-
-path <- "config/defaultConfig.Rmd"
-config <- parseConfigRmd(path)
-flags <- unlist(config$`GAMS Compiler Flags`, recursive = FALSE, use.names = FALSE)

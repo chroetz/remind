@@ -1,3 +1,7 @@
+#' Create a config-Rmd form a config description object.
+#'
+#' @param configDescr A nested list as returned by \code{parseConfigRmd()}.
+#' @param output A single string. The path to the output file.
 writeConfigRmd <- function(configDescr, output) {
   rmd <- c(
     paste0(
@@ -24,7 +28,7 @@ writeConfigRmd <- function(configDescr, output) {
 }
 
 configDescrRmd <- function(descr) {
-  gms <- startsWith(names(descr), "GAMS")
+  gms <- !startsWith(names(descr), "R ")
   paste0(
     "\n\n# ", names(descr), "\n\n",
     mapply(sectionRmd, descr, gms),
@@ -45,13 +49,20 @@ subsectionRmd <- function(descr, gms) {
 }
 
 paramConfigDescr <- function(descr, gms) {
+  fullName <- descr$name
+  # Remove leading digits if present (for modules).
+  if (grepl("^[0-9]{2}_", fullName)) {
+    name <- substring(fullName, 4)
+  } else {
+    name <- fullName
+  }
   paste0(
-    "### ", descr$name, " {-}\n",
+    "### ", fullName, " {-}\n",
     "\n",
     descr$short, "\n", # one line description to be copied into GAMS
     "\n",
     "```{r}\n",
-    "cfg$", if (gms) "gms$" else "", descr$name, " <- ", descr$default, "\n",
+    "cfg$", if (gms) "gms$" else "", name, " <- ", descr$default, "\n",
     "```\n",
     "\n",
     "**Possible Values:**\n",
@@ -64,8 +75,3 @@ paramConfigDescr <- function(descr, gms) {
     "\n",
     "\n")
 }
-
-
-writeConfigRmd(config, "config/defaultConfig2.Rmd")
-config2 <- parse_rmd("config/defaultConfig2.Rmd")
-identical(config, config2)
