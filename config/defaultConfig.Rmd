@@ -173,8 +173,7 @@ cfg$runstatistics <- "/p/projects/rd3mod/models/statistics/remind"
 
 ### magicc_template {-}
 
-Folder containing magcicc files that can not be published open source. These files are automatically
-copied into remind when starting a run and required to calcualte climate responses (e.g. temperature).
+Folder containing MAGICC files that can not be published open source. 
 
 ```{r}
 cfg$magicc_template <- "/p/projects/rd3mod/magicc/"
@@ -186,14 +185,13 @@ cfg$magicc_template <- "/p/projects/rd3mod/magicc/"
 
 **Description:**
 
---
+These files are automatically copied into remind when starting a run and required to calculate climate responses (e.g. temperature).
 
 
 
 ### model_name {-}
 
 name of the overall model (used for input data and run statistics)
-should usually not be changed
 
 ```{r}
 cfg$model_name <- "REMIND"
@@ -201,7 +199,7 @@ cfg$model_name <- "REMIND"
 
 **Possible Values:**
 
---
+*should usually not be changed*
 
 **Description:**
 
@@ -212,7 +210,6 @@ cfg$model_name <- "REMIND"
 ### validationmodel_name {-}
 
 name of the validation folder for this model (used for historical and validation data)
-should usually not be changed
 
 ```{r}
 cfg$validationmodel_name <- "VALIDATIONREMIND"
@@ -220,7 +217,7 @@ cfg$validationmodel_name <- "VALIDATIONREMIND"
 
 **Possible Values:**
 
---
+*should usually not be changed*
 
 **Description:**
 
@@ -231,7 +228,6 @@ cfg$validationmodel_name <- "VALIDATIONREMIND"
 ### model_version {-}
 
 model version of the overall model (used for run statistics only).
-Use extension "-rc" for release candidate and "-dev" for developer version
 
 ```{r}
 cfg$model_version <- "2.2-dev"
@@ -243,15 +239,14 @@ cfg$model_version <- "2.2-dev"
 
 **Description:**
 
---
+Use extension "-rc" for release candidate and "-dev" for developer version
+
 
 
 
 ### gamsv {-}
 
-Choose which GAMS version to use (choosing the default option "gams" uses the GAMS system in your PATH variable - in both UNIX and Windows)
-Cluster Example: if you want GAMS version 24.0, use "/p/system/packages/gams/24.0.1/gams"
-Local machine Example: use your GAMS path, e.g. "C:\\GAMS\\win32\\24.3\\gams.exe" (please note the double backslashes)
+Choose which GAMS version to use 
 
 ```{r}
 cfg$gamsv <- "gams"
@@ -259,17 +254,20 @@ cfg$gamsv <- "gams"
 
 **Possible Values:**
 
---
+* `"gams"`: the GAMS system in your PATH variable - in both UNIX and Windows
+* a path
 
 **Description:**
 
---
+Cluster Example: if you want GAMS version 24.0, use "/p/system/packages/gams/24.0.1/gams"
+
+Local machine Example: use your GAMS path, e.g. "C:\\GAMS\\win32\\24.3\\gams.exe" (please note the double backslashes)
 
 
 
 ### action {-}
 
-Action that should be performed ("ce": compile and run, "c": compile)
+Action that should be performed 
 
 ```{r}
 cfg$action <- "ce"
@@ -277,7 +275,8 @@ cfg$action <- "ce"
 
 **Possible Values:**
 
---
+* `"ce"`: compile and run
+* `"c"`: compile
 
 **Description:**
 
@@ -305,9 +304,7 @@ cfg$tarball_puts <- "on"
 
 ### slurmConfig {-}
 
-Provide additional SLURM parameters (e.g. "--time=03:30:00") not included in
-the list of following parameters that are set automatically in start.R:
---qos, --nodes, --tasks-per-node, -job-name, --output, --mail-type, --comment.
+Provide additional SLURM parameters
 
 ```{r}
 cfg$slurmConfig <- ""
@@ -319,13 +316,16 @@ cfg$slurmConfig <- ""
 
 **Description:**
 
---
+Provide additional SLURM parameters (e.g. "--time=03:30:00") not included in
+the list of following parameters that are set automatically in start.R:
+--qos, --nodes, --tasks-per-node, -job-name, --output, --mail-type, --comment
+
 
 
 
 ### logoption {-}
 
-Should REMIND output be shown in console? (0:no, 2:logfile, 3:yes)
+Should REMIND output be shown in console?
 
 ```{r}
 cfg$logoption <- 2
@@ -333,7 +333,9 @@ cfg$logoption <- 2
 
 **Possible Values:**
 
---
+* `0`: no
+* `2`: logfile
+* `3`: yes
 
 **Description:**
 
@@ -344,25 +346,23 @@ cfg$logoption <- 2
 ### output {-}
 
 Just list the name of the output scripts that should be used by output.R
-At the moment there are several R-scripts located in scripts/output/
 
 ```{r}
-cfg$output <- c("reporting","reportCEScalib","rds_report")
+cfg$output <- c("reporting", "reportCEScalib", "rds_report")
 ```
 
 **Possible Values:**
 
---
+See R-scripts located in `scripts/output/`.
 
 **Description:**
 
 --
 
 
-
 ### results_folder {-}
 
-Set the format for the results folder, type string :date: in order to use the current time stamp in the folder name (e.g. "results:date:") use :title: to use the current title in the folder name
+Set the format for the results folder 
 
 ```{r}
 cfg$results_folder <- "output/:title::date:"
@@ -374,7 +374,10 @@ cfg$results_folder <- "output/:title::date:"
 
 **Description:**
 
---
+In your specified path, you may use the following placeholders, which will automatically be replaced:
+
+* `:date:`: the current time stamp (e.g. "results:date:")
+* `:title:`: current title
 
 
 
@@ -659,7 +662,9 @@ cfg$gms$trade <- "standard"
 
 **Possible Values:** 
 
-* `"standard"`:
+* `"standard"`: macro-economic commodities and primary energy commodities trading
+* `"se_trade"`: macro-economic commodities, primary energy commodities and secondary energy hydrogen and electricity trading
+* `"capacity"`: capacity-based trade implementation
 
 **Description:** 
 
@@ -678,7 +683,7 @@ cfg$gms$agCosts <- "costs"
 **Possible Values:** 
 
 * `"off"`: agricultural costs zero, no trade taken into account
-* `"costs"`: includes total landuse costs
+* `"costs"`: includes total land use costs
 * `"costs_trade"`: includes agricultural production costs and the MAgPIE trade balance
 
 **Description:** 
@@ -716,8 +721,8 @@ cfg$gms$biomass <- "magpie_40"
 
 **Possible Values:** 
 
-* `"exogenous"`:     exogenous biomass extraction and costs
-* `"magpie_40"`: using supplycurved derived from MAgpIE 4.0
+* `"exogenous"`: exogenous biomass extraction and costs
+* `"magpie_40"`: using supply curve derived from MAgpIE 4.0
 
 **Description:** 
 
@@ -736,8 +741,8 @@ cfg$gms$fossil <- "grades2poly"
 **Possible Values:** 
 
 * `"timeDepGrades"`: time-dependent grade stucture of fossil resources (oil & gas only)
-* `"grades2poly"`  : simplified version of the time-dependent grade realization (using polynomial functions)
-* `"exogenous"`    : exogenous fossil extraction and costs
+* `"grades2poly"`: simplified version of the time-dependent grade realization (using polynomial functions)
+* `"exogenous"`: exogenous fossil extraction and costs
 
 **Description:** 
 
@@ -755,9 +760,9 @@ cfg$gms$power <- "IntC"
 
 **Possible Values:** 
 
-* `"IntC"`	:	Power sector formulation with Integration Cost (IntC) markups and curtailment for VRE integration - linearly increasing with VRE share -, and fixed capacity factors for dispatchable power plants
-* `"RLDC"`	:	Power sector formulation with Residual Load Duration Curve (RLDC) formulation for VRE power integration, and flexible capacity factors for dispatchable power plants
-* `"DTcoup"`    : Power sector formulation with coupling to DIETER
+* `"IntC"`:	Power sector formulation with Integration Cost (IntC) markups and curtailment for VRE integration - linearly increasing with VRE share -, and fixed capacity factors for dispatchable power plants
+* `"RLDC"`:	Power sector formulation with Residual Load Duration Curve (RLDC) formulation for VRE power integration, and flexible capacity factors for dispatchable power plants
+* `"DTcoup"`: Power sector formulation with coupling to DIETER
 
 **Description:** 
 
@@ -775,10 +780,10 @@ cfg$gms$CDR <- "DAC"
 
 **Possible Values:** 
 
-* `"off"`        : no carbon dioxide removal technologies except BECCS
-* `"weathering"` : includes enhanced weathering
-* `"DAC"` : 	   includes direct air capture
-* `"all"` : 	   includes all CDR technologies
+* `"off"`: no carbon dioxide removal technologies except BECCS
+* `"weathering"`: includes enhanced weathering
+* `"DAC"`: includes direct air capture
+* `"all"`: includes all CDR technologies
 
 **Description:** 
 
@@ -835,10 +840,8 @@ cfg$gms$industry <- "subsectors"
 
 **Possible Values:** 
 
-* `"fixed_shares"`: fixed shares of industry sub-sectors (cement, chemicals,
-steel, other) in industry FE use
-* `"subsectors"`:   models industry subsectors explicitly with individual CES nests
-for cement, chemicals, steel, and otherInd production.
+* `"fixed_shares"`: fixed shares of industry sub-sectors (cement, chemicals, steel, other) in industry FE use
+* `"subsectors"`: models industry subsectors explicitly with individual CES nests for cement, chemicals, steel, and otherInd production.
 
 **Description:** 
 
@@ -857,7 +860,7 @@ cfg$gms$CCU <- "on"
 **Possible Values:** 
 
 * `"on"`: simple representation of carbon capture and utilization technologies, first only example of syngas (H22CH4)
-* `"off"`: no representation of carbon caputre and utilization technologies.
+* `"off"`: no representation of carbon capture and utilization technologies.
 
 **Description:** 
 
@@ -943,18 +946,18 @@ cfg$gms$carbonprice <- "none"
 
 **Possible Values:** 
 
-* This module defines the carbon price pm_taxCO2eq, with behaviour across regions governed by similar principles (e.g. global targets, or all following NDC or NPi policies).
-* `"none"`: no tax policy (combined with all emiscens except emiscen eq 9)
-* `"exponential"`: 5% exponential increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with emiscen eq 9 and cm_co2_tax_2020>0)
-* `"expoLinear"`: 5% exponential increase until c_expoLinear_yearStart, linear increase thereafter
-* `"exogenous"`: carbon price is specified using an external input file or using the switch cm_regiExoPrice
-* `"linear"`: linear increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with emiscen eq 9 and cm_co2_tax_2020>0)
-* `"diffPriceSameCost"` ! experimental ! adjusts regional carbon prices until regional mitigation costs (in NPV GDP) are equal across regions. Use with iterative_adjust=2, emiscen=9. Experimental feature, you are responsible to check for convergence yourself (check that p45_mitiCostRel is about constant over iterations)
-* `"temperatureNotToExceed"`: [test and verify before using it!] Find the optimal carbon carbon tax (set cm_emiscen=9) for the not-to-exceed temperature target defined by cm_carbonprice_temperatureLimit.
+* This module defines the carbon price pm_taxCO2eq, with behavior across regions governed by similar principles (e.g. global targets, or all following NDC or NPi policies).
+* `"none"`: no tax policy (combined with all [cm_emiscen]s except [cm_emiscen] = 9)
+* `"exponential"`: 5% exponential increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with [cm_emiscen] = 9 and [cm_co2_tax_2020]>0)
+* `"expoLinear"`: 5% exponential increase until [cm_expoLinear_yearStart], linear increase thereafter
+* `"exogenous"`: carbon price is specified using an external input file or using the switch [cm_regiExoPrice]
+* `"linear"`: linear increase over time of the tax level in 2020 set via [cm_co2_tax_2020] (combined with [cm_emiscen] = 9 and [cm_co2_tax_2020]>0)
+* `"diffPriceSameCost"` ! experimental ! adjusts regional carbon prices until regional mitigation costs (in NPV GDP) are equal across regions. Use with [cm_iterative_target_adj]=2, [cm_emiscen]=9. Experimental feature, you are responsible to check for convergence yourself (check that p45_mitiCostRel is about constant over iterations)
+* `"temperatureNotToExceed"`: [test and verify before using it!] Find the optimal carbon carbon tax (set [cm_emiscen]=9) for the not-to-exceed temperature target defined by cm_carbonprice_temperatureLimit.
 * `"NDC2constant"`: linearly phase in global constant price from NDC prices (default 2020-2040 phase-in)
-* `"diffCurvPhaseIn2Lin"`: [REMIND 2.1 default for validation peakBudget runs, in combination with "iterative_target_adj" = 9] curved convergence of CO2 prices between regions until cm_CO2priceRegConvEndYr; developed countries have linear path from 0 in 2010 through cm_co2_tax_2020 in 2020;
+* `"diffCurvPhaseIn2Lin"`: (REMIND 2.1 default for validation peakBudget runs, in combination with [cm_iterative_target_adj] = 9) curved convergence of CO2 prices between regions until [cm_CO2priceRegConvEndYr]; developed countries have linear path from 0 in 2010 through [cm_co2_tax_2020] in 2020;
 * `"diffPhaseIn2Constant"`: !experimental! linearly phase in global constant price, with starting values differentiated by GDP/cap
-* `"NDC"`: implements a carbon price trajectory consistent with the NDC targets (up to 2030) and a trajectory of comparable ambition post 2030 (1.25%/yr price increase and regional convergence of carbon price). Choose version using cm_NDC_version "2022_cond", "2022_uncond", or replace 2022 by 2021 or 2018 to get all NDC published until end of these years.
+* `"NDC"`: implements a carbon price trajectory consistent with the NDC targets (up to 2030) and a trajectory of comparable ambition post 2030 (1.25%/yr price increase and regional convergence of carbon price). Choose version using [cm_NDC_version] "2022_cond", "2022_uncond", or replace 2022 by 2021 or 2018 to get all NDC published until end of these years.
 
 **Description:** 
 
@@ -973,7 +976,7 @@ cfg$gms$carbonpriceRegi <- "none"
 **Possible Values:** 
 
 * This module applies a markup pm_taxCO2eqRegi on top of pm_taxCO2eq to achieve additional intermediate targets.
-* `"none"`: no regional carbonprice policies
+* `"none"`: no regional carbon price policies
 * `"NDC"`: implements a carbon price markup trajectory consistent with the NDC targets between 2030 and 2070
 * `"netZero"`: implements a carbon price markup trajectory consistent with the net zero targets
 
@@ -993,10 +996,10 @@ cfg$gms$regipol <- "none"
 
 **Possible Values:** 
 
-* The regiCarbonPrice realisation defines more detailed region or emissions market specific targets, overwriting the behaviour of pm_taxCO2eq and pm_taxCO2eqRegi for these regions.
+* The regiCarbonPrice realization defines more detailed region or emissions market specific targets, overwriting the behavior of pm_taxCO2eq and pm_taxCO2eqRegi for these regions.
 * `"none"`: no regional policies
 * `"regiCarbonPrice"`: Region specific or region group independent carbon price.
-* the target is defined in the cm_regiCO2target switch, for year target e.g. "2050.EUR.year.netCO2 0.7, 2050.USA.year.grossFFaI 1.0" sets a 0.7GtCO2 net CO2 target for EUR in 2050 and a 1GtCO2 gross Fossil Fuel and Industry CO2 emissions target for USA
+* the target is defined in the [cm_regiCO2target] switch, for year target e.g. "2050.EUR.year.netCO2 0.7, 2050.USA.year.grossFFaI 1.0" sets a 0.7GtCO2 net CO2 target for EUR in 2050 and a 1GtCO2 gross Fossil Fuel and Industry CO2 emissions target for USA
 * for budget target: "2050.EUR.budget.netCO2 70, 2050.USA.budget.grossFFaI 100" sets a netCO2/grossFFaI budget from 2020-2050 correspondingly (note: don't put values to 0 as this will make the model ignore the switch)
 
 **Description:** 
@@ -1017,7 +1020,7 @@ cfg$gms$damages <- "off"
 
 * `"off"`: no damages on GDP
 * `"DiceLike"`: DICE-like damages (linear-quadratic damages on GDP). Choose specification via cm_damage_DiceLike_specification
-* `"BurkeLike"`: Burke-like damages (growth rate damages on GDP). Choose specification via cm_damage_BurkeLike_specification and cm_damage_BurkeLike_persistenceTime
+* `"BurkeLike"`: Burke-like damages (growth rate damages on GDP). Choose specification via [cm_damages_BurkeLike_specification] and [cm_damages_BurkeLike_persistenceTime]
 * `"KWLike"`: Damage function based on Kalkuhl & Wenz (2020)
 
 **Description:** 
@@ -1037,9 +1040,9 @@ cfg$gms$internalizeDamages <- "off"
 **Possible Values:** 
 
 * `"off"`:
-* `"DiceLikeItr"`: Internalize DICE-like damages (calculate the SCC) adjust cm_damages_SccHorizon. Requires cm_emiscen=9 for now.
-* `"BurkeLikeItr"`: Internalize Burke-like damages (calculate the SCC) adjust cm_damages_SccHorizo. Requires cm_emiscen=9 for now.
-* `"KWlikeItr"`: Internalize damage function based on Kalkuhl & Wenz (2020). Requires cm_emiscen=9 for now.
+* `"DiceLikeItr"`: Internalize DICE-like damages (calculate the SCC) adjust [cm_damages_SccHorizon]. Requires [cm_emiscen]=9 for now.
+* `"BurkeLikeItr"`: Internalize Burke-like damages (calculate the SCC) adjust [cm_damages_SccHorizon]. Requires [cm_emiscen]=9 for now.
+* `"KWlikeItr"`: Internalize damage function based on Kalkuhl & Wenz (2020). Requires [cm_emiscen]=9 for now.
 
 **Description:** 
 
@@ -1079,8 +1082,7 @@ cfg$gms$optimization <- "nash"
 
 * `"nash"`: Nash solution. Adjust cm_nash_autoconverge to needs.
 * `"negishi"`: calculates a Negishi solution (social planner)
-* `"testOneRegi"`:  solves the problem for one region for given prices (taken from gdx).
-*                ! Warning:  For development purposes only !
+* `"testOneRegi"`:  solves the problem for one region for given prices (taken from gdx). ! Warning:  For development purposes only !
 
 **Description:** 
 
@@ -1099,8 +1101,8 @@ cfg$gms$codePerformance <- "off"
 **Possible Values:** 
 
 * `"off"`: nothing happens
-* `"on"`:  test code performance: noumerous (30) succesive runs performed in a triangle, tax0, tax30, tax150, all growing exponentially,
-therefore use carbonprice|exponential, c_emiscen|9, and cm_co2_tax_2020|0.
+* `"on"`: test code performance: numerous (30) successive runs performed in a triangle, tax0, tax30, tax150, all growing exponentially,
+therefore use [45_carbonprice] = exponential, [cm_emiscen] = 9, and [cm_co2_tax_2020] = 0.
 
 **Description:** 
 
@@ -1150,7 +1152,7 @@ cfg$gms$c_solver_try_max <- 2
 
 **Description:**
 
-*** Careful: for each inner_itr_count, the size of remind.lst can increase by 50MB!
+Careful: for each inner_itr_count, the size of remind.lst can increase by 50MB!
 
 
 
@@ -1168,7 +1170,7 @@ cfg$gms$c_keep_iteration_gdxes <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1182,9 +1184,9 @@ cfg$gms$cm_nash_autoconverge <- 1
 
 **Possible Values:**
 
-* (0): manually set number of iterations by adjusting [cm_iteration_max]
-* (1): run until solution is sufficiently converged  - coarse tolerances, quick solution.  ! donot use in production runs !
-* (2): run until solution is sufficiently converged  - fine tolerances, for production runs.
+* `0`: manually set number of iterations by adjusting [cm_iteration_max]
+* `1`: run until solution is sufficiently converged  - coarse tolerances, quick solution.  ! do not use in production runs !
+* `2`: run until solution is sufficiently converged  - fine tolerances, for production runs.
 
 **Description:**
 
@@ -1202,20 +1204,20 @@ cfg$gms$cm_emiscen <- 1
 
 **Possible Values:**
 
-* (0): no global budget. Policy may still be prescribed by 41_emicaprei module.
-* (1): BAU
-* (2): temperature cap
-* (3): CO2 concentration cap
-* (4): emission time path
-* (5): forcing target from 2010 (not to exceed)
-* (6): budget
-* (8): forcing target from 2100 onwards (overshoot scen)
-* (9): tax scenario (requires running module [21_tax] "on"), tax level controlled by module [45_carbonprice] and [cm_co2_tax_2020], other ghg etc. controlled by [cm_rcp_scen]
+* `0`: no global budget. Policy may still be prescribed by [41_emicapregi] module.
+* `1`: BAU
+* `2`: temperature cap
+* `3`: CO2 concentration cap
+* `4`: emission time path
+* `5`: forcing target from 2010 (not to exceed)
+* `6`: budget
+* `8`: forcing target from 2100 onwards (overshoot scen)
+* `9`: tax scenario (requires running module [21_tax] "on"), tax level controlled by module [45_carbonprice] and [cm_co2_tax_2020], other ghg etc. controlled by [cm_rcp_scen]
 
 **Description:**
 
 *RP* WARNING: [cm_emiscen] 3 should not be used anymore, as the MACs are not updated anymore.
-*JeS* WARNING: data for [cm_emiscen] 4 only exists for multigas_scen 2 bau scenarios and for multigas_scen 1
+*JeS* WARNING: data for [cm_emiscen] 4 only exists for [cm_multigasscen] 2 bau scenarios and for [cm_multigasscen] 1
 
 
 
@@ -1229,18 +1231,18 @@ cfg$gms$cm_iterative_target_adj <- 0
 
 **Possible Values:**
 
-* (0): no iterative adjustment
-* (2): iterative adjustment II based on magicc calculated forcing (for both budget and tax runs), see modules/climate/magicc/postsolve.gms for direct algorithms of adjustment
-* (3): [requires [45_carbonprice] = "NDC" and emiscen = 9] iterative adjustment III for tax based on 2025 or 2030 regionally differentiated emissions, see module/[45_carbonprice]/<NDC/NPi2018>/postsolve.gms for algorithm of adjustment
-* (4): iterative adjustment IV for both budget and tax runs based on CO2 FF&I emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment
-* (5): iterative adjustment V for both budget and tax runs based on CO2 emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment
-* (6): iterative adjustment VI for both budget and tax runs based on peak CO2 emissions budget, without changing temporal profile (i.e. with overshoot), see core/postsolve.gms for direct algorithms of adjustment
-* (7): iterative adjustment VII for tax runs based on peak CO2 emissions, with change of temporal tax profile after time of peak budget, aiming for net-zero thereafter, see core/postsolve.gms for direct algorithms of adjustment
-* (9): [REMIND 2.1 default for validation peakBudget runs, in combination with carbonprice = diffCurvPhaseIn2Lin) ] aims at achieving [c_budgetCO2from2020] as peakBudget. Scales up and down the original CO2 price path before the peaking year; after the peaking year annual increase by [cm_taxCO2inc_after_peakBudgYr]. Automatically shifts [cm_peakBudgYr] to find the correct peaking year for a given .
+* `0`: no iterative adjustment
+* `2`: iterative adjustment II based on magicc calculated forcing (for both budget and tax runs), see modules/climate/magicc/postsolve.gms for direct algorithms of adjustment
+* `3`: (requires [45_carbonprice] = "NDC" and emiscen = 9) iterative adjustment III for tax based on 2025 or 2030 regionally differentiated emissions, see module/[45_carbonprice]/<NDC/NPi2018>/postsolve.gms for algorithm of adjustment
+* `4`: iterative adjustment IV for both budget and tax runs based on CO2 FF&I emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment
+* `5`: iterative adjustment V for both budget and tax runs based on CO2 emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment
+* `6`: iterative adjustment VI for both budget and tax runs based on peak CO2 emissions budget, without changing temporal profile (i.e. with overshoot), see core/postsolve.gms for direct algorithms of adjustment
+* `7`: iterative adjustment VII for tax runs based on peak CO2 emissions, with change of temporal tax profile after time of peak budget, aiming for net-zero thereafter, see core/postsolve.gms for direct algorithms of adjustment
+* `9`: [REMIND 2.1 default for validation peakBudget runs, in combination with carbonprice = diffCurvPhaseIn2Lin) ] aims at achieving [c_budgetCO2from2020] as peakBudget. Scales up and down the original CO2 price path before the peaking year; after the peaking year annual increase by [cm_taxCO2inc_after_peakBudgYr]. Automatically shifts [cm_peakBudgYr] to find the correct peaking year for a given .
 
 **Description:**
 
-"whether or not a tax or a budget target should be iteratively adjusted depending on actual emission or forcing level";
+--
 
 
 
@@ -1254,20 +1256,20 @@ cfg$gms$cm_NDC_divergentScenario <- 0
 
 **Possible Values:**
 
---
+* `0`: 70 years after 2030
+* `1`: 120 years after 2030
+* `2`: until year 3000 ("never")
 
 **Description:**
 
 choose scenario about convergence of CO2eq prices in NDC realization of module [45_carbonprice]
-(0) 70 years after 2030
-(1) 120 years after 2030
-(2) until year 3000 ("never")
+
 
 
 
 ### cm_co2_tax_2020 {-}
 
-level of co2 tax in year 2020 in $ per t CO2eq, makes sense only for emiscen eq 9 and 45_carbonprice exponential
+level of co2 tax in year 2020 in $ per t CO2eq, 
 
 ```{r}
 cfg$gms$cm_co2_tax_2020 <- -1
@@ -1275,12 +1277,12 @@ cfg$gms$cm_co2_tax_2020 <- -1
 
 **Possible Values:**
 
-* (-1): default setting equivalent to no carbon tax
+* `-1`: default setting equivalent to no carbon tax
 * (any number >= 0): tax level in 2020, with 5% exponential increase over time
 
 **Description:**
 
---
+makes sense only for [cm_emiscen] eq 9 and [45_carbonprice] exponential
 
 
 
@@ -1312,8 +1314,8 @@ cfg$gms$c_macscen <- 1
 
 **Possible Values:**
 
-* (1): on
-* (2): off
+* `1`: on
+* `2`: off
 
 **Description:**
 
@@ -1331,12 +1333,12 @@ cfg$gms$cm_nucscen <- 2
 
 **Possible Values:**
 
-* (1): no fnrs, tnrs completely free after 2020
-* (2): no fnrs, tnrs with restricted new builds until 2030 (based on current data on plants under construction, planned or proposed)
-* (3): no tnrs no fnrs
-* (4): fix at bau level
-* (5): no new nuclear investments after 2020
-* (6): +33% investment costs (tnrs) & uranium resources increased by a factor of 10
+* `1`: no fnrs, tnrs completely free after 2020
+* `2`: no fnrs, tnrs with restricted new builds until 2030 (based on current data on plants under construction, planned or proposed)
+* `3`: no tnrs no fnrs
+* `4`: fix at bau level
+* `5`: no new nuclear investments after 2020
+* `6`: +33% investment costs (tnrs) & uranium resources increased by a factor of 10
 
 **Description:**
 
@@ -1346,7 +1348,7 @@ cfg$gms$cm_nucscen <- 2
 
 ### cm_ccapturescen {-}
 
-carbon capture option choice, no carbon capture only if CCS and CCU are switched off!
+carbon capture option choice
 
 ```{r}
 cfg$gms$cm_ccapturescen <- 1
@@ -1354,20 +1356,19 @@ cfg$gms$cm_ccapturescen <- 1
 
 **Possible Values:**
 
-* (1): yes
-* (2): no carbon capture (only if CCS and CCU are switched off!)
-* (3): no bio carbon capture
-* (4): no carbon capture in the electricity sector
+* `1`: yes
+* `2`: no carbon capture (only if CCS and CCU are switched off!)
+* `3`: no bio carbon capture
+* `4`: no carbon capture in the electricity sector
 
 **Description:**
 
-carbon capture option choice
-
+--
 
 
 ### c_bioliqscen {-}
 
-switch liquids producing technology on or off
+bioenergy liquids technology choice
 
 ```{r}
 cfg$gms$c_bioliqscen <- 1
@@ -1375,18 +1376,18 @@ cfg$gms$c_bioliqscen <- 1
 
 **Possible Values:**
 
-* (0): no technologies
-* (1): all technologies
+* `0`: no technologies
+* `1`: all technologies
 
 **Description:**
 
-bioenergy liquids technology choise
+--
 
 
 
 ### c_bioh2scen {-}
 
-switch hydrogen producing technology on or off
+bioenergy hydrogen technology choice
 
 ```{r}
 cfg$gms$c_bioh2scen <- 1
@@ -1394,12 +1395,12 @@ cfg$gms$c_bioh2scen <- 1
 
 **Possible Values:**
 
-* (0): no technologies
-* (1): all technologies
+* `0`: no technologies
+* `1`: all technologies
 
 **Description:**
 
-bioenergy hydrogen technology choice
+--
 
 
 
@@ -1455,6 +1456,8 @@ cfg$gms$cm_shSynTrans <- 0
 
 lower bound on share of synthetic fuels in all transport fuels by 2045
 
+TODO: description mismatch!
+
 
 
 ### cm_shSynGas {-}
@@ -1471,7 +1474,7 @@ cfg$gms$cm_shSynGas <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1489,7 +1492,7 @@ cfg$gms$cm_IndCCSscen <- 1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1507,7 +1510,7 @@ cfg$gms$cm_optimisticMAC <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1525,7 +1528,7 @@ cfg$gms$cm_CCS_cement <- 1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1543,7 +1546,7 @@ cfg$gms$cm_CCS_chemicals <- 1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1561,7 +1564,7 @@ cfg$gms$cm_CCS_steel <- 1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1575,9 +1578,9 @@ cfg$gms$c_solscen <- 1
 
 **Possible Values:**
 
-* (1): yes
-* (2): no solar
-* (3): fix at bau level
+* `1`: yes
+* `2`: no solar
+* `3`: fix at bau level
 
 **Description:**
 
@@ -1595,7 +1598,7 @@ cfg$gms$cm_bioenergy_tax <- 1.5
 
 **Possible Values:**
 
-* (0): default setting equivalent to no tax
+* `0`: default setting equivalent to no tax
 * (any number >= 0): tax level, e.g. for a 100% tax [cm_bioenergy_tax] has to be 1
 
 **Description:**
@@ -1614,13 +1617,13 @@ cfg$gms$cm_bioenergymaxscen <- 0
 
 **Possible Values:**
 
-* (0): no bound
-* (1): 100 EJ global bioenergy potential (bound in boundsextra.inc)
-* (2): 200 EJ global bioenergy potential (bound in boundsextra.inc)
-* (3): 300 EJ global bioenergy potential (bound in boundsextra.inc)
-* (4): 152 EJ global bioenergy potential, i.e. 100 EJ 2nd generation (bound in boundsextra.inc)
-* (5): (placeholder for scenario from DIPOL branch that is not yet merged)
-* (6): 75 EJ (2050) and 90 EJ (2100) global bioenergy potential (linear interpolation in between)
+* `0`: no bound
+* `1`: 100 EJ global bioenergy potential (bound in boundsextra.inc)
+* `2`: 200 EJ global bioenergy potential (bound in boundsextra.inc)
+* `3`: 300 EJ global bioenergy potential (bound in boundsextra.inc)
+* `4`: 152 EJ global bioenergy potential, i.e. 100 EJ 2nd generation (bound in boundsextra.inc)
+* `5`: (placeholder for scenario from DIPOL branch that is not yet merged)
+* `6`: 75 EJ (2050) and 90 EJ (2100) global bioenergy potential (linear interpolation in between)
 
 **Description:**
 
@@ -1639,8 +1642,8 @@ cfg$gms$cm_tradecost_bio <- 2
 
 **Possible Values:**
 
-* (1): low   tradecosts (for other SSP scenarios than SSP2)
-* (2): high  tradecosts (default and SSP2)
+* `1`: low   tradecosts (for other SSP scenarios than SSP2)
+* `2`: high  tradecosts (default and SSP2)
 
 **Description:**
 
@@ -1658,8 +1661,8 @@ cfg$gms$cm_1stgen_phaseout <- 0
 
 **Possible Values:**
 
-* (0): 1st generation biofuels after 2020 are fixed at upper limit of resource potential (maxprod)
-* (1): no new capacities for 1st generation biofuel technologies may be built after 2030 -> phaseout until ~2060
+* `0`: 1st generation biofuels after 2020 are fixed at upper limit of resource potential (maxprod)
+* `1`: no new capacities for 1st generation biofuel technologies may be built after 2030 -> phaseout until ~2060
 
 **Description:**
 
@@ -1681,7 +1684,7 @@ cfg$gms$cm_cprice_red_factor <- 1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1695,19 +1698,20 @@ cfg$gms$cm_GDPcovid <- 0
 
 **Possible Values:**
 
-* (0):  off
-* (1):  on
+* `0`:  off
+* `1`:  on
 
 **Description:**
 
 GDP correction for covid
-*ML* emulates a schock, only feasible with start year 2020, don't use in calibration
+
+*ML*: emulates a shock, only feasible with start year 2020, don't use in calibration
 
 
 
 ### cm_startyear {-}
 
-first optimized modelling time step [year]
+first optimized modelling time step (year)
 
 ```{r}
 cfg$gms$cm_startyear <- 2005
@@ -1715,13 +1719,13 @@ cfg$gms$cm_startyear <- 2005
 
 **Possible Values:**
 
-* (2005): standard for BAU to check if model is well calibrated
-* (2015): standard for all policy runs (eq. to fix2010) and production baselines, especially if various baselines with varying parameters are explored
+* `2005`: standard for BAU to check if model is well calibrated
+* `2015`: standard for all policy runs (eq. to fix2010) and production baselines, especially if various baselines with varying parameters are explored
 * (....): later start for delay policy runs, eg. 2025 for what used to be delay2020
 
 **Description:**
 
-"first free (or pseudo-free in case of 2005) modelling time step";
+first free (or pseudo-free in case of 2005) modelling time step
 
 
 
@@ -1739,7 +1743,7 @@ cfg$gms$c_start_budget <- 2100
 
 **Description:**
 
-NA
+--
 
 
 
@@ -1753,8 +1757,8 @@ cfg$gms$cm_prtpScen <- 3
 
 **Possible Values:**
 
-* (1): 1 %
-* (3): 3 %
+* `1`: 1 %
+* `3`: 3 %
 
 **Description:**
 
@@ -1764,7 +1768,7 @@ cfg$gms$cm_prtpScen <- 3
 
 ### cm_fetaxscen {-}
 
-choice of final energy tax path, subsidy path and inconvenience cost path, values other than 0 make setting module 21_tax on
+choice of final energy tax path
 
 ```{r}
 cfg$gms$cm_fetaxscen <- 3
@@ -1772,11 +1776,11 @@ cfg$gms$cm_fetaxscen <- 3
 
 **Possible Values:**
 
-* (0): no tax, sub, inconv
-* (1): constant t,s,i (used in SSP 5 and ADVANCE WP3.1 HighOilSub)
-* (2): converging tax, phased out sub (-2030), no inconvenience cost so far (used in SSP 1)
-* (3): constant tax, phased out sub (-2050), no inconvenience cost so far (used in SSP 2)
-* (4): constant tax, phased out sub (-2030), no inconvenience cost so far (used in SDP)
+* `0`: no tax, sub, inconv
+* `1`: constant t,s,i (used in SSP 5 and ADVANCE WP3.1 HighOilSub)
+* `2`: converging tax, phased out sub (-2030), no inconvenience cost so far (used in SSP 1)
+* `3`: constant tax, phased out sub (-2050), no inconvenience cost so far (used in SSP 2)
+* `4`: constant tax, phased out sub (-2030), no inconvenience cost so far (used in SDP)
 
 **Description:**
 
@@ -1795,9 +1799,9 @@ cfg$gms$cm_multigasscen <- 2
 
 **Possible Values:**
 
-* (1): CO2 only
-* (2): all GHG
-* (3): all GHG excl CO2 emissions from LULUCF
+* `1`: CO2 only
+* `2`: all GHG
+* `3`: all GHG excl CO2 emissions from LULUCF
 
 **Description:**
 
@@ -1815,17 +1819,13 @@ cfg$gms$cm_permittradescen <- 1
 
 **Possible Values:**
 
-* (1): full permit trade (no restrictions)
-* (2): no permit trade (only domestic mitigation)
-* (3): limited trade (certain percentage of GDP)
+* `1`: full permit trade (no restrictions)
+* `2`: no permit trade (only domestic mitigation)
+* `3`: limited trade (certain percentage of GDP)
 
 **Description:**
 
-scenario on permit trade
-c_limit_peur_scen  "limit total uranium production"
-(0): no
-(1): yes (the exact amount is specified in boundsextra)
-
+--
 
 
 ### cm_limit_peur_scen {-}
@@ -1838,8 +1838,8 @@ cfg$gms$cm_limit_peur_scen <- 1
 
 **Possible Values:**
 
-* (0): off
-* (1): on
+* `0`: no
+* `1`: yes (the exact amount is specified in boundsextra)
 
 **Description:**
 
@@ -1849,7 +1849,7 @@ cfg$gms$cm_limit_peur_scen <- 1
 
 ### cm_rentdiscoil {-}
 
-[grades2poly] discount factor for the oil rent
+grades2poly discount factor for the oil rent
 
 ```{r}
 cfg$gms$cm_rentdiscoil <- 0.2
@@ -1861,13 +1861,13 @@ cfg$gms$cm_rentdiscoil <- 0.2
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentdiscoil2 {-}
 
-[grades2poly] discount factor for the oil rent achieved in 2100
+grades2poly discount factor for the oil rent achieved in 2100
 
 ```{r}
 cfg$gms$cm_rentdiscoil2 <- 0.9
@@ -1879,13 +1879,13 @@ cfg$gms$cm_rentdiscoil2 <- 0.9
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentconvoil {-}
 
-[grades2poly] number of years required to converge to the 2100 oil rent
+grades2poly number of years required to converge to the 2100 oil rent
 
 ```{r}
 cfg$gms$cm_rentconvoil <- 50
@@ -1897,13 +1897,13 @@ cfg$gms$cm_rentconvoil <- 50
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentdiscgas {-}
 
-[grades2poly] discount factor for the gas rent
+grades2poly discount factor for the gas rent
 
 ```{r}
 cfg$gms$cm_rentdiscgas <- 0.6
@@ -1915,13 +1915,13 @@ cfg$gms$cm_rentdiscgas <- 0.6
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentdiscgas2 {-}
 
-[grades2poly] discount factor for the gas rent achieved in 2100
+grades2poly discount factor for the gas rent achieved in 2100
 
 ```{r}
 cfg$gms$cm_rentdiscgas2 <- 0.8
@@ -1933,13 +1933,13 @@ cfg$gms$cm_rentdiscgas2 <- 0.8
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentconvgas {-}
 
-[grades2poly] number of years required to converge to the 2100 gas rent
+grades2poly number of years required to converge to the 2100 gas rent
 
 ```{r}
 cfg$gms$cm_rentconvgas <- 50
@@ -1951,13 +1951,13 @@ cfg$gms$cm_rentconvgas <- 50
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentdisccoal {-}
 
-[grades2poly] discount factor for the coal rent
+grades2poly discount factor for the coal rent
 
 ```{r}
 cfg$gms$cm_rentdisccoal <- 0.4
@@ -1969,13 +1969,13 @@ cfg$gms$cm_rentdisccoal <- 0.4
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentdisccoal2 {-}
 
-[grades2poly] discount factor for the coal rent achieved in 2100
+grades2poly discount factor for the coal rent achieved in 2100
 
 ```{r}
 cfg$gms$cm_rentdisccoal2 <- 0.6
@@ -1987,13 +1987,13 @@ cfg$gms$cm_rentdisccoal2 <- 0.6
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
 ### cm_rentconvcoal {-}
 
-[grades2poly] number of years required to converge to the 2100 coal rent
+grades2poly number of years required to converge to the 2100 coal rent
 
 ```{r}
 cfg$gms$cm_rentconvcoal <- 50
@@ -2005,7 +2005,7 @@ cfg$gms$cm_rentconvcoal <- 50
 
 **Description:**
 
-NA
+for [31_fossil] = grades2poly
 
 
 
@@ -2019,8 +2019,8 @@ cfg$gms$c_cint_scen <- 1
 
 **Possible Values:**
 
-* (0): switch is off (emissions are not accounted)
-* (1): switch is on (emissions are accounted)
+* `0`: switch is off (emissions are not accounted)
+* `1`: switch is on (emissions are accounted)
 
 **Description:**
 
@@ -2038,11 +2038,11 @@ cfg$gms$cm_so2tax_scen <- 1
 
 **Possible Values:**
 
-* (0): so2 tax is set to zero
-* (1): so2 tax is low
-* (2): so2 tax is standard
-* (3): so2 tax is high
-* (4): so2 tax intermediary between 1 and 2, multiplying (1) tax by the ratio (3)/(2)
+* `0`: so2 tax is set to zero
+* `1`: so2 tax is low
+* `2`: so2 tax is standard
+* `3`: so2 tax is high
+* `4`: so2 tax intermediary between 1 and 2, multiplying (1) tax by the ratio (3)/(2)
 
 **Description:**
 
@@ -2070,7 +2070,7 @@ cfg$gms$cm_damage <- 0.005
 
 ### cm_solwindenergyscen {-}
 
-scenario for fluctuating renewables, 1 is reference, 2 is pessimistic with limits to fluctuating SE el share
+scenario for fluctuating renewables
 
 ```{r}
 cfg$gms$cm_solwindenergyscen <- 1
@@ -2078,21 +2078,22 @@ cfg$gms$cm_solwindenergyscen <- 1
 
 **Possible Values:**
 
---
+* `0`: advanced - cheap investment costs, higher learning rates for pv, csp and wind
+* `1`: reference - normal investment costs & learning rates for pv, csp and wind     EMF27-3nd round Adv scenario
+* `2`: pessimistic EMF27 and AWP 2 - share of PV, wind&CSP limited to 20%. Learning rates reduced by 20%, floor costs increased by 40%. EMF27-3nd round Cons scenario
+* `3`": frozen - no learning after 2010, share of PV, wind&CSP limited to 20%. EMF27-3rd round Frozen scenario
+* `4`: pessimistic SSP: pessimistic techno-economic assumptions
+
 
 **Description:**
 
-(0) advanced - cheap investment costs, higher learning rates for pv, csp and wind
-(1) reference - normal investment costs & learning rates for pv, csp and wind     EMF27-3nd round Adv scenario
-(2) pessimistic EMF27 and AWP 2 - share of PV, wind&CSP limited to 20%. Learning rates reduced by 20%, floor costs increased by 40%. EMF27-3nd round Cons scenario
-(3) frozen - no learning after 2010, share of PV, wind&CSP limited to 20%. EMF27-3rd round Frozen scenario
-(4) pessimistic SSP: pessimistic techno-economic assumptions
+1 is reference, 2 is pessimistic with limits to fluctuating SE el share
 
 
 
 ### c_techAssumptScen {-}
 
-scenario for assumptions of energy technologies based on SSP scenarios, 1: SSP2 (default), 2: SSP1, 3: SSP5
+scenario for assumptions of energy technologies based on SSP scenarios
 
 ```{r}
 cfg$gms$c_techAssumptScen <- 1
@@ -2100,14 +2101,14 @@ cfg$gms$c_techAssumptScen <- 1
 
 **Possible Values:**
 
---
+* `1`: SSP2: reference scenario - default investment costs & learning rates for pv, csp and wind
+* `2`: SSP1: advanced renewable energy techno., pessimistic for nuclear and CCS
+* `3`: SSP5: pessimistic techno-economic assumptions
+
 
 **Description:**
 
 *JH* This flag defines an energy technology scenario
-(1) SSP2: reference scenario - default investment costs & learning rates for pv, csp and wind
-(2) SSP1: advanced renewable energy techno., pessimistic for nuclear and CCS
-(3) SSP5: pessimistic techno-economic assumptions
 
 
 
@@ -2121,18 +2122,18 @@ cfg$gms$c_ccsinjecratescen <- 1
 
 **Possible Values:**
 
---
+* `0`: no "CCS" as in no carbon sequestration at all
+* `1`: reference case: 0.005
+* `2`: lower estimate: 0.0025
+* `3`: upper estimate: 0.075
+* `4`: unconstrained: 1
+* `5`: sustainability case: 0.001
 
 **Description:**
 
 *JH* This flag determines the upper bound of the CCS injection rate
-*LP* CCS refers to carbon sequestration, carbon capture is modelled separately
-(0) no "CCS" as in no carbon sequestration at all
-(1) reference case: 0.005
-(2) lower estimate: 0.0025
-(3) upper estimate: 0.075
-(4) unconstrained: 1
-(5) sustainability case: 0.001
+
+*LP* CCS refers to carbon sequestration, carbon capture is modeled separately
 
 
 
@@ -2146,19 +2147,18 @@ cfg$gms$c_ccscapratescen <- 1
 
 **Possible Values:**
 
---
+* `1`: reference
+* `2`: increased capture rate
 
 **Description:**
 
 *JH*  This flag determines the CO2 capture rate of CCS technologies
-(1) reference
-(2) increased capture rate
 
 
 
 ### c_export_tax_scen {-}
 
-choose which oil export tax is used in the model. 0 = none, 1 = fix
+choose which oil export tax is used in the model
 
 ```{r}
 cfg$gms$c_export_tax_scen <- 0
@@ -2166,11 +2166,12 @@ cfg$gms$c_export_tax_scen <- 0
 
 **Possible Values:**
 
---
+* `0`: none
+* `1`: fix
 
 **Description:**
 
-
+--
 
 
 
@@ -2184,12 +2185,12 @@ cfg$gms$cm_gdximport_target <- 0
 
 **Possible Values:**
 
-* (0): no import, the default starting value as specified in modules/[21_tax]/on/input/tax_CO2.inc, core/input/data_emibudget.inc, modules/[15_climate]/box/datainput.gms is used
-* (1): the values from the gdx are read in (works only if the gdx has a parameter value) ATTENTION: make sure that the values from the gdx have the right structure (e.g. regionally differentiated or not)
+* `0`: no import, the default starting value as specified in modules/[21_tax]/on/input/tax_CO2.inc, core/input/data_emibudget.inc, modules/[15_climate]/box/datainput.gms is used
+* `1`: the values from the gdx are read in (works only if the gdx has a parameter value) ATTENTION: make sure that the values from the gdx have the right structure (e.g. regionally differentiated or not)
 
 **Description:**
 
-"whether or not the starting value for iteratively adjusted budgets, tax scenarios, or forcing targets (emiscen 5,6,7,8,9) should be read in from the input.gdx";
+--
 
 
 
@@ -2207,7 +2208,7 @@ cfg$gms$cm_gs_ew <- 20
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2225,13 +2226,13 @@ cfg$gms$cm_LimRock <- 1000
 
 **Description:**
 
-NA
+--
 
 
 
 ### c_tau_so2_xmpt {-}
 
-switch for temporarily (mainly in the past) exempting chinese SO2 emissions from the SO2 tax
+switch for temporarily (mainly in the past) exempting Chinese SO2 emissions from the SO2 tax
 
 ```{r}
 cfg$gms$c_tau_so2_xmpt <- 0
@@ -2243,7 +2244,7 @@ cfg$gms$c_tau_so2_xmpt <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2261,7 +2262,7 @@ cfg$gms$cm_expoLinear_yearStart <- 2050
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2279,7 +2280,7 @@ cfg$gms$c_budgetCO2from2020FFI <- 700
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2298,6 +2299,7 @@ cfg$gms$c_budgetCO2from2020 <- 1150
 **Description:**
 
 carbon budget for all CO2 emissions starting from 2020 (in GtCO2)
+
 budgets from AR6 for 2020-2100 (including 2020), for 1.5°C: 400 Gt CO2, for 2°C: 1150 Gt CO2
 
 
@@ -2316,7 +2318,7 @@ cfg$gms$c_abtrdy <- 2010
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2334,13 +2336,13 @@ cfg$gms$c_abtcst <- 1
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_postTargetIncrease {-}
 
-carbon price increase per year after target is reached (€/tCO2)
+carbon price increase per year after target is reached (euro per tCO2)
 
 ```{r}
 cfg$gms$cm_postTargetIncrease <- 2
@@ -2352,7 +2354,7 @@ cfg$gms$cm_postTargetIncrease <- 2
 
 **Description:**
 
-carbon price increase per year after target is reached (euro per tCO2)
+--
 
 
 
@@ -2367,16 +2369,15 @@ cfg$gms$cm_DiscRateScen <- 0
 
 **Possible Values:**
 
---
+* `0`: Baseline without higher discount rate: No additional discount rate
+* `1`: Baseline with higher discount rate: Increase the discount rate by 10%pts from 2005 until the end
+* `2`: Energy Efficiency policy: 10%pts higher discount rate until cm_start_year and 0 afterwards.
+* `3`: Energy Efficiency policy: higher discount rate until cm_start_year and 25% of the initial value afterwards.
+* `4`: Energy Efficiency policy: higher discount rate until cm_start_year, decreasing to 25% value linearly until 2030.
 
 **Description:**
 
 Scenario for the implicit discount rate applied to the energy efficiency capital
-(0) Baseline without higher discount rate: No additional discount rate
-(1) Baseline with higher discount rate: Increase the discount rate by 10%pts from 2005 until the end
-(2) Energy Efficiency policy: 10%pts higher discount rate until cm_start_year and 0 afterwards.
-(3) Energy Efficiency policy: higher discount rate until cm_start_year and 25% of the initial value afterwards.
-(4) Energy Efficiency policy: higher discount rate until cm_start_year, decreasing to 25% value linearly until 2030.
 
 
 
@@ -2394,7 +2395,7 @@ cfg$gms$cm_noReboundEffect <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2408,13 +2409,13 @@ cfg$gms$cm_esubGrowth <- "middle"
 
 **Possible Values:**
 
---
+* `"low"`: 1.3
+* `"middle"`: 1.5
+* `"high"`: 2
+
 
 **Description:**
 
-(low) 1.3
-(middle) 1.5
-(high) 2
 specify regions to which nucscen, capturescen should apply to (e.g. [c_regi_nucscen] <- "JPN,USA")
 
 
@@ -2433,7 +2434,7 @@ cfg$gms$cm_trdcst <- 1.5
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2451,7 +2452,7 @@ cfg$gms$cm_trdadj <- 2.0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2469,7 +2470,7 @@ cfg$gms$c_refcapbnd <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2487,7 +2488,7 @@ cfg$gms$cm_frac_CCS <- 10
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2505,7 +2506,7 @@ cfg$gms$cm_frac_NetNegEmi <- 0.5
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2541,7 +2542,7 @@ cfg$gms$cm_taxCO2inc_after_peakBudgYr <- 3
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2559,7 +2560,7 @@ cfg$gms$cm_CO2priceRegConvEndYr <- 2050
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2573,15 +2574,13 @@ cfg$gms$cm_flex_tax <- 0
 
 **Possible Values:**
 
---
+* `0`: flexibility tax off
+* `1`: flexibility tax on
+
 
 **Description:**
 
-switch for enabling flexibility tax
-technologies with flexible eletricity input get a subsidy corresponding to the lower-than-average electricity prices that they see, while
-inflexible technologies get a tax corresponding to the higher-than-average electricity prices that they see
-(0) flexibility tax off
-(1) flexibility tax on
+Technologies with flexible electricity input get a subsidy corresponding to the lower-than-average electricity prices that they see, while inflexible technologies get a tax corresponding to the higher-than-average electricity prices that they see
 
 
 
@@ -2595,13 +2594,12 @@ cfg$gms$cm_TaxConvCheck <- 0
 
 **Possible Values:**
 
---
+* `0`: off
+* `1`: on
 
 **Description:**
 
-- switches tax convergence check in nash mode on and off (check that tax revenue in all regions, periods be smaller than 0.01% of GDP)
-0 (off)
-1 (on), default
+switches tax convergence check in nash mode on and off (check that tax revenue in all regions, periods be smaller than 0.01% of GDP)
 
 
 
@@ -2619,7 +2617,7 @@ cfg$gms$cm_H2targets <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2637,13 +2635,13 @@ cfg$gms$cm_PriceDurSlope_elh2 <- 20
 
 **Description:**
 
-, slope of price duration curve for electrolysis (increase means more flexibility subsidy for electrolysis H2)
+increase means more flexibility subsidy for electrolysis H2
 
 
 
 ### cm_FlexTaxFeedback {-}
 
-switch deciding whether flexibility tax feedback on buildlings and industry electricity prices is on
+switch deciding whether flexibility tax feedback on buildings and industry electricity prices is on
 
 ```{r}
 cfg$gms$cm_FlexTaxFeedback <- 0
@@ -2655,13 +2653,13 @@ cfg$gms$cm_FlexTaxFeedback <- 0
 
 **Description:**
 
-, switches on feedback of flexibility tax on buildings/industry (electricity price decrease for electrolysis has to be matched by electrictiy price increase in buildings/industry)
+electricity price decrease for electrolysis has to be matched by electricity price increase in buildings/industry
 
 
 
 ### cm_build_H2costAddH2Inv {-}
 
-additional h2 distribution costs for low diffusion levels (default value: 6.5$/ 100 /Kwh)
+additional h2 distribution costs for low diffusion levels
 
 ```{r}
 cfg$gms$cm_build_H2costAddH2Inv <- 0.2
@@ -2673,13 +2671,13 @@ cfg$gms$cm_build_H2costAddH2Inv <- 0.2
 
 **Description:**
 
-<- additional h2 distribution costs for low diffusion levels (default value: 6.5$/kg = 0.2$/Kwh)
+additional h2 distribution costs for low diffusion levels (default value: 6.5\$/kg = 0.2\$/Kwh)
 
 
 
 ### cm_build_costDecayStart {-}
 
-simplified logistic function end of full value (ex. 5%  -> between 0 and 5% the function will have the value 1). [%]
+simplified logistic function end of full value 
 
 ```{r}
 cfg$gms$cm_build_costDecayStart <- 0.05
@@ -2691,13 +2689,13 @@ cfg$gms$cm_build_costDecayStart <- 0.05
 
 **Description:**
 
-<- 0.05 # simplified logistic function end of full value (ex. 5%  -> between 0 and 5% the function will have the value 1). [%]
+simplified logistic function end of full value (ex. 5%  -> between 0 and 5% the function will have the value 1). [%]
 
 
 
 ### cm_build_H2costDecayEnd {-}
 
-simplified logistic function start of null value (ex. 10% -> after 10% the function will have the value 0). [%]
+simplified logistic function start of null value
 
 ```{r}
 cfg$gms$cm_build_H2costDecayEnd <- 0.1
@@ -2709,7 +2707,7 @@ cfg$gms$cm_build_H2costDecayEnd <- 0.1
 
 **Description:**
 
-<- 0.1  # simplified logistic function start of null value (ex. 10% -> after 10% the function will have the value 0). [%]
+simplified logistic function start of null value (ex. 10% -> after 10% the function will have the value 0). [%]
 
 
 
@@ -2727,13 +2725,13 @@ cfg$gms$cm_build_AdjCostActive <- 0
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_indst_H2costAddH2Inv {-}
 
-additional h2 distribution costs for low diffusion levels. [3.25$/ 0.1 /kWh]
+additional h2 distribution costs for low diffusion levels. [3.25\$/ 0.1 /kWh]
 
 ```{r}
 cfg$gms$cm_indst_H2costAddH2Inv <- 0.1
@@ -2745,13 +2743,13 @@ cfg$gms$cm_indst_H2costAddH2Inv <- 0.1
 
 **Description:**
 
-<- 0.1  # additional h2 distribution costs for low diffusion levels. [3.25$/kg = 0.1$/kWh]
+additional h2 distribution costs for low diffusion levels. [3.25\$/kg = 0.1\$/kWh]
 
 
 
 ### cm_indst_costDecayStart {-}
 
-simplified logistic function end of full value   (ex. 5%  -> between 0 and 5% the simplified logistic function will have the value 1). [%]
+simplified logistic function end of full value
 
 ```{r}
 cfg$gms$cm_indst_costDecayStart <- 0.05
@@ -2763,13 +2761,13 @@ cfg$gms$cm_indst_costDecayStart <- 0.05
 
 **Description:**
 
-<- 0.05 # simplified logistic function end of full value   (ex. 5%  -> between 0 and 5% the simplified logistic function will have the value 1). [%]
+simplified logistic function end of full value   (ex. 5%  -> between 0 and 5% the simplified logistic function will have the value 1). [%]
 
 
 
 ### cm_indst_H2costDecayEnd {-}
 
-simplified logistic function start of null value (ex. 10% -> between 10% and 100% the simplified logistic function will have the value 0). [%]
+simplified logistic function start of null value 
 
 ```{r}
 cfg$gms$cm_indst_H2costDecayEnd <- 0.1
@@ -2781,8 +2779,10 @@ cfg$gms$cm_indst_H2costDecayEnd <- 0.1
 
 **Description:**
 
-<- 0.1  # simplified logistic function start of null value (ex. 10% -> between 10% and 100% the simplified logistic function will have the value 0). [%]
+simplified logistic function start of null value (ex. 10% -> between 10% and 100% the simplified logistic function will have the value 0). [%]
 
+
+## EU specific switches
 
 
 ### cm_BioSupply_Adjust_EU {-}
@@ -2795,7 +2795,7 @@ cfg$gms$cm_BioSupply_Adjust_EU <- 3
 
 **Possible Values:**
 
---
+* `3`: 3*bioenergy supply slope
 
 **Description:**
 
@@ -2813,17 +2813,17 @@ cfg$gms$cm_BioImportTax_EU <- 1
 
 **Possible Values:**
 
---
+* `1`: 100% bioenergy import tax
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_biotrade_phaseout {-}
 
-switch for phaseing out biomass trade in the respective regions by 2030
+switch for phasing out biomass trade in the respective regions by 2030
 
 ```{r}
 cfg$gms$cm_biotrade_phaseout <- 0
@@ -2831,11 +2831,11 @@ cfg$gms$cm_biotrade_phaseout <- 0
 
 **Possible Values:**
 
---
+* `0`: no biomass import phase out
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2849,11 +2849,29 @@ cfg$gms$cm_bioprod_histlim <- -1
 
 **Possible Values:**
 
---
+* `1`: means no limit to bioenergy production according to historic demand (positive number means limit production limit of this factor times 2015 PE bioenergy demand)
 
 **Description:**
 
-NA
+--
+
+
+### cm_import_EU {-}
+
+EU switch for different scenarios of EU SE import assumptions
+
+```{r}
+cfg$gms$cm_import_EU <- "off"
+```
+
+**Possible Values:**
+
+* `"off"`: 
+* e.g. `"low_h2"`, `"high_h2"`, `"high_synf"`
+
+**Description:**
+
+EU-specific SE import assumptions (used for ariadne)
 
 
 
@@ -2867,11 +2885,12 @@ cfg$gms$cm_HeatLim_b <- 1
 
 **Possible Values:**
 
---
+* `1`: no limit on district heating in FE buildings
+* if <1, then this serves as an upper bound to the buildings FE heat share
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2885,11 +2904,12 @@ cfg$gms$cm_ElLim_b <- 1
 
 **Possible Values:**
 
---
+* `1`: no limit on electricity in FE buildings, 
+* if <1, then this serves as an upper bound to the buildings FE electricity share
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2903,13 +2923,15 @@ cfg$gms$cm_noPeFosCCDeu <- 0
 
 **Possible Values:**
 
---
+* `0`: no suppression of Pe2Se Fossil Carbon Capture in Germany 
+* `1`: then no pe2se fossil CO2 capture in Germany
 
 **Description:**
 
-NA
+CCS limitations for Germany
 
 
+## General
 
 ### cm_startIter_EDGET {-}
 
@@ -2921,11 +2943,12 @@ cfg$gms$cm_startIter_EDGET <- 14
 
 **Possible Values:**
 
---
+* e.g. `14`: EDGE-T coupling starts at 14
+* if you want to test whether infeasibilities after EDGE-T -> set it to 1 to check after first iteration
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2943,7 +2966,7 @@ cfg$gms$cm_INNOPATHS_priceSensiBuild <- -3
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2961,7 +2984,7 @@ cfg$gms$cm_logitCal_markup_conv_b <- 0.8
 
 **Description:**
 
-NA
+--
 
 
 
@@ -2979,13 +3002,13 @@ cfg$gms$cm_logitCal_markup_newtech_conv_b <- 0.3
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_regipol_slope_beforeTarget {-}
 
---
+switch to generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year
 
 ```{r}
 cfg$gms$cm_regipol_slope_beforeTarget <- "off"
@@ -2997,7 +3020,8 @@ cfg$gms$cm_regipol_slope_beforeTarget <- "off"
 
 **Description:**
 
-NA
+Switch to generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year, e.g. cm_regipol_slope_beforeTarget = 2040.EUR 1.3 when pm_regiCO2target is set for 2050:
+linaer increase between 2040 and target year (2050) is 1.3 larger than the linear increase of the co2 price before 2040. This is useful if certain budget and year targets need to be fulfilled at the same time as an increase of this factor will induce stronger emissions reductions around the target year without necessarily reducing the emissions in the first years as much.
 
 
 
@@ -3015,7 +3039,7 @@ cfg$gms$cm_VRE_supply_assumptions <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3051,7 +3075,7 @@ cfg$gms$cm_carbonprice_temperatureLimit <- 1.8
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3069,7 +3093,7 @@ cfg$gms$cm_damages_BurkeLike_specification <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3087,7 +3111,7 @@ cfg$gms$cm_damages_BurkeLike_persistenceTime <- 30
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3105,7 +3129,7 @@ cfg$gms$cm_damages_SccHorizon <- 100
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3123,7 +3147,7 @@ cfg$gms$cm_deuCDRmax <- -1
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3141,7 +3165,7 @@ cfg$gms$c_BaselineAgriEmiRed <- 0
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3208,12 +3232,12 @@ cfg$gms$cm_NDC_version <- "2022_cond"
 
 **Possible Values:**
 
-* (2022_cond):   all NDCs conditional to international financial support
-* (2022_uncond): all NDCs independent of international financial support
-* (2021_cond):   all NDCs conditional to international financial support published until December 31, 2021
-* (2021_uncond): all NDCs independent of international financial support published until December 31, 2021
-* (2018_cond):   all NDCs conditional to international financial support published until December 31, 2018
-* (2018_uncond): all NDCs independent of international financial support published until December 31, 2018
+* `"2022_cond"`: all NDCs conditional to international financial support
+* `"2022_uncond"`: all NDCs independent of international financial support
+* `"2021_cond"`: all NDCs conditional to international financial support published until December 31, 2021
+* `"2021_uncond"`: all NDCs independent of international financial support published until December 31, 2021
+* `"2018_cond"`: all NDCs conditional to international financial support published until December 31, 2018
+* `"2018_uncond"`: all NDCs independent of international financial support published until December 31, 2018
 
 **Description:**
 
@@ -3254,7 +3278,7 @@ cfg$gms$cm_secondary_steel_bound <- "scenario"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3392,7 +3416,7 @@ cfg$gms$cm_demScen <- "gdp_SSP2EU"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3409,7 +3433,7 @@ cfg$gms$cm_oil_scen <- "medOil"
 * (lowOil): low
 * (medOil): medium (this is the new case)
 * (highOil): high (formerly this has been the "medium" case; RoSE relevant difference)
-* (4): very high (formerly this has been the "high" case; RoSE relevant difference)
+* `4`: very high (formerly this has been the "high" case; RoSE relevant difference)
 
 **Description:**
 
@@ -3447,7 +3471,7 @@ cfg$gms$cm_coal_scen <- "medCoal"
 
 **Possible Values:**
 
-* (0): very low (this has been the "low" case; RoSE relevant difference)
+* `0`: very low (this has been the "low" case; RoSE relevant difference)
 * (lowCoal): low (this is the new case)
 * (medCoal): medium
 * (highCoal): high
@@ -3493,7 +3517,7 @@ cfg$gms$c_delayPolicy <- "SPA0"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3709,7 +3733,7 @@ cfg$gms$cm_emiMktEScoop <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3727,7 +3751,7 @@ cfg$gms$cm_emiMktES2020price <- 30
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3745,7 +3769,7 @@ cfg$gms$cm_emiMktES2050 <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3907,7 +3931,7 @@ cfg$gms$cm_dispatchSetyDown <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -3925,13 +3949,16 @@ cfg$gms$cm_dispatchSeelDown <- "off"
 
 **Description:**
 
-NA
+--
 
+
+
+## Calibration Switches
 
 
 ### c_CES_calibration_iterations {-}
 
---
+number of calibration iterations
 
 ```{r}
 cfg$gms$c_CES_calibration_iterations <- 10
@@ -3943,13 +3970,13 @@ cfg$gms$c_CES_calibration_iterations <- 10
 
 **Description:**
 
-NA
+--
 
 
 
 ### c_CES_calibration_new_structure {-}
 
---
+calibrate a CES structure different from input gdx?
 
 ```{r}
 cfg$gms$c_CES_calibration_new_structure <- 0
@@ -3957,17 +3984,18 @@ cfg$gms$c_CES_calibration_new_structure <- 0
 
 **Possible Values:**
 
---
+* `0`: no 
+* `1`: yes
 
 **Description:**
 
-NA
+switch to 1 if you want to calibrate a CES structure different from input gdx
 
 
 
 ### c_CES_calibration_write_prices {-}
 
---
+generate price file?
 
 ```{r}
 cfg$gms$c_CES_calibration_write_prices <- 0
@@ -3975,17 +4003,18 @@ cfg$gms$c_CES_calibration_write_prices <- 0
 
 **Possible Values:**
 
---
+* `0`: no 
+* `1`: yes
 
 **Description:**
 
-NA
+switch to 1 if you want to generate price file, you can use this as new p29_cesdata_price.cs4r price input file
 
 
 
 ### cm_CES_calibration_default_prices {-}
 
---
+CES prices in the first calibration iteration
 
 ```{r}
 cfg$gms$cm_CES_calibration_default_prices <- 0.01
@@ -3997,7 +4026,7 @@ cfg$gms$cm_CES_calibration_default_prices <- 0.01
 
 **Description:**
 
-NA
+lower value if input factors get negative shares (xi), CES prices in the first calibration iteration
 
 
 
@@ -4015,13 +4044,13 @@ cfg$gms$c_CES_calibration_industry_FE_target <- 1
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_calibration_string {-}
 
-def = off, else = additional string to include in the calibration name to be used
+label for your calibration run to keep calibration files with different setups apart (e.g. with low elasticities, high eleasticies)
 
 ```{r}
 cfg$gms$cm_calibration_string <- "off"
@@ -4029,12 +4058,15 @@ cfg$gms$cm_calibration_string <- "off"
 
 **Possible Values:**
 
---
+* `"off"`
+* else: additional string to include in the calibration name to be used
 
 **Description:**
 
+--
 
 
+## General
 
 
 ### c_testOneRegi_region {-}
@@ -4051,7 +4083,7 @@ cfg$gms$c_testOneRegi_region <- "EUR"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4179,35 +4211,23 @@ cfg$gms$cm_EDGEtr_scen <- "Mix"
 
 **Possible Values:**
 
---
+* `"ConvCase"`:
+* `"ConvCaseWise"`:
+* `"ElecEra"`:
+* `"HydrHype"`:
+* `"ElecEraWise"`:
+* `"HydrHypeWise"`:
 
 **Description:**
 
-NA
+For calibration runs: "ConvCase", "ConvCaseWise". For standard runs: "ConvCase", "ElecEra", "HydrHype", "ConvCaseWise", "ElecEraWise", "HydrHypeWise"
 
-
-
-### cm_import_EU {-}
-
-EU switch for different scenarios of EU SE import assumptions
-
-```{r}
-cfg$gms$cm_import_EU <- "off"
-```
-
-**Possible Values:**
-
---
-
-**Description:**
-
-NA
 
 
 
 ### cm_altFeEmiFac {-}
 
---
+region that should use alternative data from "umweltbundesamt" on emission factors for final energy carriers (ex. "EUR_regi, NEU_regi")
 
 ```{r}
 cfg$gms$cm_altFeEmiFac <- "off"
@@ -4215,19 +4235,20 @@ cfg$gms$cm_altFeEmiFac <- "off"
 
 **Possible Values:**
 
---
+* `"off"`
+* regions
 
 **Description:**
 
-<- "off"  # def <- "off", regions that should use alternative data from "umweltbundesamt" on emission factors for final energy carriers (ex. "EUR_regi, NEU_regi")
-c_deuCDRmax  <- -1 switch to cap annual DEU CDR amount by value assigned to switch, or no cap if -1, in MtCO2
--------------------- flags --------------------------------------------------
+--
 
+
+## INNOPATHS switches
 
 
 ### cm_calibration_FE {-}
 
---
+overwrite default fe trajectories with low, medium and high alternatives for buildings, transport and industry
 
 ```{r}
 cfg$gms$cm_calibration_FE <- "off"
@@ -4235,17 +4256,20 @@ cfg$gms$cm_calibration_FE <- "off"
 
 **Possible Values:**
 
---
+* `"off"`:
+* `"high"`:
+* `"medium"`:
+* `"low"`:
+
 
 **Description:**
 
-overwritte default fe trajectories with low, medium and high alternatives for buildings, transport and industry
 
 
 
 ### cm_INNOPATHS_eni {-}
 
---
+Electricity elasticities (factor) industry energy elasticity
 
 ```{r}
 cfg$gms$cm_INNOPATHS_eni <- "off"
@@ -4253,17 +4277,18 @@ cfg$gms$cm_INNOPATHS_eni <- "off"
 
 **Possible Values:**
 
---
+* `"off"`: no change for industry energy elasticity (eni)
+* number (ex. 2), multiplicative factor applied to industry eni elasticity value.
 
 **Description:**
 
-NA
+--
 
 
 
 ### cm_INNOPATHS_enb {-}
 
---
+Electricity elasticities (factor) buildings energy elasticity
 
 ```{r}
 cfg$gms$cm_INNOPATHS_enb <- "off"
@@ -4271,11 +4296,12 @@ cfg$gms$cm_INNOPATHS_enb <- "off"
 
 **Possible Values:**
 
---
+* `"off"`: no change for buildings energy elasticity (enb)
+* number (ex. 2), multiplicative factor applied to buildings enb elasticity value.
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4289,11 +4315,12 @@ cfg$gms$cm_INNOPATHS_LDV_mkt_share <- "off"
 
 **Possible Values:**
 
---
+* `"off"`
+* list of techs with adj upper/lower bounds to mkt share in LDV (ex. for EV, H2V and ICE: apCarElT.up 80, apCarH2T.up 90, apCarPeT.lo 5)
 
 **Description:**
 
-NA
+Complex Transport mkt shares
 
 
 
@@ -4307,11 +4334,12 @@ cfg$gms$cm_share_LDV_sales <- "off"
 
 **Possible Values:**
 
---
+* `"off"`
+* list of techs with adj upper/lower bounds to mkt share in LDV (ex. for EV, H2V and ICE: 2030.2050.apCarElT.upper 80, 2030.2050.apCarH2T.upper 90, 2030.2050.apCarPeT.lower 5)
 
 **Description:**
 
-NA
+Complex Transport mkt shares
 
 
 
@@ -4329,7 +4357,7 @@ cfg$gms$cm_INNOPATHS_incolearn <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4347,7 +4375,7 @@ cfg$gms$cm_INNOPATHS_storageFactor <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4365,7 +4393,7 @@ cfg$gms$cm_learnRate <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4383,7 +4411,7 @@ cfg$gms$cm_INNOPATHS_adj_seed <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4401,7 +4429,7 @@ cfg$gms$cm_INNOPATHS_adj_seed_cont <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4419,7 +4447,7 @@ cfg$gms$cm_INNOPATHS_adj_coeff <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4437,7 +4465,7 @@ cfg$gms$cm_INNOPATHS_adj_coeff_cont <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4455,7 +4483,7 @@ cfg$gms$cm_INNOPATHS_adj_seed_multiplier <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4473,7 +4501,7 @@ cfg$gms$cm_INNOPATHS_adj_coeff_multiplier <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4491,7 +4519,7 @@ cfg$gms$cm_INNOPATHS_inco0Factor <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4509,7 +4537,7 @@ cfg$gms$cm_INNOPATHS_CCS_markup <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4527,7 +4555,7 @@ cfg$gms$cm_INNOPATHS_Industry_CCS_markup <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4545,7 +4573,7 @@ cfg$gms$cm_INNOPATHS_renewables_floor_cost <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4563,7 +4591,7 @@ cfg$gms$cm_INNOPATHS_DAC_eff <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4581,7 +4609,7 @@ cfg$gms$cm_INNOPATHS_sehe_upper <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4599,7 +4627,7 @@ cfg$gms$cm_INNOPATHS_pushCalib <- "none"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4617,7 +4645,7 @@ cfg$gms$cm_INNOPATHS_reducCostB <- "none"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4635,7 +4663,7 @@ cfg$gms$cm_INNOPATHS_effHP <- 5
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4649,11 +4677,12 @@ cfg$gms$cm_CESMkup_build <- "standard"
 
 **Possible Values:**
 
---
+* `"standard"`: applies a markup cost of 200 USD/MWh(el) to heat pumps (feelhpb) and 25 USD/MWh(heat) to district heating (feheb)
 
 **Description:**
 
-NA
+CES markup cost for buildings to represent sector-specific demand-side transformation cost
+(only applies to buildings realization "simple" for now)
 
 
 
@@ -4667,11 +4696,18 @@ cfg$gms$cm_CESMkup_ind <- "standard"
 
 **Possible Values:**
 
---
+* `"standard"`: applies a markup cost of 0.5 trUSD/TWa (57 USD/MWh(el)) to industry electricity (feeli) 
 
 **Description:**
 
-NA
+CES markup cost for industry to represent sector-specific demand-side transformation cost
+(only applies to industry realization "fixed_shares" for now)
+
+Note on CES markup cost:
+represent the sector-specific demand-side transformation cost, can also be used to influence efficiencies during calibration as 
+higher markup-cost in calibration will lead to higher efficiencies 
+to change it to any specific value: set cm_CESMkup_ind e.g. to "feeli 0.8" -> this would apply a cost markup of 0.8 tr USD/TWa to feeli CES node of the industry fixed_shares module
+standard cost markups of the other nodes will remain unchanged unless you explicitly address them with this switch
 
 
 
@@ -4707,7 +4743,7 @@ cfg$gms$cm_ARIADNE_FeShareBounds <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4725,7 +4761,7 @@ cfg$gms$cm_ariadne_VRECapFac_adj <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4743,7 +4779,7 @@ cfg$gms$c_VREPot_Factor <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4761,7 +4797,7 @@ cfg$gms$cm_FEtax_trajectory_abs <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4779,7 +4815,7 @@ cfg$gms$cm_FEtax_trajectory_rel <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4835,7 +4871,7 @@ cfg$gms$cm_nash_mode <- "parallel"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4853,7 +4889,7 @@ cfg$gms$cm_debug_preloop <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -4970,7 +5006,7 @@ cfg$gms$cm_less_TS <- "on"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5009,7 +5045,7 @@ cfg$gms$cm_ccsfosall <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5027,7 +5063,7 @@ cfg$gms$cm_APscen <- "SSP2"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5063,7 +5099,7 @@ cfg$gms$c_scaleEmiHistorical <- "on"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5081,7 +5117,7 @@ cfg$gms$cm_magicc_calibrateTemperature2000 <- "uncalibrated"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5099,7 +5135,7 @@ cfg$gms$cm_magicc_config <- "OLDDEFAULT"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5117,7 +5153,7 @@ cfg$gms$cm_magicc_temperatureImpulseResponse <- "off"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5135,7 +5171,7 @@ cfg$gms$cm_damage_DiceLike_specification <- "HowardNonCatastrophic"
 
 **Description:**
 
-NA
+--
 
 
 
@@ -5153,7 +5189,7 @@ cfg$gms$cm_conoptv <- "conopt3"
 
 **Description:**
 
-NA
+--
 
 
 
