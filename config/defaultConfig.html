@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-03-23" />
+<meta name="date" content="2022-03-25" />
 
 <title>Default Config</title>
 
@@ -246,7 +246,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Default Config</h1>
-<h4 class="date">2022-03-23</h4>
+<h4 class="date">2022-03-25</h4>
 
 </div>
 
@@ -254,9 +254,9 @@ div.tocify {
 <pre class="r"><code>cfg &lt;- list()
 cfg$gms &lt;- list()</code></pre>
 <div id="r-parameters" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> R Parameters</h1>
+<h1><span class="header-section-number">1</span> R Parameters</h1>
 <div id="general" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> General</h2>
+<h2><span class="header-section-number">1.1</span> General</h2>
 <div id="title" class="section level3 unnumbered">
 <h3 class="unnumbered">title</h3>
 <p>title of the actual run</p>
@@ -331,55 +331,62 @@ cfg$gms &lt;- list()</code></pre>
 </div>
 <div id="magicc_template" class="section level3 unnumbered">
 <h3 class="unnumbered">magicc_template</h3>
-<p>Folder containing magcicc files that can not be published open source. These files are automatically copied into remind when starting a run and required to calcualte climate responses (e.g. temperature).</p>
+<p>Folder containing MAGICC files that can not be published open source.</p>
 <pre class="r"><code>cfg$magicc_template &lt;- &quot;/p/projects/rd3mod/magicc/&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>These files are automatically copied into remind when starting a run and required to calculate climate responses (eg. temperature).</p>
 </div>
 <div id="model_name" class="section level3 unnumbered">
 <h3 class="unnumbered">model_name</h3>
-<p>name of the overall model (used for input data and run statistics) should usually not be changed</p>
+<p>name of the overall model (used for input data and run statistics)</p>
 <pre class="r"><code>cfg$model_name &lt;- &quot;REMIND&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p><em>should usually not be changed</em></p>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="validationmodel_name" class="section level3 unnumbered">
 <h3 class="unnumbered">validationmodel_name</h3>
-<p>name of the validation folder for this model (used for historical and validation data) should usually not be changed</p>
+<p>name of the validation folder for this model (used for historical and validation data)</p>
 <pre class="r"><code>cfg$validationmodel_name &lt;- &quot;VALIDATIONREMIND&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p><em>should usually not be changed</em></p>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="model_version" class="section level3 unnumbered">
 <h3 class="unnumbered">model_version</h3>
-<p>model version of the overall model (used for run statistics only). Use extension “-rc” for release candidate and “-dev” for developer version</p>
+<p>model version of the overall model (used for run statistics only).</p>
 <pre class="r"><code>cfg$model_version &lt;- &quot;2.2-dev&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>Use extension “-rc” for release candidate and “-dev” for developer version</p>
 </div>
 <div id="gamsv" class="section level3 unnumbered">
 <h3 class="unnumbered">gamsv</h3>
-<p>Choose which GAMS version to use (choosing the default option “gams” uses the GAMS system in your PATH variable - in both UNIX and Windows) Cluster Example: if you want GAMS version 24.0, use “/p/system/packages/gams/24.0.1/gams” Local machine Example: use your GAMS path, e.g. “C:\GAMS\win32\24.3\gams.exe” (please note the double backslashes)</p>
+<p>Choose which GAMS version to use</p>
 <pre class="r"><code>cfg$gamsv &lt;- &quot;gams&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;gams&quot;</code>: the GAMS system in your PATH variable - in both UNIX and Windows</li>
+<li>a path</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>Cluster Example: if you want GAMS version 24.0, use “/p/system/packages/gams/24.0.1/gams”</p>
+<p>Local machine Example: use your GAMS path, eg. “C:\GAMS\win32\24.3\gams.exe” (please note the double backslashes)</p>
 </div>
 <div id="action" class="section level3 unnumbered">
 <h3 class="unnumbered">action</h3>
-<p>Action that should be performed (“ce”: compile and run, “c”: compile)</p>
+<p>Action that should be performed</p>
 <pre class="r"><code>cfg$action &lt;- &quot;ce&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;ce&quot;</code>: compile and run</li>
+<li><code>&quot;c&quot;</code>: compile</li>
+</ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
@@ -394,48 +401,84 @@ cfg$gms &lt;- list()</code></pre>
 </div>
 <div id="slurmconfig" class="section level3 unnumbered">
 <h3 class="unnumbered">slurmConfig</h3>
-<p>Provide additional SLURM parameters (e.g. “–time=03:30:00”) not included in the list of following parameters that are set automatically in start.R: –qos, –nodes, –tasks-per-node, -job-name, –output, –mail-type, –comment.</p>
+<p>Provide additional SLURM parameters</p>
 <pre class="r"><code>cfg$slurmConfig &lt;- &quot;&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>Provide additional SLURM parameters (eg. “–time=03:30:00”) not included in the list of following parameters that are set automatically in start.R: –qos, –nodes, –tasks-per-node, -job-name, –output, –mail-type, –comment</p>
 </div>
 <div id="logoption" class="section level3 unnumbered">
 <h3 class="unnumbered">logoption</h3>
-<p>Should REMIND output be shown in console? (0:no, 2:logfile, 3:yes)</p>
+<p>Should REMIND output be shown in console?</p>
 <pre class="r"><code>cfg$logoption &lt;- 2</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no</li>
+<li><code>2</code>: logfile</li>
+<li><code>3</code>: yes</li>
+</ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="output" class="section level3 unnumbered">
 <h3 class="unnumbered">output</h3>
-<p>Just list the name of the output scripts that should be used by output.R At the moment there are several R-scripts located in scripts/output/</p>
-<pre class="r"><code>cfg$output &lt;- c(&quot;reporting&quot;,&quot;reportCEScalib&quot;,&quot;rds_report&quot;)</code></pre>
+<p>Just list the name of the output scripts that should be used by output.R</p>
+<pre class="r"><code>cfg$output &lt;- c(&quot;reporting&quot;, &quot;reportCEScalib&quot;, &quot;rds_report&quot;)</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>See R-scripts located in <code>scripts/output/</code>.</p>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="results_folder" class="section level3 unnumbered">
 <h3 class="unnumbered">results_folder</h3>
-<p>Set the format for the results folder, type string :date: in order to use the current time stamp in the folder name (e.g. “results:date:”) use :title: to use the current title in the folder name</p>
+<p>Set the format for the results folder</p>
 <pre class="r"><code>cfg$results_folder &lt;- &quot;output/:title::date:&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>In your specified path, you may use the following placeholders, which will automatically be replaced:</p>
+<ul>
+<li><code>:date:</code>: the current time stamp (eg. “results:date:”)</li>
+<li><code>:title:</code>: current title</li>
+</ul>
 </div>
 <div id="files2export" class="section level3 unnumbered">
 <h3 class="unnumbered">files2export</h3>
 <p>Which files should be copied into the output folder?</p>
-<pre class="r"><code>cfg$files2export &lt;- list()</code></pre>
+<pre class="r"><code>cfg$files2export &lt;- list(
+  start = c(
+    &quot;config/conopt3.opt&quot;,
+    &quot;config/conopt3.op2&quot;,
+    &quot;config/conopt3.op3&quot;,
+    &quot;config/conopt3.op9&quot;,
+    &quot;core/input/historical/historical.mif&quot;,
+    &quot;scripts/input/exoGAINSAirpollutants.R&quot;,
+    &quot;scripts/iterative/EDGE_transport.R&quot;,
+    &quot;.Rprofile&quot;,
+    &quot;config/mappingEDGEtoREMINDsectors.csv&quot;,
+    &quot;modules/11_aerosols/exoGAINS/input/ef_gains.cs4r&quot;,
+    &quot;modules/11_aerosols/exoGAINS/input/emi_gains.cs4r&quot;,
+    &quot;modules/11_aerosols/exoGAINS/input/mappingGAINSmixedtoREMIND17activities.csv&quot;,
+    &quot;modules/11_aerosols/exoGAINS/input/mappingGAINStoREMINDsectors.csv&quot;,
+    &quot;modules/35_transport/edge_esm/input/mapping_CESnodes_EDGE.csv&quot;,
+    &quot;modules/35_transport/edge_esm/input/mapping_EDGE_REMIND_transport_categories.csv&quot;,
+    &quot;modules/35_transport/edge_esm/input/value_time.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/pref.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/logit_exponent.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/annual_mileage.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/harmonized_intensities.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/UCD_NEC_iso.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/price_nonmot.cs4r&quot;,
+    &quot;modules/35_transport/edge_esm/input/loadFactor.cs4r&quot;),
+  end = NULL)</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<ul>
+<li><code>start</code>: Files that should be copied before REMIND is started</li>
+<li><code>end</code>: Files that should be copied after the REMIND run is finished</li>
+</ul>
 </div>
 <div id="converted_input_folder" class="section level3 unnumbered">
 <h3 class="unnumbered">converted_input_folder</h3>
@@ -458,9 +501,9 @@ cfg$gms &lt;- list()</code></pre>
 </div>
 </div>
 <div id="modules" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Modules</h1>
+<h1><span class="header-section-number">2</span> Modules</h1>
 <div id="general-1" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> General</h2>
+<h2><span class="header-section-number">2.1</span> General</h2>
 <div id="macro" class="section level3 unnumbered">
 <h3 class="unnumbered">01_macro</h3>
 <p>–</p>
@@ -597,7 +640,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$trade &lt;- &quot;standard&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li><code>&quot;standard&quot;</code>:</li>
+<li><code>&quot;standard&quot;</code>: macro-economic commodities and primary energy commodities trading</li>
+<li><code>&quot;se_trade&quot;</code>: macro-economic commodities, primary energy commodities and secondary energy hydrogen and electricity trading</li>
+<li><code>&quot;capacity&quot;</code>: capacity-based trade implementation</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -609,7 +654,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;off&quot;</code>: agricultural costs zero, no trade taken into account</li>
-<li><code>&quot;costs&quot;</code>: includes total landuse costs</li>
+<li><code>&quot;costs&quot;</code>: includes total land use costs</li>
 <li><code>&quot;costs_trade&quot;</code>: includes agricultural production costs and the MAgPIE trade balance</li>
 </ul>
 <p><strong>Description:</strong></p>
@@ -634,7 +679,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;exogenous&quot;</code>: exogenous biomass extraction and costs</li>
-<li><code>&quot;magpie_40&quot;</code>: using supplycurved derived from MAgpIE 4.0</li>
+<li><code>&quot;magpie_40&quot;</code>: using supply curve derived from MAgpIE 4.0</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -646,8 +691,8 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;timeDepGrades&quot;</code>: time-dependent grade stucture of fossil resources (oil &amp; gas only)</li>
-<li><code>&quot;grades2poly&quot;</code> : simplified version of the time-dependent grade realization (using polynomial functions)</li>
-<li><code>&quot;exogenous&quot;</code> : exogenous fossil extraction and costs</li>
+<li><code>&quot;grades2poly&quot;</code>: simplified version of the time-dependent grade realization (using polynomial functions)</li>
+<li><code>&quot;exogenous&quot;</code>: exogenous fossil extraction and costs</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -658,9 +703,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$power &lt;- &quot;IntC&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li><code>&quot;IntC&quot;</code> : Power sector formulation with Integration Cost (IntC) markups and curtailment for VRE integration - linearly increasing with VRE share -, and fixed capacity factors for dispatchable power plants</li>
-<li><code>&quot;RLDC&quot;</code> : Power sector formulation with Residual Load Duration Curve (RLDC) formulation for VRE power integration, and flexible capacity factors for dispatchable power plants</li>
-<li><code>&quot;DTcoup&quot;</code> : Power sector formulation with coupling to DIETER</li>
+<li><code>&quot;IntC&quot;</code>: Power sector formulation with Integration Cost (IntC) markups and curtailment for VRE integration - linearly increasing with VRE share -, and fixed capacity factors for dispatchable power plants</li>
+<li><code>&quot;RLDC&quot;</code>: Power sector formulation with Residual Load Duration Curve (RLDC) formulation for VRE power integration, and flexible capacity factors for dispatchable power plants</li>
+<li><code>&quot;DTcoup&quot;</code>: Power sector formulation with coupling to DIETER</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -671,10 +716,10 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$CDR &lt;- &quot;DAC&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li><code>&quot;off&quot;</code> : no carbon dioxide removal technologies except BECCS</li>
-<li><code>&quot;weathering&quot;</code> : includes enhanced weathering</li>
-<li><code>&quot;DAC&quot;</code> : includes direct air capture</li>
-<li><code>&quot;all&quot;</code> : includes all CDR technologies</li>
+<li><code>&quot;off&quot;</code>: no carbon dioxide removal technologies except BECCS</li>
+<li><code>&quot;weathering&quot;</code>: includes enhanced weathering</li>
+<li><code>&quot;DAC&quot;</code>: includes direct air capture</li>
+<li><code>&quot;all&quot;</code>: includes all CDR technologies</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -723,7 +768,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;on&quot;</code>: simple representation of carbon capture and utilization technologies, first only example of syngas (H22CH4)</li>
-<li><code>&quot;off&quot;</code>: no representation of carbon caputre and utilization technologies.</li>
+<li><code>&quot;off&quot;</code>: no representation of carbon capture and utilization technologies.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -781,18 +826,18 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$carbonprice &lt;- &quot;none&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>This module defines the carbon price pm_taxCO2eq, with behaviour across regions governed by similar principles (e.g. global targets, or all following NDC or NPi policies).</li>
-<li><code>&quot;none&quot;</code>: no tax policy (combined with all emiscens except emiscen eq 9)</li>
-<li><code>&quot;exponential&quot;</code>: 5% exponential increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with emiscen eq 9 and cm_co2_tax_2020&gt;0)</li>
-<li><code>&quot;expoLinear&quot;</code>: 5% exponential increase until c_expoLinear_yearStart, linear increase thereafter</li>
-<li><code>&quot;exogenous&quot;</code>: carbon price is specified using an external input file or using the switch cm_regiExoPrice</li>
-<li><code>&quot;linear&quot;</code>: linear increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with emiscen eq 9 and cm_co2_tax_2020&gt;0)</li>
-<li><code>&quot;diffPriceSameCost&quot;</code> ! experimental ! adjusts regional carbon prices until regional mitigation costs (in NPV GDP) are equal across regions. Use with iterative_adjust=2, emiscen=9. Experimental feature, you are responsible to check for convergence yourself (check that p45_mitiCostRel is about constant over iterations)</li>
-<li><code>&quot;temperatureNotToExceed&quot;</code>: [test and verify before using it!] Find the optimal carbon carbon tax (set cm_emiscen=9) for the not-to-exceed temperature target defined by cm_carbonprice_temperatureLimit.</li>
+<li>This module defines the carbon price pm_taxCO2eq, with behavior across regions governed by similar principles (eg. global targets, or all following NDC or NPi policies).</li>
+<li><code>&quot;none&quot;</code>: no tax policy (combined with all <a href="#cm_emiscen">cm_emiscen</a>s except <a href="#cm_emiscen">cm_emiscen</a> = 9)</li>
+<li><code>&quot;exponential&quot;</code>: 5% exponential increase over time of the tax level in 2020 set via cm_co2_tax_2020 (combined with <a href="#cm_emiscen">cm_emiscen</a> = 9 and <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a>&gt;0)</li>
+<li><code>&quot;expoLinear&quot;</code>: 5% exponential increase until <a href="#cm_expolinear_yearstart">cm_expoLinear_yearStart</a>, linear increase thereafter</li>
+<li><code>&quot;exogenous&quot;</code>: carbon price is specified using an external input file or using the switch <a href="#cm_regiexoprice">cm_regiExoPrice</a></li>
+<li><code>&quot;linear&quot;</code>: linear increase over time of the tax level in 2020 set via <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a> (combined with <a href="#cm_emiscen">cm_emiscen</a> = 9 and <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a>&gt;0)</li>
+<li><code>&quot;diffPriceSameCost&quot;</code> ! experimental ! adjusts regional carbon prices until regional mitigation costs (in NPV GDP) are equal across regions. Use with <a href="#cm_iterative_target_adj">cm_iterative_target_adj</a>=2, <a href="#cm_emiscen">cm_emiscen</a>=9. Experimental feature, you are responsible to check for convergence yourself (check that p45_mitiCostRel is about constant over iterations)</li>
+<li><code>&quot;temperatureNotToExceed&quot;</code>: [test and verify before using it!] Find the optimal carbon carbon tax (set <a href="#cm_emiscen">cm_emiscen</a>=9) for the not-to-exceed temperature target defined by <a href="#cm_carbonprice_temperaturelimit">cm_carbonprice_temperatureLimit</a>.</li>
 <li><code>&quot;NDC2constant&quot;</code>: linearly phase in global constant price from NDC prices (default 2020-2040 phase-in)</li>
-<li><code>&quot;diffCurvPhaseIn2Lin&quot;</code>: [REMIND 2.1 default for validation peakBudget runs, in combination with “iterative_target_adj” = 9] curved convergence of CO2 prices between regions until cm_CO2priceRegConvEndYr; developed countries have linear path from 0 in 2010 through cm_co2_tax_2020 in 2020;</li>
+<li><code>&quot;diffCurvPhaseIn2Lin&quot;</code>: (REMIND 2.1 default for validation peakBudget runs, in combination with <a href="#cm_iterative_target_adj">cm_iterative_target_adj</a> = 9) curved convergence of CO2 prices between regions until <a href="#cm_co2priceregconvendyr">cm_CO2priceRegConvEndYr</a>; developed countries have linear path from 0 in 2010 through <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a> in 2020;</li>
 <li><code>&quot;diffPhaseIn2Constant&quot;</code>: !experimental! linearly phase in global constant price, with starting values differentiated by GDP/cap</li>
-<li><code>&quot;NDC&quot;</code>: implements a carbon price trajectory consistent with the NDC targets (up to 2030) and a trajectory of comparable ambition post 2030 (1.25%/yr price increase and regional convergence of carbon price). Choose version using cm_NDC_version “2022_cond”, “2022_uncond”, or replace 2022 by 2021 or 2018 to get all NDC published until end of these years.</li>
+<li><code>&quot;NDC&quot;</code>: implements a carbon price trajectory consistent with the NDC targets (up to 2030) and a trajectory of comparable ambition post 2030 (1.25%/yr price increase and regional convergence of carbon price). Choose version using <a href="#cm_ndc_version">cm_NDC_version</a> “2022_cond”, “2022_uncond”, or replace 2022 by 2021 or 2018 to get all NDC published until end of these years.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -804,7 +849,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li>This module applies a markup pm_taxCO2eqRegi on top of pm_taxCO2eq to achieve additional intermediate targets.</li>
-<li><code>&quot;none&quot;</code>: no regional carbonprice policies</li>
+<li><code>&quot;none&quot;</code>: no regional carbon price policies</li>
 <li><code>&quot;NDC&quot;</code>: implements a carbon price markup trajectory consistent with the NDC targets between 2030 and 2070</li>
 <li><code>&quot;netZero&quot;</code>: implements a carbon price markup trajectory consistent with the net zero targets</li>
 </ul>
@@ -817,10 +862,10 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$regipol &lt;- &quot;none&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>The regiCarbonPrice realisation defines more detailed region or emissions market specific targets, overwriting the behaviour of pm_taxCO2eq and pm_taxCO2eqRegi for these regions.</li>
+<li>The regiCarbonPrice realization defines more detailed region or emissions market specific targets, overwriting the behavior of pm_taxCO2eq and pm_taxCO2eqRegi for these regions.</li>
 <li><code>&quot;none&quot;</code>: no regional policies</li>
 <li><code>&quot;regiCarbonPrice&quot;</code>: Region specific or region group independent carbon price.</li>
-<li>the target is defined in the cm_regiCO2target switch, for year target e.g. “2050.EUR.year.netCO2 0.7, 2050.USA.year.grossFFaI 1.0” sets a 0.7GtCO2 net CO2 target for EUR in 2050 and a 1GtCO2 gross Fossil Fuel and Industry CO2 emissions target for USA</li>
+<li>the target is defined in the <a href="#cm_regico2target">cm_regiCO2target</a> switch, for year target eg. “2050.EUR.year.netCO2 0.7, 2050.USA.year.grossFFaI 1.0” sets a 0.7GtCO2 net CO2 target for EUR in 2050 and a 1GtCO2 gross Fossil Fuel and Industry CO2 emissions target for USA</li>
 <li>for budget target: “2050.EUR.budget.netCO2 70, 2050.USA.budget.grossFFaI 100” sets a netCO2/grossFFaI budget from 2020-2050 correspondingly (note: don’t put values to 0 as this will make the model ignore the switch)</li>
 </ul>
 <p><strong>Description:</strong></p>
@@ -833,8 +878,8 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;off&quot;</code>: no damages on GDP</li>
-<li><code>&quot;DiceLike&quot;</code>: DICE-like damages (linear-quadratic damages on GDP). Choose specification via cm_damage_DiceLike_specification</li>
-<li><code>&quot;BurkeLike&quot;</code>: Burke-like damages (growth rate damages on GDP). Choose specification via cm_damage_BurkeLike_specification and cm_damage_BurkeLike_persistenceTime</li>
+<li><code>&quot;DiceLike&quot;</code>: DICE-like damages (linear-quadratic damages on GDP). Choose specification via <a href="#cm_damage_dicelike_specification">cm_damage_DiceLike_specification</a></li>
+<li><code>&quot;BurkeLike&quot;</code>: Burke-like damages (growth rate damages on GDP). Choose specification via <a href="#cm_damages_burkelike_specification">cm_damages_BurkeLike_specification</a> and <a href="#cm_damages_burkelike_persistencetime">cm_damages_BurkeLike_persistenceTime</a></li>
 <li><code>&quot;KWLike&quot;</code>: Damage function based on Kalkuhl &amp; Wenz (2020)</li>
 </ul>
 <p><strong>Description:</strong></p>
@@ -847,9 +892,9 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;off&quot;</code>:</li>
-<li><code>&quot;DiceLikeItr&quot;</code>: Internalize DICE-like damages (calculate the SCC) adjust cm_damages_SccHorizon. Requires cm_emiscen=9 for now.</li>
-<li><code>&quot;BurkeLikeItr&quot;</code>: Internalize Burke-like damages (calculate the SCC) adjust cm_damages_SccHorizo. Requires cm_emiscen=9 for now.</li>
-<li><code>&quot;KWlikeItr&quot;</code>: Internalize damage function based on Kalkuhl &amp; Wenz (2020). Requires cm_emiscen=9 for now.</li>
+<li><code>&quot;DiceLikeItr&quot;</code>: Internalize DICE-like damages (calculate the SCC) adjust <a href="#cm_damages_scchorizon">cm_damages_SccHorizon</a>. Requires <a href="#cm_emiscen">cm_emiscen</a>=9 for now.</li>
+<li><code>&quot;BurkeLikeItr&quot;</code>: Internalize Burke-like damages (calculate the SCC) adjust <a href="#cm_damages_scchorizon">cm_damages_SccHorizon</a>. Requires <a href="#cm_emiscen">cm_emiscen</a>=9 for now.</li>
+<li><code>&quot;KWlikeItr&quot;</code>: Internalize damage function based on Kalkuhl &amp; Wenz (2020). Requires <a href="#cm_emiscen">cm_emiscen</a>=9 for now.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -875,8 +920,7 @@ cfg$gms &lt;- list()</code></pre>
 <ul>
 <li><code>&quot;nash&quot;</code>: Nash solution. Adjust cm_nash_autoconverge to needs.</li>
 <li><code>&quot;negishi&quot;</code>: calculates a Negishi solution (social planner)</li>
-<li><code>&quot;testOneRegi&quot;</code>: solves the problem for one region for given prices (taken from gdx).</li>
-<li><pre><code>           ! Warning:  For development purposes only !</code></pre></li>
+<li><code>&quot;testOneRegi&quot;</code>: solves the problem for one region for given prices (taken from gdx). ! Warning: For development purposes only !</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -888,7 +932,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
 <li><code>&quot;off&quot;</code>: nothing happens</li>
-<li><code>&quot;on&quot;</code>: test code performance: noumerous (30) succesive runs performed in a triangle, tax0, tax30, tax150, all growing exponentially, therefore use carbonprice|exponential, c_emiscen|9, and cm_co2_tax_2020|0.</li>
+<li><code>&quot;on&quot;</code>: test code performance: numerous (30) successive runs performed in a triangle, tax0, tax30, tax150, all growing exponentially, therefore use <a href="#carbonprice">45_carbonprice</a> = exponential, <a href="#cm_emiscen">cm_emiscen</a> = 9, and <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a> = 0.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -896,9 +940,9 @@ cfg$gms &lt;- list()</code></pre>
 </div>
 </div>
 <div id="gams-switches" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> GAMS Switches</h1>
+<h1><span class="header-section-number">3</span> GAMS Switches</h1>
 <div id="general-2" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> General</h2>
+<h2><span class="header-section-number">3.1</span> General</h2>
 <div id="cm_iteration_max" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_iteration_max</h3>
 <p>number of Negishi iterations</p>
@@ -914,7 +958,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>*** Careful: for each inner_itr_count, the size of remind.lst can increase by 50MB!</p>
+<p>Careful: for each inner_itr_count, the size of remind.lst can increase by 50MB!</p>
 </div>
 <div id="c_keep_iteration_gdxes" class="section level3 unnumbered">
 <h3 class="unnumbered">c_keep_iteration_gdxes</h3>
@@ -923,7 +967,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_nash_autoconverge" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_nash_autoconverge</h3>
@@ -931,9 +975,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_nash_autoconverge &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): manually set number of iterations by adjusting <a href="#cm_iteration_max">cm_iteration_max</a></li>
-<li>(1): run until solution is sufficiently converged - coarse tolerances, quick solution. ! donot use in production runs !</li>
-<li>(2): run until solution is sufficiently converged - fine tolerances, for production runs.</li>
+<li><code>0</code>: manually set number of iterations by adjusting <a href="#cm_iteration_max">cm_iteration_max</a></li>
+<li><code>1</code>: run until solution is sufficiently converged - coarse tolerances, quick solution. ! do not use in production runs !</li>
+<li><code>2</code>: run until solution is sufficiently converged - fine tolerances, for production runs.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -944,18 +988,18 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_emiscen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no global budget. Policy may still be prescribed by 41_emicaprei module.</li>
-<li>(1): BAU</li>
-<li>(2): temperature cap</li>
-<li>(3): CO2 concentration cap</li>
-<li>(4): emission time path</li>
-<li>(5): forcing target from 2010 (not to exceed)</li>
-<li>(6): budget</li>
-<li>(8): forcing target from 2100 onwards (overshoot scen)</li>
-<li>(9): tax scenario (requires running module <a href="#tax">21_tax</a> “on”), tax level controlled by module <a href="#carbonprice">45_carbonprice</a> and <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a>, other ghg etc. controlled by <a href="#cm_rcp_scen">cm_rcp_scen</a></li>
+<li><code>0</code>: no global budget. Policy may still be prescribed by <a href="#emicapregi">41_emicapregi</a> module.</li>
+<li><code>1</code>: BAU</li>
+<li><code>2</code>: temperature cap</li>
+<li><code>3</code>: CO2 concentration cap</li>
+<li><code>4</code>: emission time path</li>
+<li><code>5</code>: forcing target from 2010 (not to exceed)</li>
+<li><code>6</code>: budget</li>
+<li><code>8</code>: forcing target from 2100 onwards (overshoot scen)</li>
+<li><code>9</code>: tax scenario (requires running module <a href="#tax">21_tax</a> “on”), tax level controlled by module <a href="#carbonprice">45_carbonprice</a> and <a href="#cm_co2_tax_2020">cm_co2_tax_2020</a>, other ghg etc. controlled by <a href="#cm_rcp_scen">cm_rcp_scen</a></li>
 </ul>
 <p><strong>Description:</strong></p>
-<p><em>RP</em> WARNING: <a href="#cm_emiscen">cm_emiscen</a> 3 should not be used anymore, as the MACs are not updated anymore. <em>JeS</em> WARNING: data for <a href="#cm_emiscen">cm_emiscen</a> 4 only exists for multigas_scen 2 bau scenarios and for multigas_scen 1</p>
+<p><em>RP</em> WARNING: <a href="#cm_emiscen">cm_emiscen</a> 3 should not be used anymore, as the MACs are not updated anymore. <em>JeS</em> WARNING: data for <a href="#cm_emiscen">cm_emiscen</a> 4 only exists for <a href="#cm_multigasscen">cm_multigasscen</a> 2 bau scenarios and for <a href="#cm_multigasscen">cm_multigasscen</a> 1</p>
 </div>
 <div id="cm_iterative_target_adj" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_iterative_target_adj</h3>
@@ -963,38 +1007,42 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_iterative_target_adj &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no iterative adjustment</li>
-<li>(2): iterative adjustment II based on magicc calculated forcing (for both budget and tax runs), see modules/climate/magicc/postsolve.gms for direct algorithms of adjustment</li>
-<li>(3): [requires <a href="#carbonprice">45_carbonprice</a> = “NDC” and emiscen = 9] iterative adjustment III for tax based on 2025 or 2030 regionally differentiated emissions, see module/<a href="#carbonprice">45_carbonprice</a>/<NDC NPi2018>/postsolve.gms for algorithm of adjustment</li>
-<li>(4): iterative adjustment IV for both budget and tax runs based on CO2 FF&amp;I emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment</li>
-<li>(5): iterative adjustment V for both budget and tax runs based on CO2 emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment</li>
-<li>(6): iterative adjustment VI for both budget and tax runs based on peak CO2 emissions budget, without changing temporal profile (i.e. with overshoot), see core/postsolve.gms for direct algorithms of adjustment</li>
-<li>(7): iterative adjustment VII for tax runs based on peak CO2 emissions, with change of temporal tax profile after time of peak budget, aiming for net-zero thereafter, see core/postsolve.gms for direct algorithms of adjustment</li>
-<li>(9): [REMIND 2.1 default for validation peakBudget runs, in combination with carbonprice = diffCurvPhaseIn2Lin) ] aims at achieving <a href="#c_budgetco2from2020">c_budgetCO2from2020</a> as peakBudget. Scales up and down the original CO2 price path before the peaking year; after the peaking year annual increase by <a href="#cm_taxco2inc_after_peakbudgyr">cm_taxCO2inc_after_peakBudgYr</a>. Automatically shifts <a href="#cm_peakbudgyr">cm_peakBudgYr</a> to find the correct peaking year for a given .</li>
+<li><code>0</code>: no iterative adjustment</li>
+<li><code>2</code>: iterative adjustment II based on magicc calculated forcing (for both budget and tax runs), see modules/climate/magicc/postsolve.gms for direct algorithms of adjustment</li>
+<li><code>3</code>: (requires <a href="#carbonprice">45_carbonprice</a> = “NDC” and emiscen = 9) iterative adjustment III for tax based on 2025 or 2030 regionally differentiated emissions, see module/<a href="#carbonprice">45_carbonprice</a>/<NDC NPi2018>/postsolve.gms for algorithm of adjustment</li>
+<li><code>4</code>: iterative adjustment IV for both budget and tax runs based on CO2 FF&amp;I emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment</li>
+<li><code>5</code>: iterative adjustment V for both budget and tax runs based on CO2 emissions 2020-2100, see core/postsolve.gms for direct algorithms of adjustment</li>
+<li><code>6</code>: iterative adjustment VI for both budget and tax runs based on peak CO2 emissions budget, without changing temporal profile (i.e. with overshoot), see core/postsolve.gms for direct algorithms of adjustment</li>
+<li><code>7</code>: iterative adjustment VII for tax runs based on peak CO2 emissions, with change of temporal tax profile after time of peak budget, aiming for net-zero thereafter, see core/postsolve.gms for direct algorithms of adjustment</li>
+<li><code>9</code>: [REMIND 2.1 default for validation peakBudget runs, in combination with carbonprice = diffCurvPhaseIn2Lin) ] aims at achieving <a href="#c_budgetco2from2020">c_budgetCO2from2020</a> as peakBudget. Scales up and down the original CO2 price path before the peaking year; after the peaking year annual increase by <a href="#cm_taxco2inc_after_peakbudgyr">cm_taxCO2inc_after_peakBudgYr</a>. Automatically shifts <a href="#cm_peakbudgyr">cm_peakBudgYr</a> to find the correct peaking year for a given .</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>“whether or not a tax or a budget target should be iteratively adjusted depending on actual emission or forcing level”;</p>
+<p>–</p>
 </div>
 <div id="cm_ndc_divergentscenario" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_NDC_divergentScenario</h3>
 <p>choose scenario about convergence of CO2eq prices in realization NDC of 45_carbonprice</p>
 <pre class="r"><code>cfg$gms$cm_NDC_divergentScenario &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: 70 years after 2030</li>
+<li><code>1</code>: 120 years after 2030</li>
+<li><code>2</code>: until year 3000 (“never”)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>choose scenario about convergence of CO2eq prices in NDC realization of module <a href="#carbonprice">45_carbonprice</a> (0) 70 years after 2030 (1) 120 years after 2030 (2) until year 3000 (“never”)</p>
+<p>choose scenario about convergence of CO2eq prices in NDC realization of module <a href="#carbonprice">45_carbonprice</a></p>
 </div>
 <div id="cm_co2_tax_2020" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_co2_tax_2020</h3>
-<p>level of co2 tax in year 2020 in $ per t CO2eq, makes sense only for emiscen eq 9 and 45_carbonprice exponential</p>
+<p>level of co2 tax in year 2020 in $ per t CO2eq,</p>
 <pre class="r"><code>cfg$gms$cm_co2_tax_2020 &lt;- -1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(-1): default setting equivalent to no carbon tax</li>
+<li><code>-1</code>: default setting equivalent to no carbon tax</li>
 <li>(any number &gt;= 0): tax level in 2020, with 5% exponential increase over time</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>–</p>
+<p>makes sense only for <a href="#cm_emiscen">cm_emiscen</a> eq 9 and <a href="#carbonprice">45_carbonprice</a> exponential</p>
 </div>
 <div id="cm_co2_tax_growth" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_co2_tax_growth</h3>
@@ -1013,8 +1061,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$c_macscen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): on</li>
-<li>(2): off</li>
+<li><code>1</code>: on</li>
+<li><code>2</code>: off</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1025,53 +1073,53 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_nucscen &lt;- 2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): no fnrs, tnrs completely free after 2020</li>
-<li>(2): no fnrs, tnrs with restricted new builds until 2030 (based on current data on plants under construction, planned or proposed)</li>
-<li>(3): no tnrs no fnrs</li>
-<li>(4): fix at bau level</li>
-<li>(5): no new nuclear investments after 2020</li>
-<li>(6): +33% investment costs (tnrs) &amp; uranium resources increased by a factor of 10</li>
+<li><code>1</code>: no fnrs, tnrs completely free after 2020</li>
+<li><code>2</code>: no fnrs, tnrs with restricted new builds until 2030 (based on current data on plants under construction, planned or proposed)</li>
+<li><code>3</code>: no tnrs no fnrs</li>
+<li><code>4</code>: fix at bau level</li>
+<li><code>5</code>: no new nuclear investments after 2020</li>
+<li><code>6</code>: +33% investment costs (tnrs) &amp; uranium resources increased by a factor of 10</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="cm_ccapturescen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ccapturescen</h3>
-<p>carbon capture option choice, no carbon capture only if CCS and CCU are switched off!</p>
+<p>carbon capture option choice</p>
 <pre class="r"><code>cfg$gms$cm_ccapturescen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): yes</li>
-<li>(2): no carbon capture (only if CCS and CCU are switched off!)</li>
-<li>(3): no bio carbon capture</li>
-<li>(4): no carbon capture in the electricity sector</li>
+<li><code>1</code>: yes</li>
+<li><code>2</code>: no carbon capture (only if CCS and CCU are switched off!)</li>
+<li><code>3</code>: no bio carbon capture</li>
+<li><code>4</code>: no carbon capture in the electricity sector</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>carbon capture option choice</p>
+<p>–</p>
 </div>
 <div id="c_bioliqscen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_bioliqscen</h3>
-<p>switch liquids producing technology on or off</p>
+<p>bioenergy liquids technology choice</p>
 <pre class="r"><code>cfg$gms$c_bioliqscen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no technologies</li>
-<li>(1): all technologies</li>
+<li><code>0</code>: no technologies</li>
+<li><code>1</code>: all technologies</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>bioenergy liquids technology choise</p>
+<p>–</p>
 </div>
 <div id="c_bioh2scen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_bioh2scen</h3>
-<p>switch hydrogen producing technology on or off</p>
+<p>bioenergy hydrogen technology choice</p>
 <pre class="r"><code>cfg$gms$c_bioh2scen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no technologies</li>
-<li>(1): all technologies</li>
+<li><code>0</code>: no technologies</li>
+<li><code>1</code>: all technologies</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>bioenergy hydrogen technology choice</p>
+<p>–</p>
 </div>
 <div id="c_shgreenh2" class="section level3 unnumbered">
 <h3 class="unnumbered">c_shGreenH2</h3>
@@ -1105,6 +1153,7 @@ cfg$gms &lt;- list()</code></pre>
 </ul>
 <p><strong>Description:</strong></p>
 <p>lower bound on share of synthetic fuels in all transport fuels by 2045</p>
+<p>TODO: description mismatch!</p>
 </div>
 <div id="cm_shsyngas" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_shSynGas</h3>
@@ -1113,7 +1162,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_indccsscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_IndCCSscen</h3>
@@ -1122,7 +1171,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_optimisticmac" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_optimisticMAC</h3>
@@ -1131,7 +1180,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_ccs_cement" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CCS_cement</h3>
@@ -1140,7 +1189,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_ccs_chemicals" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CCS_chemicals</h3>
@@ -1149,7 +1198,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_ccs_steel" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CCS_steel</h3>
@@ -1158,7 +1207,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_solscen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_solscen</h3>
@@ -1166,9 +1215,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$c_solscen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): yes</li>
-<li>(2): no solar</li>
-<li>(3): fix at bau level</li>
+<li><code>1</code>: yes</li>
+<li><code>2</code>: no solar</li>
+<li><code>3</code>: fix at bau level</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1179,8 +1228,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_bioenergy_tax &lt;- 1.5</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): default setting equivalent to no tax</li>
-<li>(any number &gt;= 0): tax level, e.g. for a 100% tax <a href="#cm_bioenergy_tax">cm_bioenergy_tax</a> has to be 1</li>
+<li><code>0</code>: default setting equivalent to no tax</li>
+<li>(any number &gt;= 0): tax level, eg. for a 100% tax <a href="#cm_bioenergy_tax">cm_bioenergy_tax</a> has to be 1</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1191,13 +1240,13 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_bioenergymaxscen &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no bound</li>
-<li>(1): 100 EJ global bioenergy potential (bound in boundsextra.inc)</li>
-<li>(2): 200 EJ global bioenergy potential (bound in boundsextra.inc)</li>
-<li>(3): 300 EJ global bioenergy potential (bound in boundsextra.inc)</li>
-<li>(4): 152 EJ global bioenergy potential, i.e. 100 EJ 2nd generation (bound in boundsextra.inc)</li>
-<li>(5): (placeholder for scenario from DIPOL branch that is not yet merged)</li>
-<li>(6): 75 EJ (2050) and 90 EJ (2100) global bioenergy potential (linear interpolation in between)</li>
+<li><code>0</code>: no bound</li>
+<li><code>1</code>: 100 EJ global bioenergy potential (bound in boundsextra.inc)</li>
+<li><code>2</code>: 200 EJ global bioenergy potential (bound in boundsextra.inc)</li>
+<li><code>3</code>: 300 EJ global bioenergy potential (bound in boundsextra.inc)</li>
+<li><code>4</code>: 152 EJ global bioenergy potential, i.e. 100 EJ 2nd generation (bound in boundsextra.inc)</li>
+<li><code>5</code>: (placeholder for scenario from DIPOL branch that is not yet merged)</li>
+<li><code>6</code>: 75 EJ (2050) and 90 EJ (2100) global bioenergy potential (linear interpolation in between)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>choose bound on global pebiolc production excluding residues optional scaling of bioenergy costs in generisdata.inc (at the moment: no scaling for both cases)</p>
@@ -1208,8 +1257,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_tradecost_bio &lt;- 2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): low tradecosts (for other SSP scenarios than SSP2)</li>
-<li>(2): high tradecosts (default and SSP2)</li>
+<li><code>1</code>: low tradecosts (for other SSP scenarios than SSP2)</li>
+<li><code>2</code>: high tradecosts (default and SSP2)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1220,8 +1269,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_1stgen_phaseout &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): 1st generation biofuels after 2020 are fixed at upper limit of resource potential (maxprod)</li>
-<li>(1): no new capacities for 1st generation biofuel technologies may be built after 2030 -&gt; phaseout until ~2060</li>
+<li><code>0</code>: 1st generation biofuels after 2020 are fixed at upper limit of resource potential (maxprod)</li>
+<li><code>1</code>: no new capacities for 1st generation biofuel technologies may be built after 2030 -&gt; phaseout until ~2060</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>choose if 1st generation biofuels should phase out after 2030 (vm_deltaCap=0)</p>
@@ -1233,7 +1282,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_gdpcovid" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_GDPcovid</h3>
@@ -1241,24 +1290,25 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_GDPcovid &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): off</li>
-<li>(1): on</li>
+<li><code>0</code>: off</li>
+<li><code>1</code>: on</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>GDP correction for covid <em>ML</em> emulates a schock, only feasible with start year 2020, don’t use in calibration</p>
+<p>GDP correction for covid</p>
+<p><em>ML</em>: emulates a shock, only feasible with start year 2020, don’t use in calibration</p>
 </div>
 <div id="cm_startyear" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_startyear</h3>
-<p>first optimized modelling time step [year]</p>
+<p>first optimized modelling time step (year)</p>
 <pre class="r"><code>cfg$gms$cm_startyear &lt;- 2005</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(2005): standard for BAU to check if model is well calibrated</li>
-<li>(2015): standard for all policy runs (eq. to fix2010) and production baselines, especially if various baselines with varying parameters are explored</li>
+<li><code>2005</code>: standard for BAU to check if model is well calibrated</li>
+<li><code>2015</code>: standard for all policy runs (eq. to fix2010) and production baselines, especially if various baselines with varying parameters are explored</li>
 <li>(….): later start for delay policy runs, eg. 2025 for what used to be delay2020</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>“first free (or pseudo-free in case of 2005) modelling time step”;</p>
+<p>first free (or pseudo-free in case of 2005) modelling time step</p>
 </div>
 <div id="c_start_budget" class="section level3 unnumbered">
 <h3 class="unnumbered">c_start_budget</h3>
@@ -1267,7 +1317,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_prtpscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_prtpScen</h3>
@@ -1275,23 +1325,23 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_prtpScen &lt;- 3</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): 1 %</li>
-<li>(3): 3 %</li>
+<li><code>1</code>: 1 %</li>
+<li><code>3</code>: 3 %</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="cm_fetaxscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_fetaxscen</h3>
-<p>choice of final energy tax path, subsidy path and inconvenience cost path, values other than 0 make setting module 21_tax on</p>
+<p>choice of final energy tax path</p>
 <pre class="r"><code>cfg$gms$cm_fetaxscen &lt;- 3</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no tax, sub, inconv</li>
-<li>(1): constant t,s,i (used in SSP 5 and ADVANCE WP3.1 HighOilSub)</li>
-<li>(2): converging tax, phased out sub (-2030), no inconvenience cost so far (used in SSP 1)</li>
-<li>(3): constant tax, phased out sub (-2050), no inconvenience cost so far (used in SSP 2)</li>
-<li>(4): constant tax, phased out sub (-2030), no inconvenience cost so far (used in SDP)</li>
+<li><code>0</code>: no tax, sub, inconv</li>
+<li><code>1</code>: constant t,s,i (used in SSP 5 and ADVANCE WP3.1 HighOilSub)</li>
+<li><code>2</code>: converging tax, phased out sub (-2030), no inconvenience cost so far (used in SSP 1)</li>
+<li><code>3</code>: constant tax, phased out sub (-2050), no inconvenience cost so far (used in SSP 2)</li>
+<li><code>4</code>: constant tax, phased out sub (-2030), no inconvenience cost so far (used in SDP)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>“choice of final energy tax path, subsidy path and inconvenience cost path, values other than 0 make setting module <a href="#tax">21_tax</a> on”; <em>RP</em> even if set to 0, the PE inconvenience cost/SO2-cost for coal are always on if module <a href="#tax">21_tax</a> is on</p>
@@ -1302,9 +1352,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_multigasscen &lt;- 2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): CO2 only</li>
-<li>(2): all GHG</li>
-<li>(3): all GHG excl CO2 emissions from LULUCF</li>
+<li><code>1</code>: CO2 only</li>
+<li><code>2</code>: all GHG</li>
+<li><code>3</code>: all GHG excl CO2 emissions from LULUCF</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1315,12 +1365,12 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_permittradescen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(1): full permit trade (no restrictions)</li>
-<li>(2): no permit trade (only domestic mitigation)</li>
-<li>(3): limited trade (certain percentage of GDP)</li>
+<li><code>1</code>: full permit trade (no restrictions)</li>
+<li><code>2</code>: no permit trade (only domestic mitigation)</li>
+<li><code>3</code>: limited trade (certain percentage of GDP)</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>scenario on permit trade c_limit_peur_scen “limit total uranium production” (0): no (1): yes (the exact amount is specified in boundsextra)</p>
+<p>–</p>
 </div>
 <div id="cm_limit_peur_scen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_limit_peur_scen</h3>
@@ -1328,92 +1378,92 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_limit_peur_scen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): off</li>
-<li>(1): on</li>
+<li><code>0</code>: no</li>
+<li><code>1</code>: yes (the exact amount is specified in boundsextra)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
 </div>
 <div id="cm_rentdiscoil" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdiscoil</h3>
-<p>[grades2poly] discount factor for the oil rent</p>
+<p>grades2poly discount factor for the oil rent</p>
 <pre class="r"><code>cfg$gms$cm_rentdiscoil &lt;- 0.2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentdiscoil2" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdiscoil2</h3>
-<p>[grades2poly] discount factor for the oil rent achieved in 2100</p>
+<p>grades2poly discount factor for the oil rent achieved in 2100</p>
 <pre class="r"><code>cfg$gms$cm_rentdiscoil2 &lt;- 0.9</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentconvoil" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentconvoil</h3>
-<p>[grades2poly] number of years required to converge to the 2100 oil rent</p>
+<p>grades2poly number of years required to converge to the 2100 oil rent</p>
 <pre class="r"><code>cfg$gms$cm_rentconvoil &lt;- 50</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentdiscgas" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdiscgas</h3>
-<p>[grades2poly] discount factor for the gas rent</p>
+<p>grades2poly discount factor for the gas rent</p>
 <pre class="r"><code>cfg$gms$cm_rentdiscgas &lt;- 0.6</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentdiscgas2" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdiscgas2</h3>
-<p>[grades2poly] discount factor for the gas rent achieved in 2100</p>
+<p>grades2poly discount factor for the gas rent achieved in 2100</p>
 <pre class="r"><code>cfg$gms$cm_rentdiscgas2 &lt;- 0.8</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentconvgas" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentconvgas</h3>
-<p>[grades2poly] number of years required to converge to the 2100 gas rent</p>
+<p>grades2poly number of years required to converge to the 2100 gas rent</p>
 <pre class="r"><code>cfg$gms$cm_rentconvgas &lt;- 50</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentdisccoal" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdisccoal</h3>
-<p>[grades2poly] discount factor for the coal rent</p>
+<p>grades2poly discount factor for the coal rent</p>
 <pre class="r"><code>cfg$gms$cm_rentdisccoal &lt;- 0.4</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentdisccoal2" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentdisccoal2</h3>
-<p>[grades2poly] discount factor for the coal rent achieved in 2100</p>
+<p>grades2poly discount factor for the coal rent achieved in 2100</p>
 <pre class="r"><code>cfg$gms$cm_rentdisccoal2 &lt;- 0.6</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="cm_rentconvcoal" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_rentconvcoal</h3>
-<p>[grades2poly] number of years required to converge to the 2100 coal rent</p>
+<p>grades2poly number of years required to converge to the 2100 coal rent</p>
 <pre class="r"><code>cfg$gms$cm_rentconvcoal &lt;- 50</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>for <a href="#fossil">31_fossil</a> = grades2poly</p>
 </div>
 <div id="c_cint_scen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_cint_scen</h3>
@@ -1421,8 +1471,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$c_cint_scen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): switch is off (emissions are not accounted)</li>
-<li>(1): switch is on (emissions are accounted)</li>
+<li><code>0</code>: switch is off (emissions are not accounted)</li>
+<li><code>1</code>: switch is on (emissions are accounted)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1433,11 +1483,11 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_so2tax_scen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): so2 tax is set to zero</li>
-<li>(1): so2 tax is low</li>
-<li>(2): so2 tax is standard</li>
-<li>(3): so2 tax is high</li>
-<li>(4): so2 tax intermediary between 1 and 2, multiplying (1) tax by the ratio (3)/(2)</li>
+<li><code>0</code>: so2 tax is set to zero</li>
+<li><code>1</code>: so2 tax is low</li>
+<li><code>2</code>: so2 tax is standard</li>
+<li><code>3</code>: so2 tax is high</li>
+<li><code>4</code>: so2 tax intermediary between 1 and 2, multiplying (1) tax by the ratio (3)/(2)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -1453,53 +1503,72 @@ cfg$gms &lt;- list()</code></pre>
 </div>
 <div id="cm_solwindenergyscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_solwindenergyscen</h3>
-<p>scenario for fluctuating renewables, 1 is reference, 2 is pessimistic with limits to fluctuating SE el share</p>
+<p>scenario for fluctuating renewables</p>
 <pre class="r"><code>cfg$gms$cm_solwindenergyscen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: advanced - cheap investment costs, higher learning rates for pv, csp and wind</li>
+<li><code>1</code>: reference - normal investment costs &amp; learning rates for pv, csp and wind EMF27-3nd round Adv scenario</li>
+<li><code>2</code>: pessimistic EMF27 and AWP 2 - share of PV, wind&amp;CSP limited to 20%. Learning rates reduced by 20%, floor costs increased by 40%. EMF27-3nd round Cons scenario</li>
+<li><code>3</code>“: frozen - no learning after 2010, share of PV, wind&amp;CSP limited to 20%. EMF27-3rd round Frozen scenario</li>
+<li><code>4</code>: pessimistic SSP: pessimistic techno-economic assumptions</li>
+</ul>
 <p><strong>Description:</strong></p>
-<ol start="0" style="list-style-type: decimal">
-<li>advanced - cheap investment costs, higher learning rates for pv, csp and wind</li>
-<li>reference - normal investment costs &amp; learning rates for pv, csp and wind EMF27-3nd round Adv scenario</li>
-<li>pessimistic EMF27 and AWP 2 - share of PV, wind&amp;CSP limited to 20%. Learning rates reduced by 20%, floor costs increased by 40%. EMF27-3nd round Cons scenario</li>
-<li>frozen - no learning after 2010, share of PV, wind&amp;CSP limited to 20%. EMF27-3rd round Frozen scenario</li>
-<li>pessimistic SSP: pessimistic techno-economic assumptions</li>
-</ol>
+<p>1 is reference, 2 is pessimistic with limits to fluctuating SE el share</p>
 </div>
 <div id="c_techassumptscen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_techAssumptScen</h3>
-<p>scenario for assumptions of energy technologies based on SSP scenarios, 1: SSP2 (default), 2: SSP1, 3: SSP5</p>
+<p>scenario for assumptions of energy technologies based on SSP scenarios</p>
 <pre class="r"><code>cfg$gms$c_techAssumptScen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: SSP2: reference scenario - default investment costs &amp; learning rates for pv, csp and wind</li>
+<li><code>2</code>: SSP1: advanced renewable energy techno., pessimistic for nuclear and CCS</li>
+<li><code>3</code>: SSP5: pessimistic techno-economic assumptions</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p><em>JH</em> This flag defines an energy technology scenario (1) SSP2: reference scenario - default investment costs &amp; learning rates for pv, csp and wind (2) SSP1: advanced renewable energy techno., pessimistic for nuclear and CCS (3) SSP5: pessimistic techno-economic assumptions</p>
+<p><em>JH</em> This flag defines an energy technology scenario</p>
 </div>
 <div id="c_ccsinjecratescen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_ccsinjecratescen</h3>
 <p>CCS injection rate factor, 0.5% by default yielding a 60 Mt per year IR</p>
 <pre class="r"><code>cfg$gms$c_ccsinjecratescen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no “CCS” as in no carbon sequestration at all</li>
+<li><code>1</code>: reference case: 0.005</li>
+<li><code>2</code>: lower estimate: 0.0025</li>
+<li><code>3</code>: upper estimate: 0.075</li>
+<li><code>4</code>: unconstrained: 1</li>
+<li><code>5</code>: sustainability case: 0.001</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p><em>JH</em> This flag determines the upper bound of the CCS injection rate <em>LP</em> CCS refers to carbon sequestration, carbon capture is modelled separately (0) no “CCS” as in no carbon sequestration at all (1) reference case: 0.005 (2) lower estimate: 0.0025 (3) upper estimate: 0.075 (4) unconstrained: 1 (5) sustainability case: 0.001</p>
+<p><em>JH</em> This flag determines the upper bound of the CCS injection rate</p>
+<p><em>LP</em> CCS refers to carbon sequestration, carbon capture is modeled separately</p>
 </div>
 <div id="c_ccscapratescen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_ccscapratescen</h3>
 <p>CCS capture rate</p>
 <pre class="r"><code>cfg$gms$c_ccscapratescen &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: reference</li>
+<li><code>2</code>: increased capture rate</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p><em>JH</em> This flag determines the CO2 capture rate of CCS technologies (1) reference (2) increased capture rate</p>
+<p><em>JH</em> This flag determines the CO2 capture rate of CCS technologies</p>
 </div>
 <div id="c_export_tax_scen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_export_tax_scen</h3>
-<p>choose which oil export tax is used in the model. 0 = none, 1 = fix</p>
+<p>choose which oil export tax is used in the model</p>
 <pre class="r"><code>cfg$gms$c_export_tax_scen &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: none</li>
+<li><code>1</code>: fix</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_gdximport_target" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_gdximport_target</h3>
@@ -1507,11 +1576,11 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_gdximport_target &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): no import, the default starting value as specified in modules/<a href="#tax">21_tax</a>/on/input/tax_CO2.inc, core/input/data_emibudget.inc, modules/<a href="#climate">15_climate</a>/box/datainput.gms is used</li>
-<li>(1): the values from the gdx are read in (works only if the gdx has a parameter value) ATTENTION: make sure that the values from the gdx have the right structure (e.g. regionally differentiated or not)</li>
+<li><code>0</code>: no import, the default starting value as specified in modules/<a href="#tax">21_tax</a>/on/input/tax_CO2.inc, core/input/data_emibudget.inc, modules/<a href="#climate">15_climate</a>/box/datainput.gms is used</li>
+<li><code>1</code>: the values from the gdx are read in (works only if the gdx has a parameter value) ATTENTION: make sure that the values from the gdx have the right structure (eg. regionally differentiated or not)</li>
 </ul>
 <p><strong>Description:</strong></p>
-<p>“whether or not the starting value for iteratively adjusted budgets, tax scenarios, or forcing targets (emiscen 5,6,7,8,9) should be read in from the input.gdx”;</p>
+<p>–</p>
 </div>
 <div id="cm_gs_ew" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_gs_ew</h3>
@@ -1520,7 +1589,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_limrock" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_LimRock</h3>
@@ -1529,16 +1598,16 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_tau_so2_xmpt" class="section level3 unnumbered">
 <h3 class="unnumbered">c_tau_so2_xmpt</h3>
-<p>switch for temporarily (mainly in the past) exempting chinese SO2 emissions from the SO2 tax</p>
+<p>switch for temporarily (mainly in the past) exempting Chinese SO2 emissions from the SO2 tax</p>
 <pre class="r"><code>cfg$gms$c_tau_so2_xmpt &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_expolinear_yearstart" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_expoLinear_yearStart</h3>
@@ -1547,7 +1616,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_budgetco2from2020ffi" class="section level3 unnumbered">
 <h3 class="unnumbered">c_budgetCO2from2020FFI</h3>
@@ -1556,7 +1625,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_budgetco2from2020" class="section level3 unnumbered">
 <h3 class="unnumbered">c_budgetCO2from2020</h3>
@@ -1565,16 +1634,17 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>carbon budget for all CO2 emissions starting from 2020 (in GtCO2) budgets from AR6 for 2020-2100 (including 2020), for 1.5°C: 400 Gt CO2, for 2°C: 1150 Gt CO2</p>
+<p>carbon budget for all CO2 emissions starting from 2020 (in GtCO2)</p>
+<p>budgets from AR6 for 2020-2100 (including 2020), for 1.5°C: 400 Gt CO2, for 2°C: 1150 Gt CO2</p>
 </div>
 <div id="c_abtrdy" class="section level3 unnumbered">
 <h3 class="unnumbered">c_abtrdy</h3>
-<p>first year in which advanced bio-energy technology are ready (unit is year; e.g. 2050)</p>
+<p>first year in which advanced bio-energy technology are ready (unit is year; eg. 2050)</p>
 <pre class="r"><code>cfg$gms$c_abtrdy &lt;- 2010</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_abtcst" class="section level3 unnumbered">
 <h3 class="unnumbered">c_abtcst</h3>
@@ -1583,43 +1653,53 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_posttargetincrease" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_postTargetIncrease</h3>
-<p>carbon price increase per year after target is reached (€/tCO2)</p>
+<p>carbon price increase per year after target is reached (euro per tCO2)</p>
 <pre class="r"><code>cfg$gms$cm_postTargetIncrease &lt;- 2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>carbon price increase per year after target is reached (euro per tCO2)</p>
+<p>–</p>
 </div>
 <div id="cm_discratescen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_DiscRateScen</h3>
 <p>Implicit additional discount rate on investment in energy efficiency</p>
 <pre class="r"><code>cfg$gms$cm_DiscRateScen &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: Baseline without higher discount rate: No additional discount rate</li>
+<li><code>1</code>: Baseline with higher discount rate: Increase the discount rate by 10%pts from 2005 until the end</li>
+<li><code>2</code>: Energy Efficiency policy: 10%pts higher discount rate until cm_start_year and 0 afterwards.</li>
+<li><code>3</code>: Energy Efficiency policy: higher discount rate until cm_start_year and 25% of the initial value afterwards.</li>
+<li><code>4</code>: Energy Efficiency policy: higher discount rate until cm_start_year, decreasing to 25% value linearly until 2030.</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>Scenario for the implicit discount rate applied to the energy efficiency capital (0) Baseline without higher discount rate: No additional discount rate (1) Baseline with higher discount rate: Increase the discount rate by 10%pts from 2005 until the end (2) Energy Efficiency policy: 10%pts higher discount rate until cm_start_year and 0 afterwards. (3) Energy Efficiency policy: higher discount rate until cm_start_year and 25% of the initial value afterwards. (4) Energy Efficiency policy: higher discount rate until cm_start_year, decreasing to 25% value linearly until 2030.</p>
+<p>Scenario for the implicit discount rate applied to the energy efficiency capital</p>
 </div>
 <div id="cm_noreboundeffect" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_noReboundEffect</h3>
-<p>Switch for allowing a rebound effect when closing the efficiency gap (cm_DiscRateScen)</p>
+<p>Switch for allowing a rebound effect when closing the efficiency gap</p>
 <pre class="r"><code>cfg$gms$cm_noReboundEffect &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>See also <a href="#cm_discratescen">cm_DiscRateScen</a>.</p>
 </div>
 <div id="cm_esubgrowth" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_esubGrowth</h3>
 <p>long term growth of the elasticity of substitution</p>
 <pre class="r"><code>cfg$gms$cm_esubGrowth &lt;- &quot;middle&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;low&quot;</code>: 1.3</li>
+<li><code>&quot;middle&quot;</code>: 1.5</li>
+<li><code>&quot;high&quot;</code>: 2</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>(low) 1.3 (middle) 1.5 (high) 2 specify regions to which nucscen, capturescen should apply to (e.g. <a href="#c_regi_nucscen">c_regi_nucscen</a> &lt;- “JPN,USA”)</p>
+<p>–</p>
 </div>
 <div id="cm_trdcst" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_trdcst</h3>
@@ -1628,7 +1708,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_trdadj" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_trdadj</h3>
@@ -1637,16 +1717,16 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_refcapbnd" class="section level3 unnumbered">
 <h3 class="unnumbered">c_refcapbnd</h3>
-<p>switch for fixing refinery capacities to the SSP2 levels in 2010 (if equal zero then no fixing)</p>
+<p>switch for fixing refinery capacities to the SSP2 levels in 2010</p>
 <pre class="r"><code>cfg$gms$c_refcapbnd &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>if equal zero then no fixing</p>
 </div>
 <div id="cm_frac_ccs" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_frac_CCS</h3>
@@ -1655,7 +1735,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_frac_netnegemi" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_frac_NetNegEmi</h3>
@@ -1664,7 +1744,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_peakbudgyr" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_peakBudgYr</h3>
@@ -1682,36 +1762,40 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_co2priceregconvendyr" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CO2priceRegConvEndYr</h3>
-<p>Year at which regional CO2 prices converge in module 45 realization diffPhaseIn2LinFlex</p>
+<p>Year at which regional CO2 prices converge for 45_carbonprice eq diffCurvPhaseIn2Lin</p>
 <pre class="r"><code>cfg$gms$cm_CO2priceRegConvEndYr &lt;- 2050</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>See <a href="#carbonprice">45_carbonprice</a>.</p>
 </div>
 <div id="cm_flex_tax" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_flex_tax</h3>
 <p>switch for flexibility tax/subsidy, switching it on activates a tax on a number of technologies with flexible or inflexible electricity input.</p>
 <pre class="r"><code>cfg$gms$cm_flex_tax &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: flexibility tax off</li>
+<li><code>1</code>: flexibility tax on</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>switch for enabling flexibility tax technologies with flexible eletricity input get a subsidy corresponding to the lower-than-average electricity prices that they see, while inflexible technologies get a tax corresponding to the higher-than-average electricity prices that they see (0) flexibility tax off (1) flexibility tax on</p>
+<p>Technologies with flexible electricity input get a subsidy corresponding to the lower-than-average electricity prices that they see, while inflexible technologies get a tax corresponding to the higher-than-average electricity prices that they see</p>
 </div>
 <div id="cm_taxconvcheck" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_TaxConvCheck</h3>
 <p>switch for enabling tax convergence check in nash mode</p>
 <pre class="r"><code>cfg$gms$cm_TaxConvCheck &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
-<p><strong>Description:</strong></p>
 <ul>
-<li>switches tax convergence check in nash mode on and off (check that tax revenue in all regions, periods be smaller than 0.01% of GDP) 0 (off) 1 (on), default</li>
+<li><code>0</code>: off</li>
+<li><code>1</code>: on</li>
 </ul>
+<p><strong>Description:</strong></p>
+<p>switches tax convergence check in nash mode on and off (check that tax revenue in all regions, periods be smaller than 0.01% of GDP)</p>
 </div>
 <div id="cm_h2targets" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_H2targets</h3>
@@ -1720,7 +1804,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_pricedurslope_elh2" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_PriceDurSlope_elh2</h3>
@@ -1729,43 +1813,43 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>, slope of price duration curve for electrolysis (increase means more flexibility subsidy for electrolysis H2)</p>
+<p>increase means more flexibility subsidy for electrolysis H2</p>
 </div>
 <div id="cm_flextaxfeedback" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_FlexTaxFeedback</h3>
-<p>switch deciding whether flexibility tax feedback on buildlings and industry electricity prices is on</p>
+<p>switch deciding whether flexibility tax feedback on buildings and industry electricity prices is on</p>
 <pre class="r"><code>cfg$gms$cm_FlexTaxFeedback &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>, switches on feedback of flexibility tax on buildings/industry (electricity price decrease for electrolysis has to be matched by electrictiy price increase in buildings/industry)</p>
+<p>electricity price decrease for electrolysis has to be matched by electricity price increase in buildings/industry</p>
 </div>
 <div id="cm_build_h2costaddh2inv" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_build_H2costAddH2Inv</h3>
-<p>additional h2 distribution costs for low diffusion levels (default value: 6.5$/ 100 /Kwh)</p>
+<p>additional h2 distribution costs for low diffusion levels</p>
 <pre class="r"><code>cfg$gms$cm_build_H2costAddH2Inv &lt;- 0.2</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- additional h2 distribution costs for low diffusion levels (default value: 6.5<span class="math inline">\(/kg = 0.2\)</span>/Kwh)</p>
+<p>additional h2 distribution costs for low diffusion levels (default value: 6.5$/kg = 0.2$/Kwh)</p>
 </div>
 <div id="cm_build_costdecaystart" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_build_costDecayStart</h3>
-<p>simplified logistic function end of full value (ex. 5% -&gt; between 0 and 5% the function will have the value 1). [%]</p>
+<p>simplified logistic function end of full value</p>
 <pre class="r"><code>cfg$gms$cm_build_costDecayStart &lt;- 0.05</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- 0.05 # simplified logistic function end of full value (ex. 5% -&gt; between 0 and 5% the function will have the value 1). [%]</p>
+<p>simplified logistic function end of full value (eg. 5% -&gt; between 0 and 5% the function will have the value 1). [%]</p>
 </div>
 <div id="cm_build_h2costdecayend" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_build_H2costDecayEnd</h3>
-<p>simplified logistic function start of null value (ex. 10% -&gt; after 10% the function will have the value 0). [%]</p>
+<p>simplified logistic function start of null value</p>
 <pre class="r"><code>cfg$gms$cm_build_H2costDecayEnd &lt;- 0.1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- 0.1 # simplified logistic function start of null value (ex. 10% -&gt; after 10% the function will have the value 0). [%]</p>
+<p>simplified logistic function start of null value (eg. 10% -&gt; after 10% the function will have the value 0). [%]</p>
 </div>
 <div id="cm_build_adjcostactive" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_build_AdjCostActive</h3>
@@ -1774,41 +1858,46 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_indst_h2costaddh2inv" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_indst_H2costAddH2Inv</h3>
-<p>additional h2 distribution costs for low diffusion levels. [3.25$/ 0.1 /kWh]</p>
+<p>additional h2 distribution costs for low diffusion levels</p>
 <pre class="r"><code>cfg$gms$cm_indst_H2costAddH2Inv &lt;- 0.1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- 0.1 # additional h2 distribution costs for low diffusion levels. [3.25<span class="math inline">\(/kg = 0.1\)</span>/kWh]</p>
+<p>additional h2 distribution costs for low diffusion levels. [3.25$/kg = 0.1$/kWh]</p>
 </div>
 <div id="cm_indst_costdecaystart" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_indst_costDecayStart</h3>
-<p>simplified logistic function end of full value (ex. 5% -&gt; between 0 and 5% the simplified logistic function will have the value 1). [%]</p>
+<p>simplified logistic function end of full value</p>
 <pre class="r"><code>cfg$gms$cm_indst_costDecayStart &lt;- 0.05</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- 0.05 # simplified logistic function end of full value (ex. 5% -&gt; between 0 and 5% the simplified logistic function will have the value 1). [%]</p>
+<p>simplified logistic function end of full value (eg. 5% -&gt; between 0 and 5% the simplified logistic function will have the value 1). [%]</p>
 </div>
 <div id="cm_indst_h2costdecayend" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_indst_H2costDecayEnd</h3>
-<p>simplified logistic function start of null value (ex. 10% -&gt; between 10% and 100% the simplified logistic function will have the value 0). [%]</p>
+<p>simplified logistic function start of null value</p>
 <pre class="r"><code>cfg$gms$cm_indst_H2costDecayEnd &lt;- 0.1</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>&lt;- 0.1 # simplified logistic function start of null value (ex. 10% -&gt; between 10% and 100% the simplified logistic function will have the value 0). [%]</p>
+<p>simplified logistic function start of null value (eg. 10% -&gt; between 10% and 100% the simplified logistic function will have the value 0). [%]</p>
 </div>
+</div>
+<div id="eu-specific-switches" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> EU specific switches</h2>
 <div id="cm_biosupply_adjust_eu" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_BioSupply_Adjust_EU</h3>
 <p>factor for scaling sub-EU bioenergy supply curves</p>
 <pre class="r"><code>cfg$gms$cm_BioSupply_Adjust_EU &lt;- 3</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>3</code>: 3*bioenergy supply slope</li>
+</ul>
 <p><strong>Description:</strong></p>
 <p>scales bioenergy supply curves in EU regions (mainly used to match EUR H12/Magpie bioenergy potential)</p>
 </div>
@@ -1817,63 +1906,84 @@ cfg$gms &lt;- list()</code></pre>
 <p>factor for EU bioenergy import tax</p>
 <pre class="r"><code>cfg$gms$cm_BioImportTax_EU &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: 100% bioenergy import tax</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_biotrade_phaseout" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_biotrade_phaseout</h3>
-<p>switch for phaseing out biomass trade in the respective regions by 2030</p>
+<p>switch for phasing out biomass trade in the respective regions by 2030</p>
 <pre class="r"><code>cfg$gms$cm_biotrade_phaseout &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no biomass import phase out</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_bioprod_histlim" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_bioprod_histlim</h3>
 <p>regional parameter to limit biomass (pebiolc.1) production to a multiple of the 2015 production</p>
 <pre class="r"><code>cfg$gms$cm_bioprod_histlim &lt;- -1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: means no limit to bioenergy production according to historic demand (positive number means limit production limit of this factor times 2015 PE bioenergy demand)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_heatlim_b" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_HeatLim_b</h3>
 <p>switch to set maximum share of district heating in FE buildings</p>
 <pre class="r"><code>cfg$gms$cm_HeatLim_b &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: no limit on district heating in FE buildings</li>
+<li>if &lt;1, then this serves as an upper bound to the buildings FE heat share</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_ellim_b" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ElLim_b</h3>
 <p>switch to set maximum share of electricity in FE buildings</p>
 <pre class="r"><code>cfg$gms$cm_ElLim_b &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: no limit on electricity in FE buildings,</li>
+<li>if &lt;1, then this serves as an upper bound to the buildings FE electricity share</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_nopefosccdeu" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_noPeFosCCDeu</h3>
 <p>switch to suppress Pe2Se Fossil Carbon Capture in Germany</p>
 <pre class="r"><code>cfg$gms$cm_noPeFosCCDeu &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no suppression of Pe2Se Fossil Carbon Capture in Germany</li>
+<li><code>1</code>: then no pe2se fossil CO2 capture in Germany</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>CCS limitations for Germany</p>
 </div>
+</div>
+<div id="general-3" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> General</h2>
 <div id="cm_startiter_edget" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_startIter_EDGET</h3>
 <p>starting iteration of EDGE-T</p>
 <pre class="r"><code>cfg$gms$cm_startIter_EDGET &lt;- 14</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li>eg. <code>14</code>: EDGE-T coupling starts at 14</li>
+<li>if you want to test whether infeasibilities after EDGE-T -&gt; set it to 1 to check after first iteration</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_pricesensibuild" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_priceSensiBuild</h3>
@@ -1882,52 +1992,59 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_logitcal_markup_conv_b" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_logitCal_markup_conv_b</h3>
-<p>value to which logit calibration markup of standard fe2ue technologies in detailed buildings module converges to</p>
+<p>long-term convergence value of detailed buildings fe2ue conventional techs price markup</p>
 <pre class="r"><code>cfg$gms$cm_logitCal_markup_conv_b &lt;- 0.8</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>value to which logit calibration markup of standard fe2ue technologies in detailed buildings module converges to</p>
 </div>
 <div id="cm_logitcal_markup_newtech_conv_b" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_logitCal_markup_newtech_conv_b</h3>
-<p>value to which logit calibration markup of new fe2ue technologies in detailed buildings module converges to</p>
+<p>long-term convergence value of detailed buildings fe2ue new techs price markup</p>
 <pre class="r"><code>cfg$gms$cm_logitCal_markup_newtech_conv_b &lt;- 0.3</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>value to which logit calibration markup of new fe2ue technologies in detailed buildings module converges to</p>
 </div>
 <div id="cm_regipol_slope_beforetarget" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_regipol_slope_beforeTarget</h3>
-<p>–</p>
+<p>switch to generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year</p>
 <pre class="r"><code>cfg$gms$cm_regipol_slope_beforeTarget &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Switch to generate a co2 price trajectory in <a href="#regipol">47_regipol</a> with a different slope in the first years than in the last years before the target year, eg. <a href="#cm_regipol_slope_beforetarget">cm_regipol_slope_beforeTarget</a> = 2040.EUR 1.3 when pm_regiCO2target is set for 2050: linaer increase between 2040 and target year (2050) is 1.3 larger than the linear increase of the co2 price before 2040. This is useful if certain budget and year targets need to be fulfilled at the same time as an increase of this factor will induce stronger emissions reductions around the target year without necessarily reducing the emissions in the first years as much.</p>
 </div>
 <div id="cm_vre_supply_assumptions" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_VRE_supply_assumptions</h3>
-<p>default (0), optimistic (1), sombre (2), or bleak (3) assumptions on VRE supply</p>
+<p>assumptions on VRE supply</p>
 <pre class="r"><code>cfg$gms$cm_VRE_supply_assumptions &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: default</li>
+<li><code>1</code>: optimistic</li>
+<li><code>2</code>: sombre</li>
+<li><code>3</code>: bleak</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_co2pricedependent_adjcosts" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CO2priceDependent_AdjCosts</h3>
-<p>–</p>
+<p>Should adjustment costs for advanced vehicles in dependence of CO2 prices be changed?</p>
 <pre class="r"><code>cfg$gms$c_CO2priceDependent_AdjCosts &lt;- &quot;on&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;on&quot;</code>: changes adjustment costs for advanced vehicles in dependence of CO2 prices</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>default “on” changes adjustment costs for advanced vehicles in dependence of CO2 prices</p>
+<p>–</p>
 </div>
 <div id="cm_carbonprice_temperaturelimit" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_carbonprice_temperatureLimit</h3>
@@ -1936,16 +2053,22 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
+</div>
+<div id="climate-damages" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> climate damages</h2>
 <div id="cm_damages_burkelike_specification" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_damages_BurkeLike_specification</h3>
 <p>empirical specification for Burke-like damage functions</p>
 <pre class="r"><code>cfg$gms$cm_damages_BurkeLike_specification &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: “pooled, short-run”</li>
+<li><code>5</code>: “pooled, long-run”</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Selects the main Burke specification</p>
 </div>
 <div id="cm_damages_burkelike_persistencetime" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_damages_BurkeLike_persistenceTime</h3>
@@ -1954,7 +2077,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Persistence time (half-time) in years. Highly uncertain, but may be in between 5 and 55 years.</p>
 </div>
 <div id="cm_damages_scchorizon" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_damages_SccHorizon</h3>
@@ -1963,8 +2086,11 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Horizon for SCC calculation. Damages [cm_damagesSccHorizon] years into the future are internalized.</p>
 </div>
+</div>
+<div id="general-4" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> General</h2>
 <div id="cm_deucdrmax" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_deuCDRmax</h3>
 <p>switch to limit maximum annual CDR amount in Germany in MtCO2 per y</p>
@@ -1972,7 +2098,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_baselineagriemired" class="section level3 unnumbered">
 <h3 class="unnumbered">c_BaselineAgriEmiRed</h3>
@@ -1981,22 +2107,22 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 </div>
 </div>
 <div id="gams-compiler-flags" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> GAMS Compiler Flags</h1>
-<div id="general-3" class="section level2" number="4.1">
-<h2 number="4.1"><span class="header-section-number">4.1</span> General</h2>
+<h1><span class="header-section-number">4</span> GAMS Compiler Flags</h1>
+<div id="general-5" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> General</h2>
 <div id="cm_magpie_coupling" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_MAgPIE_coupling</h3>
 <p>switch on coupling mode with MAgPIE</p>
 <pre class="r"><code>cfg$gms$cm_MAgPIE_coupling &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(off): off = REMIND expects to be run standalone (emission factors are used, shiftfactors are set to zero)</li>
-<li>(on): on = REMIND expects to be run based on a MAgPIE reporting file (emission factors are set to zero because emissions are retrieved from the MAgPIE reporting, shift factors for supply curves are calculated)</li>
+<li><code>&quot;off&quot;</code>: REMIND expects to be run standalone (emission factors are used, shiftfactors are set to zero)</li>
+<li><code>&quot;on&quot;</code>: REMIND expects to be run based on a MAgPIE reporting file (emission factors are set to zero because emissions are retrieved from the MAgPIE reporting, shift factors for supply curves are calculated)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2007,13 +2133,13 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_rcp_scen &lt;- &quot;none&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(none): no RCP scenario, standard setting</li>
-<li>(rcp20): RCP2.0</li>
-<li>(rcp26): RCP2.6</li>
-<li>(rcp37): RCP3.7</li>
-<li>(rcp45): RCP4.5</li>
-<li>(rcp60): RCP6.0</li>
-<li>(rcp85): RCP8.5</li>
+<li><code>&quot;none&quot;</code>: no RCP scenario, standard setting</li>
+<li><code>&quot;rcp20&quot;</code>: RCP2.0</li>
+<li><code>&quot;rcp26&quot;</code>: RCP2.6</li>
+<li><code>&quot;rcp37&quot;</code>: RCP3.7</li>
+<li><code>&quot;rcp45&quot;</code>: RCP4.5</li>
+<li><code>&quot;rcp60&quot;</code>: RCP6.0</li>
+<li><code>&quot;rcp85&quot;</code>: RCP8.5</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2024,12 +2150,12 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_NDC_version &lt;- &quot;2022_cond&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(2022_cond): all NDCs conditional to international financial support</li>
-<li>(2022_uncond): all NDCs independent of international financial support</li>
-<li>(2021_cond): all NDCs conditional to international financial support published until December 31, 2021</li>
-<li>(2021_uncond): all NDCs independent of international financial support published until December 31, 2021</li>
-<li>(2018_cond): all NDCs conditional to international financial support published until December 31, 2018</li>
-<li>(2018_uncond): all NDCs independent of international financial support published until December 31, 2018</li>
+<li><code>&quot;2022_cond&quot;</code>: all NDCs conditional to international financial support</li>
+<li><code>&quot;2022_uncond&quot;</code>: all NDCs independent of international financial support</li>
+<li><code>&quot;2021_cond&quot;</code>: all NDCs conditional to international financial support published until December 31, 2021</li>
+<li><code>&quot;2021_uncond&quot;</code>: all NDCs independent of international financial support published until December 31, 2021</li>
+<li><code>&quot;2018_cond&quot;</code>: all NDCs conditional to international financial support published until December 31, 2018</li>
+<li><code>&quot;2018_uncond&quot;</code>: all NDCs independent of international financial support published until December 31, 2018</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>choose version year of NDC targets as well as conditional vs. unconditional targets</p>
@@ -2040,8 +2166,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_CO2TaxSectorMarkup &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(off): no markup</li>
-<li>(GLO.build 1, USA_regi.trans 0.25, EUR_regi.trans 0.25): “example for CO2 tax markup in transport of 25% in USA and EUR, and CO2eq tax markup in buildings sector of 100 % in all regions. Currently, build and trans are the only two elements of the set emi_sectors that are supported.”</li>
+<li><code>&quot;off&quot;</code>: no markup</li>
+<li><code>&quot;GLO.build 1, USA_regi.trans 0.25, EUR_regi.trans 0.25&quot;</code>: example for CO2 tax markup in transport of 25% in USA and EUR, and CO2eq tax markup in buildings sector of 100 % in all regions. Currently, build and trans are the only two elements of the set emi_sectors that are supported.</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2053,25 +2179,27 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_regi_earlyreti_rate" class="section level3 unnumbered">
 <h3 class="unnumbered">c_regi_earlyreti_rate</h3>
 <p>maximum portion of capital stock that can be retired in one year for a region</p>
 <pre class="r"><code>cfg$gms$c_regi_earlyreti_rate &lt;- &quot;GLO 0.09, EUR_regi 0.15&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li>eg <code>&quot;GLO 0.09, EUR_regi 0.15&quot;</code>: 0.09 means full retirement after 11 years, 10% standing after 10 years</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>GLO 0.09, EUR_regi 0.15: default value. (0.09 means full retirement after 11 years, 10% standing after 10 years)</p>
+<p>–</p>
 </div>
 <div id="c_tech_earlyreti_rate" class="section level3 unnumbered">
 <h3 class="unnumbered">c_tech_earlyreti_rate</h3>
 <p>maximum portion of capital stock that can be retired in one year for a technology in a region</p>
 <pre class="r"><code>cfg$gms$c_tech_earlyreti_rate &lt;- &quot;GLO.(biodiesel 0.14, bioeths 0.14), EUR_regi.(biodiesel 0.15, bioeths 0.15), USA_regi.pc 0.13, REF_regi.pc 0.13, CHA_regi.pc 0.13&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>eg GLO.(biodiesel 0.14, bioeths 0.1), EUR_regi.(biodiesel 0.15, bioeths 0.15), USA_regi.pc 0.13, REF_regi.pc 0.13, CHA_regi.pc 0.13: default value, including retirement of 1st gen biofuels, higher rate of coal phase-out for USA, REF and CHA</p>
 <p><strong>Description:</strong></p>
-<p>maximum portion of capital stock that can be retired in one year for a region for a technology GLO.(biodiesel 0.14, bioeths 0.1), EUR_regi.(biodiesel 0.15, bioeths 0.15), USA_regi.pc 0.13, REF_regi.pc 0.13, CHA_regi.pc 0.13: default value, including retirement of 1st gen biofuels, higher rate of coal phase-out for USA, REF and CHA</p>
+<p>maximum portion of capital stock that can be retired in one year for a region for a technology</p>
 </div>
 <div id="cm_lu_emi_scen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_LU_emi_scen</h3>
@@ -2079,9 +2207,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_LU_emi_scen &lt;- &quot;SSP2&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(SSP1): emissions (from SSP1 scenario in MAgPIE)</li>
-<li>(SSP2): emissions (from SSP2 scenario in MAgPIE)</li>
-<li>(SSP5): emissions (from SSP5 scenario in MAgPIE)</li>
+<li><code>&quot;SSP1&quot;</code>: emissions (from SSP1 scenario in MAgPIE)</li>
+<li><code>&quot;SSP2&quot;</code>: emissions (from SSP2 scenario in MAgPIE)</li>
+<li><code>&quot;SSP5&quot;</code>: emissions (from SSP5 scenario in MAgPIE)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2092,8 +2220,8 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_tradbio_phaseout &lt;- &quot;default&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(default): Default assumption, reaching zero demand in 2100</li>
-<li>(fast): Fast phase out, starting in 2025 reaching zero demand in 2070 (close to zero in 2060)</li>
+<li><code>&quot;default&quot;</code>: Default assumption, reaching zero demand in 2100</li>
+<li><code>&quot;fast&quot;</code>: Fast phase out, starting in 2025 reaching zero demand in 2070 (close to zero in 2060)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2103,24 +2231,30 @@ cfg$gms &lt;- list()</code></pre>
 <p>Population growth scenarios from UN data and IIASA projection used in SSP</p>
 <pre class="r"><code>cfg$gms$cm_POPscen &lt;- &quot;pop_SSP2EU&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
-<p><strong>Description:</strong></p>
-<p>pop_SSP1 “SSP1 population scenario” pop_SSP2 “SSP2 population scenario” pop_SSP3 “SSP3 population scenario” pop_SSP4 “SSP4 population scenario” pop_SSP5 “SSP5 population scenario”</p>
-</div>
-<div id="cm_gdpscen" class="section level3 unnumbered">
-<h3 class="unnumbered">cm_GDPscen</h3>
-<p>assumptions about future GDP development, linked to population development (cm_POPscen)</p>
-<pre class="r"><code>cfg$gms$cm_GDPscen &lt;- &quot;gdp_SSP2EU&quot;</code></pre>
-<p><strong>Possible Values:</strong></p>
 <ul>
-<li>(gdp_SSP1): SSP1 fastGROWTH medCONV</li>
-<li>(gdp_SSP2): SSP2 medGROWTH medCONV</li>
-<li>(gdp_SSP3): SSP3 slowGROWTH slowCONV</li>
-<li>(gdp_SSP4): SSP4 medGROWTH mixedCONV</li>
-<li>(gdp_SSP5): SSP5 fastGROWTH fastCONV</li>
+<li><code>&quot;pop_SSP1&quot;</code>: SSP1 population scenario</li>
+<li><code>&quot;pop_SSP2&quot;</code>: SSP2 population scenario</li>
+<li><code>&quot;pop_SSP3&quot;</code>: SSP3 population scenario</li>
+<li><code>&quot;pop_SSP4&quot;</code>: SSP4 population scenario</li>
+<li><code>&quot;pop_SSP5&quot;</code>: SSP5 population scenario</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
+</div>
+<div id="cm_gdpscen" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_GDPscen</h3>
+<p>assumptions about future GDP development</p>
+<pre class="r"><code>cfg$gms$cm_GDPscen &lt;- &quot;gdp_SSP2EU&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li><code>&quot;gdp_SSP1&quot;</code>: SSP1 fastGROWTH medCONV</li>
+<li><code>&quot;gdp_SSP2&quot;</code>: SSP2 medGROWTH medCONV</li>
+<li><code>&quot;gdp_SSP3&quot;</code>: SSP3 slowGROWTH slowCONV</li>
+<li><code>&quot;gdp_SSP4&quot;</code>: SSP4 medGROWTH mixedCONV</li>
+<li><code>&quot;gdp_SSP5&quot;</code>: SSP5 fastGROWTH fastCONV</li>
+</ul>
+<p><strong>Description:</strong></p>
+<p>linked to population development <a href="#cm_popscen">cm_POPscen</a></p>
 </div>
 <div id="cm_demscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_demScen</h3>
@@ -2129,7 +2263,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_oil_scen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_oil_scen</h3>
@@ -2137,10 +2271,10 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_oil_scen &lt;- &quot;medOil&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(lowOil): low</li>
-<li>(medOil): medium (this is the new case)</li>
-<li>(highOil): high (formerly this has been the “medium” case; RoSE relevant difference)</li>
-<li>(4): very high (formerly this has been the “high” case; RoSE relevant difference)</li>
+<li><code>&quot;lowOil&quot;</code>: low</li>
+<li><code>&quot;medOil&quot;</code>: medium (this is the new case)</li>
+<li><code>&quot;highOil&quot;</code>: high (formerly this has been the “medium” case; RoSE relevant difference)</li>
+<li><code>4</code>: very high (formerly this has been the “high” case; RoSE relevant difference)</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2151,9 +2285,9 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_gas_scen &lt;- &quot;medGas&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(lowGas): low</li>
-<li>(medGas): medium</li>
-<li>(highGas): high</li>
+<li><code>&quot;lowGas&quot;</code>: low</li>
+<li><code>&quot;medGas&quot;</code>: medium</li>
+<li><code>&quot;highGas&quot;</code>: high</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2164,10 +2298,10 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$cm_coal_scen &lt;- &quot;medCoal&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <ul>
-<li>(0): very low (this has been the “low” case; RoSE relevant difference)</li>
-<li>(lowCoal): low (this is the new case)</li>
-<li>(medCoal): medium</li>
-<li>(highCoal): high</li>
+<li><code>0</code>: very low (this has been the “low” case; RoSE relevant difference)</li>
+<li><code>&quot;lowCoal&quot;</code>: low (this is the new case)</li>
+<li><code>&quot;medCoal&quot;</code>: medium</li>
+<li><code>&quot;highCoal&quot;</code>: high</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2177,9 +2311,13 @@ cfg$gms &lt;- list()</code></pre>
 <p>–</p>
 <pre class="r"><code>cfg$gms$c_SSP_forcing_adjust &lt;- &quot;forcing_SSP2&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;forcing_SSP1&quot;</code>: settings consistent with SSP 1</li>
+<li><code>&quot;forcing_SSP2&quot;</code>: settings consistent with SSP 2</li>
+<li><code>&quot;forcing_SSP5&quot;</code>: settings consistent with SSP 5</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>“chooses forcing target and budget according to SSP scenario such that magicc forcing meets the target”; (“forcing_SSP1”) settings consistent with SSP 1 (“forcing_SSP2”) settings consistent with SSP 2 (“forcing_SSP5”) settings consistent with SSP 5</p>
+<p>chooses forcing target and budget according to SSP scenario such that magicc forcing meets the target</p>
 </div>
 <div id="c_delaypolicy" class="section level3 unnumbered">
 <h3 class="unnumbered">c_delayPolicy</h3>
@@ -2188,56 +2326,71 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_regiexoprice" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_regiExoPrice</h3>
-<p>set exogenous co2 tax path for specific regions using a switch, require regipol module to be set to regiCarbonPrice (e.g. GLO.(2025 38,2030 49,2035 63,2040 80,2045 102,2050 130,2055 166,2060 212,2070 346,2080 563,2090 917,2100 1494,2110 1494,2130 1494,2150 1494) )</p>
+<p>set exogenous co2 tax path for specific regions using a switch</p>
 <pre class="r"><code>cfg$gms$cm_regiExoPrice &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>eg. GLO.(2025 38,2030 49,2035 63,2040 80,2045 102,2050 130,2055 166,2060 212,2070 346,2080 563,2090 917,2100 1494,2110 1494,2130 1494,2150 1494)</p>
 <p><strong>Description:</strong></p>
+<p>require <a href="#regipol">47_regipol</a> to be set to regiCarbonPrice</p>
 </div>
 <div id="cm_regico2target" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_regiCO2target</h3>
-<p>budget or year target for specific region or region group. Ex.: ‘2050.EUR_regi.budget 72, 2050.DEU.year 0.1’ sets a 72 GtCO2eq budget target for European countries for emissions between 2020 and 2050, and a 100 MtCO2 CO2eq emission target for the 2050 year for Germany (only used if regipol model regiCarbonPrice realization is active)</p>
+<p>budget or year target for specific region or region group</p>
 <pre class="r"><code>cfg$gms$cm_regiCO2target &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>eg.: ‘2050.EUR_regi.budget 72, 2050.DEU.year 0.1’ sets a 72 GtCO2eq budget target for European countries for emissions between 2020 and 2050, and a 100 MtCO2 CO2eq emission target for the 2050 year for Germany</p>
 <p><strong>Description:</strong></p>
+<p>only used if <a href="#regipol">47_regipol</a> regiCarbonPrice realization is active</p>
 </div>
 <div id="cm_quantity_regico2target" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_quantity_regiCO2target</h3>
-<p>emissions quantity upper bound from specific year for region group. Ex.: ’2050.EUR_regi.netGHG 0.000001, obliges European GHG emissions to be zero from 2050 on</p>
+<p>emissions quantity upper bound from specific year for region group</p>
 <pre class="r"><code>cfg$gms$cm_quantity_regiCO2target &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>eg.: <code>&quot;2050.EUR_regi.netGHG 0.000001&quot;</code>: obliges European GHG emissions to be zero from 2050 on</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_emimktets" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktETS</h3>
-<p>enable European ETS specific carbon prices. off = disabled (default); number = percentage of 2005 emissions allowance for 2050 (ex. 0.1 = 2050 emissions correspond to 10% of the 2005 emissions)</p>
+<p>enable European ETS specific carbon prices</p>
 <pre class="r"><code>cfg$gms$cm_emiMktETS &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>: disabled</li>
+<li>number: percentage of 2005 emissions allowance for 2050 (eg. 0.1 = 2050 emissions correspond to 10% of the 2005 emissions)</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_emimktets_type" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktETS_type</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_emiMktETS_type &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>: disabled</li>
+<li><code>&quot;budget&quot;</code>: ETS 2013-2050 budget target based on linear decrease up to 2005 emissions multiplied by <a href="#cm_emimktets">cm_emiMktETS</a> in 2050</li>
+<li><code>&quot;year&quot;</code>: ETS 2050 emissions equal to 2005 emissions multiplied by <a href="#cm_emimktets">cm_emiMktETS</a></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>off = disabled (default); “budget” = ETS 2013-2050 budget target based on linear decrease up to 2005 emissions multiplied by <a href="#cm_emimktets">cm_emiMktETS</a> in 2050; “year” = ETS 2050 emissions equal to 2005 emissions multiplied by <a href="#cm_emimktets">cm_emiMktETS</a></p>
+<p>–</p>
 </div>
 <div id="cm_ets_posttargetincrease" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ETS_postTargetIncrease</h3>
-<p>ETS carbon price increase per year after the year target and before 2055 (linear string or euro per tCO2)</p>
+<p>ETS carbon price increase per year after the year target and before 2055</p>
 <pre class="r"><code>cfg$gms$cm_ETS_postTargetIncrease &lt;- &quot;linear&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;linear&quot;</code></li>
+<li>euro per tCO2</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_ets_post2055increase" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ETS_post2055Increase</h3>
@@ -2246,23 +2399,32 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_emimktes" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktES</h3>
-<p>–</p>
+<p>enable European Effort Sharing specific carbon prices</p>
 <pre class="r"><code>cfg$gms$cm_emiMktES &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>: disabled</li>
+<li><code>&quot;1&quot;</code>: target per region follows EU per country legislation targets</li>
+<li>other number (1.2, 0.9,…): target in 2030 is multiplied by the factor (1.2 = achieved target in 2030 is 20% higher than the predicted by the EU legislation)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>&quot;enable European Effort Sharing specific carbon prices. off = disabled (default); 1 = target per region follows EU per country legislation targets; other number (1.2, 0.9,…) = target in 2030 is multiplied by the factor (1.2 = achieved target in 2030 is 20% higher than the predicted by the EU legislation)</p>
+<p>–</p>
 </div>
 <div id="cm_emimktes_type" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktES_type</h3>
-<p>emissions type that the target is calaculated for. netGHG = GHG emissions target (default), netCO2 = CO2 emissions target</p>
+<p>emissions type that the target is calculated for</p>
 <pre class="r"><code>cfg$gms$cm_emiMktES_type &lt;- &quot;netGHG&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;netGHG&quot;</code>: GHG emissions target</li>
+<li><code>&quot;netCO2&quot;</code>: CO2 emissions target</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_esd_posttargetincrease" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ESD_postTargetIncrease</h3>
@@ -2271,6 +2433,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_esd_post2055increase" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ESD_post2055Increase</h3>
@@ -2279,6 +2442,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_emimktescoop" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktEScoop</h3>
@@ -2287,7 +2451,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_emimktes2020price" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktES2020price</h3>
@@ -2296,7 +2460,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_emimktes2050" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_emiMktES2050</h3>
@@ -2305,15 +2469,16 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_nucregipol" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_NucRegiPol</h3>
-<p>enable European region specific nuclear phase-out and new capacitiy constraints</p>
+<p>enable European region specific nuclear phase-out and new capacity constraints</p>
 <pre class="r"><code>cfg$gms$cm_NucRegiPol &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_coalregipol" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CoalRegiPol</h3>
@@ -2322,6 +2487,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_pronucregipol" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_proNucRegiPol</h3>
@@ -2330,47 +2496,61 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_ccsregipol" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CCSRegiPol</h3>
-<p>def = off, year for earliest investment in Europe, with one timestep split between countries currently exploring - Norway (NEN), Netherlands (EWN) and UK (UKI) - and others</p>
+<p>year for earliest investment in Europe, with one timestep split between countries currently exploring - Norway (NEN), Netherlands (EWN) and UK (UKI) - and others</p>
 <pre class="r"><code>cfg$gms$cm_CCSRegiPol &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_implicitfe" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_implicitFE</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_implicitFE &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li><code>&quot;FEtarget&quot;</code>: calculates endogenously the tax necessary to comply with the final energy targets (defined at <a href="#cm_implfetarget">cm_implFETarget</a>)</li>
+<li><code>&quot;exoTax&quot;</code>: sets an exogenous tax at stationary and/or transportation level to represent non CO2 price policies (defined at <a href="#cm_implfeexotax">cm_implFEExoTax</a>)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>&quot;off, FEtarget or exoTax (def = off). FEtarget calculates endogenously the tax necessary to comply with the final energy targets (defined at <a href="#cm_implfetarget">cm_implFETarget</a>). exoTax sets an exogenous tax at stationary and/or transportation level to represent non CO2 price policies (defined at <a href="#cm_implfeexotax">cm_implFEExoTax</a>).</p>
+<p>–</p>
 </div>
 <div id="cm_implfetarget" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_implFETarget</h3>
-<p>default = 2030.EUR_regi 1.26921. Only active if cm_implicitFE = FEtarget. Enforce EU Energy Efficiency Directive maximum final energy level of 956 Mtoe by 2030 for EU28 regions by exogenous taxes reflecting non price-driven measures, i.e. not influencing the carbon pricing -&gt; 956 Mtoe (956 Mtoe -&gt; 956 * 10^6 toe -&gt; 956 * 10^6 toe * 41.868 GJ/toe -&gt; 40025.808 * 10^6 GJ * 10^-9 EJ/GJ -&gt; 40.025808 EJ * 1 TWa/31.536 EJ -&gt; 1.26921 TWa)</p>
+<p>–</p>
 <pre class="r"><code>cfg$gms$cm_implFETarget &lt;- &quot;2030.EUR_regi 1.26921&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>Only active if <a href="#cm_implicitfe">cm_implicitFE</a> = FEtarget. Enforce EU Energy Efficiency Directive maximum final energy level of 956 Mtoe by 2030 for EU28 regions by exogenous taxes reflecting non price-driven measures, i.e. not influencing the carbon pricing -&gt; 956 Mtoe (956 Mtoe -&gt; 956 * 10^6 toe -&gt; 956 * 10^6 toe * 41.868 GJ/toe -&gt; 40025.808 * 10^6 GJ * 10^-9 EJ/GJ -&gt; 40.025808 EJ * 1 TWa/31.536 EJ -&gt; 1.26921 TWa)</p>
 </div>
 <div id="cm_implfeexotax" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_implFEExoTax</h3>
-<p>default = off. Value to overwrite default defined in the parameter p47_implFEExoTax, ex. “2040.EUR_regi.stat 5, 2050.EUR_regi.stat 10, 2030.EUR_regi.trans 15, 2040.EUR_regi.trans 30, 2050.EUR_regi.trans 40”. Only active if cm_implicitFE = exoTax. Sets a FE tax on stationary sectors (industry plus buldings) of 5<span class="math inline">\(/GJ from 2040 onward, and 10\)</span>/GJ from 2050 onward; Sets a FE tax on transportation of 15<span class="math inline">\(/GJ from 2030 onward, and 30\)</span>/GJ from 2040 onward, and 40$/GJ from 2040 onward.</p>
+<p>–</p>
 <pre class="r"><code>cfg$gms$cm_implFEExoTax &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>Value to overwrite default defined in the parameter p47_implFEExoTax, eg. “2040.EUR_regi.stat 5, 2050.EUR_regi.stat 10, 2030.EUR_regi.trans 15, 2040.EUR_regi.trans 30, 2050.EUR_regi.trans 40”. Only active if <a href="#cm_implicitfe">cm_implicitFE</a> = exoTax. Sets a FE tax on stationary sectors (industry plus buldings) of 5$/GJ from 2040 onward, and 10$/GJ from 2050 onward; Sets a FE tax on transportation of 15$/GJ from 2030 onward, and 30$/GJ from 2040 onward, and 40$/GJ from 2040 onward.</p>
 </div>
 <div id="cm_vehiclessubsidies" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_vehiclesSubsidies</h3>
-<p>default = off. If “on” applies country specific BEV and FCEV subsidies from 2020 onwards</p>
+<p>–</p>
 <pre class="r"><code>cfg$gms$cm_vehiclesSubsidies &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>:</li>
+<li><code>&quot;on&quot;</code>: applies country specific BEV and FCEV subsidies from 2020 onwards</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
 <div id="cm_dispatchsetydown" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_dispatchSetyDown</h3>
@@ -2379,7 +2559,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_dispatchseeldown" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_dispatchSeelDown</h3>
@@ -2388,43 +2568,52 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
+</div>
+<div id="calibration-switches" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Calibration Switches</h2>
 <div id="c_ces_calibration_iterations" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_iterations</h3>
-<p>–</p>
+<p>number of calibration iterations</p>
 <pre class="r"><code>cfg$gms$c_CES_calibration_iterations &lt;- 10</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_ces_calibration_new_structure" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_new_structure</h3>
-<p>–</p>
+<p>calibrate a CES structure different from input gdx?</p>
 <pre class="r"><code>cfg$gms$c_CES_calibration_new_structure &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no</li>
+<li><code>1</code>: yes</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>switch to 1 if you want to calibrate a CES structure different from input gdx</p>
 </div>
 <div id="c_ces_calibration_write_prices" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_write_prices</h3>
-<p>–</p>
+<p>generate price file?</p>
 <pre class="r"><code>cfg$gms$c_CES_calibration_write_prices &lt;- 0</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>0</code>: no</li>
+<li><code>1</code>: yes</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>switch to 1 if you want to generate price file, you can use this as new p29_cesdata_price.cs4r price input file</p>
 </div>
 <div id="cm_ces_calibration_default_prices" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CES_calibration_default_prices</h3>
-<p>–</p>
+<p>CES prices in the first calibration iteration</p>
 <pre class="r"><code>cfg$gms$cm_CES_calibration_default_prices &lt;- 0.01</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>lower value if input factors get negative shares (xi), CES prices in the first calibration iteration</p>
 </div>
 <div id="c_ces_calibration_industry_fe_target" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_industry_FE_target</h3>
@@ -2433,16 +2622,23 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_calibration_string" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_calibration_string</h3>
-<p>def = off, else = additional string to include in the calibration name to be used</p>
+<p>label for your calibration run to keep calibration files with different setups apart (eg. with low elasticities, high eleasticies)</p>
 <pre class="r"><code>cfg$gms$cm_calibration_string &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>else: additional string to include in the calibration name to be used</li>
+</ul>
 <p><strong>Description:</strong></p>
+<p>–</p>
 </div>
+</div>
+<div id="general-6" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> General</h2>
 <div id="c_testoneregi_region" class="section level3 unnumbered">
 <h3 class="unnumbered">c_testOneRegi_region</h3>
 <p>–</p>
@@ -2450,50 +2646,58 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_cooling_shares" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_cooling_shares</h3>
-<p>–</p>
+<p>cooling shares in module 70_water</p>
 <pre class="r"><code>cfg$gms$cm_cooling_shares &lt;- &quot;dynamic&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;static&quot;</code></li>
+<li><code>&quot;dynamic&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
 <p>use “static” or “dynamic” cooling shares in module <a href="#water">70_water</a>/heat</p>
 </div>
 <div id="cm_techcosts" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_techcosts</h3>
-<p>–</p>
+<p>use regionalized or globally homogeneous technology costs for certain technologies</p>
 <pre class="r"><code>cfg$gms$cm_techcosts &lt;- &quot;REG&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>use regionalized or globally homogenous technology costs for certain technologies</p>
+<p>–</p>
 </div>
 <div id="cm_regnetnegco2" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_regNetNegCO2</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_regNetNegCO2 &lt;- &quot;on&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;on&quot;</code>: allows for regionally netNegative CO2 emissions</li>
+<li><code>&quot;off&quot;</code>: activates bound in core/bounds.gms that disallows net negative CO2 emissions at the regional level</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>default “on” allows for regionally netNegative CO2 emissions, setting “off” activates bound in core/bounds.gms that disallows net negative CO2 emissions at the regional level</p>
+<p>–</p>
 </div>
 <div id="c_regi_nucscen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_regi_nucscen</h3>
 <p>regions to apply nucscen to</p>
 <pre class="r"><code>cfg$gms$c_regi_nucscen &lt;- &quot;all&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<p>eg. <a href="#c_regi_nucscen">c_regi_nucscen</a> &lt;- “JPN,USA”</p>
 <p><strong>Description:</strong></p>
+<p>specify regions to which <a href="#cm_nucscen">cm_nucscen</a> should apply to</p>
 </div>
 <div id="c_regi_capturescen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_regi_capturescen</h3>
-<p>region to apply ccapturescen to</p>
+<p>region to apply cm_ccapturescen to</p>
 <pre class="r"><code>cfg$gms$c_regi_capturescen &lt;- &quot;all&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
+<p>specify regions to which <a href="#cm_ccapturescen">cm_ccapturescen</a> should apply to</p>
 </div>
 <div id="c_regi_sensscen" class="section level3 unnumbered">
 <h3 class="unnumbered">c_regi_sensscen</h3>
@@ -2501,119 +2705,164 @@ cfg$gms &lt;- list()</code></pre>
 <pre class="r"><code>cfg$gms$c_regi_sensscen &lt;- &quot;all&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
-<dl>
-<dt><strong>Description:</strong></dt>
-<dd><p>specify regions to which certain regional sensitivity parameters should be applied to applied to sensitivity parameters cfg<span class="math inline">\(gms\)</span><a href="#cm_edgetr_scen">cm_EDGEtr_scen</a> “the EDGE-T scenario” (“Conservative_liquids”) very conservative scenario with high reliance on fossil fuels in the transport sector (“Electricity_push”) vehicles with electric drivetrains get some initial push on shares and preferences, leads to ~70% takeover by 2050 (“Hydrogen_push”) similar to the “Electricity_push” scenario, but FCEV penetration is much less as FCEVs remain rather expensive. (“Smart_lifestyles_Electricity_push”) similar to “Electricity_push” but with reduced overall demand and increased acceptance of small cars, busses and trains.</p>
-</dd>
-</dl>
-</div>
-<div id="cm_edgetr_scen" class="section level3 unnumbered">
-<h3 class="unnumbered">cm_EDGEtr_scen</h3>
-<p>–</p>
-<pre class="r"><code>cfg$gms$cm_EDGEtr_scen &lt;- &quot;Mix&quot;</code></pre>
-<p><strong>Possible Values:</strong></p>
-<p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>specify regions to which certain regional sensitivity parameters should be applied to</p>
 </div>
 <div id="cm_import_eu" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_import_EU</h3>
-<p>EU switch for different scenarios of EU SE import assumptions</p>
+<p>for different scenarios of EU SE import assumptions</p>
 <pre class="r"><code>cfg$gms$cm_import_EU &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>:</li>
+<li>eg. <code>&quot;low_h2&quot;</code>, <code>&quot;high_h2&quot;</code>, <code>&quot;high_synf&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>EU-specific SE import assumptions (used for ariadne)</p>
+</div>
+<div id="cm_edgetr_scen" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_EDGEtr_scen</h3>
+<p>the EDGE-T scenario</p>
+<pre class="r"><code>cfg$gms$cm_EDGEtr_scen &lt;- &quot;Mix&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li><p><code>&quot;Conservative_liquids&quot;</code>: very conservative scenario with high reliance on fossil fuels in the transport sector</p></li>
+<li><p><code>&quot;Electricity_push&quot;</code>: vehicles with electric drivetrains get some initial push on shares and preferences, leads to ~70% takeover by 2050</p></li>
+<li><p><code>&quot;Hydrogen_push&quot;</code>: similar to the “Electricity_push” scenario, but FCEV penetration is much less as FCEVs remain rather expensive.</p></li>
+<li><p><code>&quot;Smart_lifestyles_Electricity_push&quot;</code>: similar to “Electricity_push” but with reduced overall demand and increased acceptance of small cars, busses and trains.</p></li>
+<li><p><code>&quot;ConvCase&quot;</code>:</p></li>
+<li><p><code>&quot;ConvCaseWise&quot;</code>:</p></li>
+<li><p><code>&quot;ElecEra&quot;</code>:</p></li>
+<li><p><code>&quot;HydrHype&quot;</code>:</p></li>
+<li><p><code>&quot;ElecEraWise&quot;</code>:</p></li>
+<li><p><code>&quot;HydrHypeWise&quot;</code>:</p></li>
+</ul>
+<p><strong>Description:</strong></p>
+<p>For calibration runs: “ConvCase”, “ConvCaseWise”. For standard runs: “ConvCase”, “ElecEra”, “HydrHype”, “ConvCaseWise”, “ElecEraWise”, “HydrHypeWise”</p>
 </div>
 <div id="cm_altfeemifac" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_altFeEmiFac</h3>
-<p>–</p>
+<p>region that should use alternative data from “umweltbundesamt” on emission factors for final energy carriers</p>
 <pre class="r"><code>cfg$gms$cm_altFeEmiFac &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>regions, (eg. “EUR_regi, NEU_regi”)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>&lt;- “off” # def &lt;- “off”, regions that should use alternative data from “umweltbundesamt” on emission factors for final energy carriers (ex. “EUR_regi, NEU_regi”) c_deuCDRmax &lt;- -1 switch to cap annual DEU CDR amount by value assigned to switch, or no cap if -1, in MtCO2 ——————– flags ————————————————–</p>
+<p>–</p>
 </div>
+</div>
+<div id="innopaths-switches" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> INNOPATHS switches</h2>
 <div id="cm_calibration_fe" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_calibration_FE</h3>
-<p>–</p>
+<p>overwrite default fe trajectories with low, medium and high alternatives for buildings, transport and industry</p>
 <pre class="r"><code>cfg$gms$cm_calibration_FE &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>:</li>
+<li><code>&quot;high&quot;</code>:</li>
+<li><code>&quot;medium&quot;</code>:</li>
+<li><code>&quot;low&quot;</code>:</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>overwritte default fe trajectories with low, medium and high alternatives for buildings, transport and industry</p>
 </div>
 <div id="cm_innopaths_eni" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_eni</h3>
-<p>–</p>
+<p>Electricity elasticities (factor) industry energy elasticity</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_eni &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>: no change for industry energy elasticity (eni)</li>
+<li>number (eg. 2), multiplicative factor applied to industry eni elasticity value.</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_enb" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_enb</h3>
-<p>–</p>
+<p>Electricity elasticities (factor) buildings energy elasticity</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_enb &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>: no change for buildings energy elasticity (enb)</li>
+<li>number (eg. 2), multiplicative factor applied to buildings enb elasticity value.</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_ldv_mkt_share" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_LDV_mkt_share</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_LDV_mkt_share &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs with adj upper/lower bounds to mkt share in LDV (eg. for EV, H2V and ICE: apCarElT.up 80, apCarH2T.up 90, apCarPeT.lo 5)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Complex Transport mkt shares</p>
 </div>
 <div id="cm_share_ldv_sales" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_share_LDV_sales</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_share_LDV_sales &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs with adj upper/lower bounds to mkt share in LDV (eg. for EV, H2V and ICE: 2030.2050.apCarElT.upper 80, 2030.2050.apCarH2T.upper 90, 2030.2050.apCarPeT.lower 5)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Complex Transport mkt shares</p>
 </div>
 <div id="cm_innopaths_incolearn" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_incolearn</h3>
-<p>–</p>
+<p>Change floor investment cost</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_incolearn &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs to change incolearn value. (eg. <code>&quot;apcarelt=17000,wind=1600,spv=5160,csp=9500&quot;</code>)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_storagefactor" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_storageFactor</h3>
-<p>–</p>
+<p>Scale curtailment and storage requirements (factor)</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_storageFactor &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>number (eg. 0.66), fraction to resize the curtailment and storage requirements per region.</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_learnrate" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_learnRate</h3>
-<p>–</p>
+<p>Change learn rate</p>
 <pre class="r"><code>cfg$gms$cm_learnRate &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs to change learn rate value. (eg. <code>&quot;apcarelt 0.2&quot;</code>)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_adj_seed" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_seed</h3>
-<p>–</p>
+<p>change technology-dependent v_adjFactor seed value.</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_adj_seed &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code>:</li>
+<li>list of techs to change adj_seed value. (eg. “apCarH2T=0.5,apCarElT=0.5,apCarDiEffT=0.25,apCarDiEffH2T=0.25”)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Smaller means slower scale-up</p>
 </div>
 <div id="cm_innopaths_adj_seed_cont" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_seed_cont</h3>
@@ -2622,16 +2871,19 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_adj_coeff" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_coeff</h3>
-<p>–</p>
+<p>change coefficient for adjustment costs</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_adj_coeff &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs to change adj_coeff value. (eg. “apCarH2T=100,apCarElT=100,apCarDiEffT=200,apCarDiEffH2T=200”)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_adj_coeff_cont" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_coeff_cont</h3>
@@ -2640,7 +2892,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_adj_seed_multiplier" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_seed_multiplier</h3>
@@ -2649,7 +2901,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_adj_coeff_multiplier" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_adj_coeff_multiplier</h3>
@@ -2658,169 +2910,227 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_inco0factor" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_inco0Factor</h3>
-<p>–</p>
+<p>Change investment costs (factor)</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_inco0Factor &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>list of techs with respective factor to change inco0 value. (ex. “ccsinje=0.5,bioigccc=0.66,bioh2c=0.66,biogas=0.66,bioftrec=0.66,bioftcrec=0.66,igccc=0.66,coalh2c=0.66,coalgas=0.66,coalftrec=0.66,coalftcrec=0.66,ngccc=0.66,gash2c=0.66,gasftrec=0.66,gasftcrec=0.66,tnrs=0.66”)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_ccs_markup" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_CCS_markup</h3>
-<p>–</p>
+<p>multiplicative factor for CSS cost markup</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_CCS_markup &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>multiplicative factor for CSS cost markup</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_industry_ccs_markup" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_Industry_CCS_markup</h3>
-<p>–</p>
+<p>multiplicative factor for Industry CSS cost markup</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_Industry_CCS_markup &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>multiplicative factor for Industry CSS cost markup</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_renewables_floor_cost" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_renewables_floor_cost</h3>
-<p>–</p>
+<p>RE floor cost</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_renewables_floor_cost &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>additional floor cost for renewables</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_dac_eff" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_DAC_eff</h3>
-<p>–</p>
+<p>multiplicative factor for energy demand per unit carbon captured with DAC</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_DAC_eff &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>multiplicative factor for energy demand per unit carbon captured with DAC</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_sehe_upper" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_sehe_upper</h3>
-<p>–</p>
+<p>secondary energy district heating and heat pumps upper bound</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_sehe_upper &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li>limit secondary energy district heating and heat pumps upper bound in relation to 2020 values</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_pushcalib" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_pushCalib</h3>
-<p>–</p>
+<p>Reduction of calibration factor over time in logit</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_pushCalib &lt;- &quot;none&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;none&quot;</code></li>
+<li><code>&quot;hydrogen&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_reduccostb" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_reducCostB</h3>
-<p>–</p>
+<p>Reduction of costs</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_reducCostB &lt;- &quot;none&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;none&quot;</code></li>
+<li><code>&quot;hydrogen&quot;</code></li>
+<li><code>&quot;heatpumps&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_innopaths_effhp" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INNOPATHS_effHP</h3>
-<p>–</p>
+<p>efficiency of heat pumps</p>
 <pre class="r"><code>cfg$gms$cm_INNOPATHS_effHP &lt;- 5</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
+</div>
+<div id="general-7" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> General</h2>
 <div id="cm_cesmkup_build" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CESMkup_build</h3>
 <p>switch for setting markup cost to CES nodes in buildings</p>
 <pre class="r"><code>cfg$gms$cm_CESMkup_build &lt;- &quot;standard&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;standard&quot;</code>: applies a markup cost of 200 USD/MWh(el) to heat pumps (feelhpb) and 25 USD/MWh(heat) to district heating (feheb)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>CES markup cost for buildings to represent sector-specific demand-side transformation cost (only applies to <a href="#buildings">36_buildings</a> realization “simple” for now)</p>
 </div>
 <div id="cm_cesmkup_ind" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_CESMkup_ind</h3>
 <p>switch for setting markup cost to CES nodes in industry</p>
 <pre class="r"><code>cfg$gms$cm_CESMkup_ind &lt;- &quot;standard&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;standard&quot;</code>: applies a markup cost of 0.5 trUSD/TWa (57 USD/MWh(el)) to industry electricity (feeli)</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>CES markup cost for industry to represent sector-specific demand-side transformation cost (only applies to <a href="#industry">37_industry</a> realization “fixed_shares” for now)</p>
+<p>Note on CES markup cost: represent the sector-specific demand-side transformation cost, can also be used to influence efficiencies during calibration as higher markup-cost in calibration will lead to higher efficiencies to change it to any specific value: set cm_CESMkup_ind eg. to “feeli 0.8” -&gt; this would apply a cost markup of 0.8 tr USD/TWa to feeli CES node of the industry fixed_shares module standard cost markups of the other nodes will remain unchanged unless you explicitly address them with this switch</p>
 </div>
 <div id="cm_fesharelimits" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_feShareLimits</h3>
-<p>–</p>
+<p>limit the electricity final energy share to be in line with the industry maximum electrification levels</p>
 <pre class="r"><code>cfg$gms$cm_feShareLimits &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>&lt;- “off” # def &lt;- “off”, limit the electricity final energy share to be in line with the industry maximum electrification levels (60% by 2050 in the electric scenario), 10% lower (=50% in 2050) in an increased efficiency World, or 20% lower (40% in 2050) in an incumbents future (incumbents). The incumbents scenario also limits a minimal coverage of buildings heat provided by gas and liquids (25% by 2050).</p>
+<p>limit the electricity final energy share to be in line with the industry maximum electrification levels (60% by 2050 in the electric scenario), 10% lower (=50% in 2050) in an increased efficiency World, or 20% lower (40% in 2050) in an incumbents future (incumbents). The incumbents scenario also limits a minimal coverage of buildings heat provided by gas and liquids (25% by 2050).</p>
 </div>
+</div>
+<div id="ariadne" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> ARIADNE</h2>
 <div id="cm_ariadne_fesharebounds" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ARIADNE_FeShareBounds</h3>
 <p>switch for minimum share of liquids and gases for industry needed for the ARIADNE project</p>
 <pre class="r"><code>cfg$gms$cm_ARIADNE_FeShareBounds &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li><code>&quot;on&quot;</code>: bounds on FE shares in industry used in the ARIADNE project</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_ariadne_vrecapfac_adj" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ariadne_VRECapFac_adj</h3>
-<p>switch for enabling increase of VRE capacity factors for wind and solar PV in Germany until 2040 in line with ARIADNE assumptions</p>
+<p>adjustment of VRE capacity factors in Germany in line with ARIADNE assumptions</p>
 <pre class="r"><code>cfg$gms$cm_ariadne_VRECapFac_adj &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;off&quot;</code></li>
+<li><code>&quot;on&quot;</code>: small increase of VRE capacity factors for wind and solar PV until 2045 in Germany in line with ARIADNE assumptions</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>switch for enabling increase of VRE capacity factors for wind and solar PV in Germany until 2040 in line with ARIADNE assumptions</p>
 </div>
+</div>
+<div id="general-8" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> General</h2>
 <div id="c_vrepot_factor" class="section level3 unnumbered">
 <h3 class="unnumbered">c_VREPot_Factor</h3>
 <p>switch for rescaling renewable potentials in all grades which have not been used by 2020</p>
 <pre class="r"><code>cfg$gms$c_VREPot_Factor &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li>eg. <code>&quot;spv 0.5, wind 0.75&quot;</code>: rescales solar and wind potential by the respective factors</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>rescaling factor for sensitivity analysis on renewable potentials, this factor rescales all grades of a renewable technology which have not been used by 2020 (to avoid infeasiblities with existing capacities)</p>
 </div>
 <div id="cm_fetax_trajectory_abs" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_FEtax_trajectory_abs</h3>
 <p>switch for setting the aboslute FE tax level explicitly from a given year onwards, before tax levels increases or decreases linearly to that value</p>
 <pre class="r"><code>cfg$gms$cm_FEtax_trajectory_abs &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li>eg. <code>&quot;2040.indst.feels 20&quot;</code>: sets FE electricity tax in industry to 20 USD/MWh from 2040 onwards, before: linear increase from <a href="#cm_startyear">cm_startyear</a> to 2040</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>switch for setting FE tax to an absolute value in USD/MWh from a specific year onwards for a given sector and FE carrier (for all regions equally)</p>
+<p>Note: don’t put values to 0 as this will make the model ignore the switch</p>
 </div>
 <div id="cm_fetax_trajectory_rel" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_FEtax_trajectory_rel</h3>
 <p>factor for scaling the FE tax level relative to cm_startyear from a given year onwards, before tax levels increases or decreases linearly to that value</p>
 <pre class="r"><code>cfg$gms$cm_FEtax_trajectory_rel &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li>eg. <code>&quot;2040.indst.feels 2&quot;</code>: doubles FE electricity tax in industry relative to cm_startyear for all regions by 2040 and after, before: linear increase from <a href="#cm_startyear">cm_startyear</a> to 2040</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>factor for scaling FE tax relative to level in cm_startyear from a specific year onwards for a given sector and FE carrier</p>
+<p>Note: don’t put values to 0 as this will make the model ignore the switch</p>
 </div>
 <div id="cm_wind_offshore" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_wind_offshore</h3>
-<p>–</p>
+<p>wind offshore switch</p>
 <pre class="r"><code>cfg$gms$cm_wind_offshore &lt;- 1</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>1</code>: wind energy is represented by “wind” and “windoff”, where “wind” means wind onshore. Later this will be the default and the name “wind” will be made to change to windon</li>
+<li><code>0</code>: means wind energy is only represented by “wind”, which is a mixture of both wind onshore and wind offshore</li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>= 1, wind energy is represented by “wind” and “windoff”, where “wind” means wind onshore. Later this will be the default and the name “wind” will be made to change to windon</p>
+<p>–</p>
 </div>
 <div id="cm_slowconvergence" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_SlowConvergence</h3>
@@ -2829,25 +3139,30 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>off !! def = off <em>RP</em> Turn on a slower convergence scheme where each conopt file is used twice, thus conopt1 is used for itr 1+2, conopt.op2 for itr 3+4, conopt.op3 for itr 5+6, conopt.op4 for itr 7+8, conopt.op5 from itr 9 on. <em>RP</em> from my own experience, this improves convergence and actually decreases total runtime, even if you start from a gdx with good convergence. But, as always, feelings about REMIND runtimes can be misleading :-)</p>
+<p><em>RP</em> Turn on a slower convergence scheme where each conopt file is used twice, thus conopt1 is used for itr 1+2, conopt.op2 for itr 3+4, conopt.op3 for itr 5+6, conopt.op4 for itr 7+8, conopt.op5 from itr 9 on.</p>
+<p><em>RP</em> from my own experience, this improves convergence and actually decreases total runtime, even if you start from a gdx with good convergence. But, as always, feelings about REMIND runtimes can be misleading :-)</p>
 </div>
 <div id="cm_nash_mode" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_nash_mode</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_nash_mode &lt;- &quot;parallel&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;parallel&quot;</code></li>
+<li><code>&quot;serial&quot;</code></li>
+<li><code>&quot;debug&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_debug_preloop" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_debug_preloop</h3>
-<p>–</p>
+<p>to debug preloop models</p>
 <pre class="r"><code>cfg$gms$cm_debug_preloop &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_oilretire" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_OILRETIRE</h3>
@@ -2856,7 +3171,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>on !! def = on <em>RP</em> Flag to allow the model to not extract oil, even though the eq_fuelex_dec would force it to extract.</p>
+<p><em>RP</em> Flag to allow the model to not extract oil, even though the eq_fuelex_dec would force it to extract.</p>
 </div>
 <div id="cm_inconv_penalty" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INCONV_PENALTY</h3>
@@ -2865,7 +3180,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>on !! def = on <em>RP</em> 2012-03-06 Flag to turn on inconvenience penalties, e.g. for air pollution</p>
+<p><em>RP</em> 2012-03-06 Flag to turn on inconvenience penalties, eg. for air pollution</p>
 </div>
 <div id="cm_inconv_penalty_feswitch" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_INCONV_PENALTY_FESwitch</h3>
@@ -2874,7 +3189,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>off !! def = off flag to trun on inconvenience penalty to avoid switching shares on buildings, transport and industry biomass use if costs are relatively close (seLiqbio, sesobio, segabio)</p>
+<p>flag to trun on inconvenience penalty to avoid switching shares on buildings, transport and industry biomass use if costs are relatively close (seLiqbio, sesobio, segabio)</p>
 </div>
 <div id="cm_so2_out_of_opt" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_so2_out_of_opt</h3>
@@ -2883,7 +3198,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>on !! def = on <em>JeS</em> Flag to exclude aerosols from optimization routine, should be used especially for temperature targets</p>
+<p><em>JeS</em> Flag to exclude aerosols from optimization routine, should be used especially for temperature targets</p>
 </div>
 <div id="cm_mofex" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_MOFEX</h3>
@@ -2892,7 +3207,8 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>off !! def=off <em>JH/LB</em> Activate MOFEX partial fossil fuel extraction cost minimization model * Warning: Use a well-converged run since the model uses vm_prodPe from the input GDX cfg<span class="math inline">\(gms\)</span><a href="#c_skip_output">c_skip_output</a> &lt;- “off” # def &lt;- off Skip output? (Useful for development) cfg<span class="math inline">\(gms\)</span><a href="#cm_ccsfosall">cm_ccsfosall</a> &lt;- “off” # def &lt;- off</p>
+<p><em>JH/LB</em> Activate MOFEX partial fossil fuel extraction cost minimization model</p>
+<p>Warning: Use a well-converged run since the model uses vm_prodPe from the input GDX</p>
 </div>
 <div id="cm_less_ts" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_less_TS</h3>
@@ -2901,16 +3217,16 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="c_skip_output" class="section level3 unnumbered">
 <h3 class="unnumbered">c_skip_output</h3>
-<p>–</p>
+<p>Skip output? (Useful for development)</p>
 <pre class="r"><code>cfg$gms$c_skip_output &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>off *** This flag turns off output production ap_scenarios off!! def = off <em>JeS</em> Report aerosol and precursor emissions using exogenous emission factor scenarios</p>
+<p>–</p>
 </div>
 <div id="cm_ccsfosall" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_ccsfosall</h3>
@@ -2919,7 +3235,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_apscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_APscen</h3>
@@ -2928,16 +3244,19 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_full_integration" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_Full_Integration</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_Full_Integration &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;on&quot;</code>: to treat wind and solar as fully dispatchable electricity production technologies</li>
+<li><code>&quot;off&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>use “on” to treat wind and solar as fully dispatchable electricity production technologies</p>
+<p>–</p>
 </div>
 <div id="c_scaleemihistorical" class="section level3 unnumbered">
 <h3 class="unnumbered">c_scaleEmiHistorical</h3>
@@ -2946,44 +3265,68 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="cm_magicc_calibratetemperature2000" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_magicc_calibrateTemperature2000</h3>
-<p>–</p>
+<p>MAGICC configuration, calibrate year 2000 temperature</p>
 <pre class="r"><code>cfg$gms$cm_magicc_calibrateTemperature2000 &lt;- &quot;uncalibrated&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;uncalibrated&quot;</code></li>
+<li><code>&quot;HADCRUT4&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Calibrate year 2000 temperature to HADCRUT4 data (which is very close to AR5).</p>
 </div>
 <div id="cm_magicc_config" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_magicc_config</h3>
-<p>–</p>
+<p>MAGICC configuration</p>
 <pre class="r"><code>cfg$gms$cm_magicc_config &lt;- &quot;OLDDEFAULT&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;OLDDEFAULT&quot;</code></li>
+<li><code>&quot;RCP26_[5,15,..,95]&quot;</code></li>
+<li><code>&quot;TCRE_[LOWEST,LOW,MEDIUM,HIGH,HIGHEST]&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>roughly comparable to TCRE value, or even more roughly, equivalent climate sensitivity</p>
+<p>choose from OLDDEFAULT (REMIND1.7 legacy file); or different percentiles of RCP26 or generic TCRE outcomes calibrated to CMIP5 (see Schultes et al. (2018) for details)</p>
 </div>
 <div id="cm_magicc_temperatureimpulseresponse" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_magicc_temperatureImpulseResponse</h3>
-<p>–</p>
+<p>Derive temperature impulse response to CO2 emissions, based on MAGICC.</p>
 <pre class="r"><code>cfg$gms$cm_magicc_temperatureImpulseResponse &lt;- &quot;off&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;on&quot;</code></li>
+<li><code>&quot;off&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>Adds around 10min runtime.</p>
 </div>
+</div>
+<div id="climate-damages-1" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> climate damages</h2>
 <div id="cm_damage_dicelike_specification" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_damage_DiceLike_specification</h3>
 <p>–</p>
 <pre class="r"><code>cfg$gms$cm_damage_DiceLike_specification &lt;- &quot;HowardNonCatastrophic&quot;</code></pre>
 <p><strong>Possible Values:</strong></p>
-<p>–</p>
+<ul>
+<li><code>&quot;DICE2013R&quot;</code></li>
+<li><code>&quot;DICE2016&quot;</code></li>
+<li><code>&quot;HowardNonCatastrophic&quot;</code></li>
+<li><code>&quot;HowardInclCatastrophic&quot;</code></li>
+<li><code>&quot;KWcross&quot;</code></li>
+<li><code>&quot;KWpanelPop&quot;</code></li>
+</ul>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
+</div>
+<div id="other-settings" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Other settings</h2>
 <div id="cm_conoptv" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_conoptv</h3>
 <p>–</p>
@@ -2991,7 +3334,7 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p>NA</p>
+<p>–</p>
 </div>
 <div id="test_ts" class="section level3 unnumbered">
 <h3 class="unnumbered">test_TS</h3>
@@ -3000,7 +3343,10 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p><em>LB</em> default: 5 years time steps from 2005 to 2150 <em>LB</em> <a href="#test_ts">test_TS</a>: 2005,2010, 2020,2030,2040,2050,2070,2090,2110,2130,2150 <em>LB</em> <a href="#cm_less_ts">cm_less_TS</a>: 2005,2010,2015,2020,2025,2030,2035,2040,2045,2050,2055,2060,2070,2080,2090,2100,2110,2130,2150 <em>LB</em> <a href="#end2110">END2110</a>: 2005:5:2105,2120</p>
+<p><em>LB</em> default: 5 years time steps from 2005 to 2150</p>
+<p><em>LB</em> <a href="#test_ts">test_TS</a>: 2005,2010, 2020,2030,2040,2050,2070,2090,2110,2130,2150</p>
+<p><em>LB</em> <a href="#cm_less_ts">cm_less_TS</a>: 2005,2010,2015,2020,2025,2030,2035,2040,2045,2050,2055,2060,2070,2080,2090,2100,2110,2130,2150</p>
+<p><em>LB</em> <a href="#end2110">END2110</a>: 2005:5:2105,2120</p>
 </div>
 <div id="end2110" class="section level3 unnumbered">
 <h3 class="unnumbered">END2110</h3>
@@ -3009,7 +3355,10 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Possible Values:</strong></p>
 <p>–</p>
 <p><strong>Description:</strong></p>
-<p><em>LB</em> default: 5 years time steps from 2005 to 2150 <em>LB</em> <a href="#test_ts">test_TS</a>: 2005,2010, 2020,2030,2040,2050,2070,2090,2110,2130,2150 <em>LB</em> <a href="#cm_less_ts">cm_less_TS</a>: 2005,2010,2015,2020,2025,2030,2035,2040,2045,2050,2055,2060,2070,2080,2090,2100,2110,2130,2150 <em>LB</em> <a href="#end2110">END2110</a>: 2005:5:2105,2120</p>
+<p><em>LB</em> default: 5 years time steps from 2005 to 2150</p>
+<p><em>LB</em> <a href="#test_ts">test_TS</a>: 2005,2010, 2020,2030,2040,2050,2070,2090,2110,2130,2150</p>
+<p><em>LB</em> <a href="#cm_less_ts">cm_less_TS</a>: 2005,2010,2015,2020,2025,2030,2035,2040,2045,2050,2055,2060,2070,2080,2090,2100,2110,2130,2150</p>
+<p><em>LB</em> <a href="#end2110">END2110</a>: 2005:5:2105,2120</p>
 </div>
 </div>
 </div>
