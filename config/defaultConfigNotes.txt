@@ -1,0 +1,17 @@
+* "test_TS", "END2110"  are commented out in the more FLAGs section of main.gms and not in default.cfg; now also in default
+* cm_less_TS, cm_Full_Integration are in the more flags section of main.gms and defualt.cfg
+
+* flags
+[1] "c_GDPpcScen"                 "c_regi_synfuelscen"
+[4] "c_EARLYRETIRE"               "cm_CES_configuration"        "c_CES_calibration_iteration"
+[7] "cm_fixCO2price"              "cm_altTransBunkersShare"
+Are Falgs defined in main.gms but not in default.cfg. Now in defaultConfig.Rmd
+
+* switches cm_regipol_slope_beforeTarget, c_CO2priceDependent_AdjCosts are in default.cfg but not in main.gms; now in defaultConfig.Rmd and in main.gms
+
+* Following are decalared in main.gms as parameters (i.e., switches) but then used as flags.
+ [1] "cm_CO2TaxSectorMarkup"    "cm_tradbio_phaseout"      "c_regi_earlyreti_rate"    "c_tech_earlyreti_rate"
+ [5] "cm_NDC_version"           "c_regi_nucscen"           "c_regi_capturescen"       "c_regi_synfuelscen"
+ [9] "c_regi_sensscen"          "cm_import_EU"             "cm_ARIADNE_FeShareBounds" "cm_ariadne_VRECapFac_adj"
+[13] "c_VREPot_Factor"          "cm_FEtax_trajectory_abs"  "cm_FEtax_trajectory_rel"  "cm_CESMkup_ind"
+[17] "cm_CESMkup_build"

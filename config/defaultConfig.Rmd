@@ -2425,26 +2425,6 @@ See also [cm_DiscRateScen].
 
 
 
-### cm_esubGrowth {-}
-
-long term growth of the elasticity of substitution
-
-```{r}
-cfg$gms$cm_esubGrowth <- "middle"
-```
-
-**Possible Values:**
-
-* `"low"`: 1.3
-* `"middle"`: 1.5
-* `"high"`: 2
-
-
-**Description:**
-
---
-
-
 
 ### cm_trdcst {-}
 
@@ -2808,7 +2788,7 @@ cfg$gms$cm_indst_H2costDecayEnd <- 0.1
 simplified logistic function start of null value (eg. 10% -> between 10% and 100% the simplified logistic function will have the value 0). [%]
 
 
-## EU specific switches
+## EU specific
 
 
 ### cm_BioSupply_Adjust_EU {-}
@@ -3192,6 +3172,97 @@ cfg$gms$c_BaselineAgriEmiRed <- 0
 ## General
 
 
+### cm_esubGrowth {-}
+
+long term growth of the elasticity of substitution
+
+```{r}
+cfg$gms$cm_esubGrowth <- "middle"
+```
+
+**Possible Values:**
+
+* `"low"`: 1.3
+* `"middle"`: 1.5
+* `"high"`: 2
+
+
+**Description:**
+
+--
+
+
+
+### c_regi_synfuelscen {-}
+
+region to apply synfuelscen to
+
+```{r}
+cfg$gms$c_regi_synfuelscen <- "all"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+--
+
+
+### c_EARLYRETIRE {-}
+
+--
+
+```{r}
+cfg$gms$c_EARLYRETIRE <- "on"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+--
+
+
+### cm_fixCO2price {-}
+
+--
+
+```{r}
+cfg$gms$cm_fixCO2price <- "off"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+--
+
+
+### cm_altTransBunkersShare {-}
+
+--
+
+```{r}
+cfg$gms$cm_altTransBunkersShare <- "off"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+--
+
+
+
+
 ### cm_MAgPIE_coupling {-}
 
 switch on coupling mode with MAgPIE
@@ -3413,6 +3484,23 @@ cfg$gms$cm_GDPscen <- "gdp_SSP2EU"
 **Description:**
 
 linked to population development [cm_POPscen]
+
+
+### c_GDPpcScen {-}
+
+--
+
+```{r}
+cfg$gms$c_GDPpcScen <- "SSP2EU"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+This is set automatically by `start_run()` (`scripts/start/prepare_and_run.R`) based on [cm_GDPscen].
 
 
 
@@ -3978,7 +4066,7 @@ cfg$gms$cm_dispatchSeelDown <- "off"
 
 
 
-## Calibration Switches
+## Calibration
 
 
 ### c_CES_calibration_iterations {-}
@@ -3996,6 +4084,44 @@ cfg$gms$c_CES_calibration_iterations <- 10
 **Description:**
 
 --
+
+
+### c_CES_calibration_iteration {-}
+
+--
+
+```{r}
+cfg$gms$c_CES_calibration_iteration <- 1
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+--
+
+
+
+
+### cm_CES_configuration {-}
+
+--
+
+```{r}
+cfg$gms$cm_CES_configuration <- "indu_subsectors-buil_simple-tran_edge_esm-POP_pop_SSP2EU-GDP_gdp_SSP2EU-En_gdp_SSP2EU-Kap_debt_limit-Reg_62eff8f7"
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+The value is changed by `start_run()` (`scripts/start/prepare_and_run.R`).
+
+
 
 
 
@@ -4286,7 +4412,7 @@ cfg$gms$cm_altFeEmiFac <- "off"
 --
 
 
-## INNOPATHS switches
+## INNOPATHS
 
 
 ### cm_calibration_FE {-}

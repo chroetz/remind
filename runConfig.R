@@ -19,11 +19,11 @@ configDescr <- parseConfigRmd(configRmdPath)
 # From configDescr one can create the Rmd again.
 writeConfigRmd(configDescr, "config/defaultConfig2.Rmd")
 
-# The configDescr object can be used to create main.gms from a template.
+# The configDescr object can be used to create main_old.gms from a template.
 subTemplateWithConfig(
   templatePath = "main_template.gms",
   configRmdPath = configRmdPath,
-  output = "main_out.gms")
+  output = "main.gms")
 
 
 
@@ -55,7 +55,7 @@ stopifnot(is.null(cfgNew$files2export$end), is.null(cfg$files2export$end))
 ### all params from old cfg contained in new one
 stopifnot(all(names(cfg$gms) %in% names(cfgNew$gms)))
 ### additional variables in new cfg
-setdiff(names(cfgNew$gms), names(cfg$gms))
+setdiff(names(cfgNew$gms), names(cfg$gms)) # "test_TS", "END2110"
 ### check values
 nms <- names(cfg$gms)
 x <- sapply(nms, function(nm) identical(cfgNew$gms[[nm]], cfg$gms[[nm]]))
@@ -63,14 +63,31 @@ stopifnot(all(x))
 
 
 
-# TODO test flags are the same between main.gms and main_out.gms
-extractFlags <- function(lines) {
+# test flags are the same between main_old.gms and main.gms
+extractFlags <- function(lines) { # based on lines starting with $setglobal
   isFlagLine <- startsWith(tolower(trimws(lines)), "$setglobal")
   flagsLines <- trimws(substring(lines[isFlagLine], 11)) # without $setglobal
   sapply(strsplit(flagsLines, "\\s", fixed=FALSE), function(x) x[[1]])
 }
-oldFlags <- extractFlags(readLines("main.gms"))
-newFlags <- extractFlags(readLines("main_out.gms"))
-setdiff(newFlags, oldFlags)
-setdiff(oldFlags, newFlags) # TODO: this should be empty!!!
+oldFlags <- tolower(extractFlags(readLines("main_old.gms")))
+newFlags <- tolower(extractFlags(readLines("main.gms")))
+setdiff(newFlags, oldFlags) # Flags in defaultConfig.Rmd / main.gms but not in main_old.gms
+setdiff(oldFlags, tolower(names(cfg$gms))) # Flags in main_old.gms but not in default.cfg
+setdiff(oldFlags, newFlags) # Flags in main_old.gms but not in defaultConfig.Rmd / main.gms
+
+
+# test switches are the same between main_old.gms and main.gms
+extractSwitches <- function(lines) { # based on lines between "PARAMETERS" and ";"
+  switchStart <- which(tolower(trimws(lines)) == "parameters")[1]
+  switchEnd <- which((trimws(lines) == ";") & (seq_along(lines) > switchStart))[1]
+  switchLines <- lines[(switchStart+1):(switchEnd-1)]
+  switchLines <- switchLines[!startsWith(trimws(switchLines), "\"") & trimws(switchLines) != ""]
+  sapply(strsplit(switchLines, "\\s", fixed=FALSE), function(x) x[[1]])
+}
+oldSwitches <- tolower(extractSwitches(readLines("main_old.gms")))
+newSwitches <- tolower(extractSwitches(readLines("main.gms")))
+setdiff(newSwitches, oldSwitches) # switches in main.gms but not in main_old.gms
+setdiff(oldSwitches, newSwitches) # switches in main_old.gms but not in main.gms
+setdiff(setdiff(oldSwitches, newSwitches), oldFlags) # switches in main_old.gms but not in main.gms are actually flags
+
 
