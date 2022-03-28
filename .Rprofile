@@ -35,6 +35,7 @@ if (any(grepl("^00LOCK.*", list.files(.libPaths()[1])))) {
 
 # snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_01"
 # snapshot <- latest_snapshot
+snapshot <- c("/p/tmp/cschoetz/remindDefaultCfg/rlib", latest_snapshot)
 
 if(exists("snapshot") && file.exists(snapshot)) {
   message("Set libPaths to ",snapshot)
