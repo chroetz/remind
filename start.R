@@ -29,6 +29,7 @@ require(stringr)
 
 source("scripts/start/submit.R")
 source("scripts/start/choose_slurmConfig.R")
+source("scripts/config/readCfgFromRmd.R")
 
 ############## Define function: get_line ##############################
 
@@ -253,9 +254,10 @@ if ('--restart' %in% argv) {
       message("No column path_gdx_refpolicycost for policy cost comparison found, using path_gdx_ref instead.")
     }
     settings[, path_gdx_list[! path_gdx_list %in% names(settings)]] <- NA
-    
+
     # state if columns are unknown and probably will be ignored, and stop for some outdated parameters.
-    source("config/default.cfg")
+    #source("config/default.cfg")
+    cfg <- readCfgFromRmd("config/defaultConfig.Rmd")
     knownColumnNames <- c(names(cfg$gms), path_gdx_list, "start", "output", "description", "model", "regionmapping", "inputRevision")
     unknownColumnNames <- names(settings)[! names(settings) %in% knownColumnNames]
     if (length(unknownColumnNames) > 0) {
@@ -290,7 +292,8 @@ if ('--restart' %in% argv) {
   # Modify and save cfg for all runs
   for (scen in rownames(scenarios)) {
     #source cfg file for each scenario to avoid duplication of gdx entries in files2export
-    source("config/default.cfg")
+    #source("config/default.cfg")
+    cfg <- readCfgFromRmd("config/defaultConfig.Rmd")
 
     # Have the log output written in a file (not on the screen)
     cfg$slurmConfig <- slurmConfig
