@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-03-25" />
+<meta name="date" content="2022-03-29" />
 
 <title>Default Config</title>
 
@@ -246,7 +246,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Default Config</h1>
-<h4 class="date">2022-03-25</h4>
+<h4 class="date">2022-03-29</h4>
 
 </div>
 
@@ -319,6 +319,15 @@ cfg$gms &lt;- list()</code></pre>
 <p>–</p>
 <p><strong>Description:</strong></p>
 <p>–</p>
+</div>
+<div id="repositories" class="section level3 unnumbered">
+<h3 class="unnumbered">repositories</h3>
+<p>list of repositories containing input data</p>
+<pre class="r"><code>cfg$repositories &lt;- getOption(&quot;remind_repos&quot;)</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>The global option <code>&quot;remind_repos&quot;</code> may be defined in your local .Rprofile or on the cluster it is defined in <code>/p/projects/rd3mod/R/.Rprofile</code>.</p>
 </div>
 <div id="runstatistics" class="section level3 unnumbered">
 <h3 class="unnumbered">runstatistics</h3>
@@ -1688,19 +1697,6 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Description:</strong></p>
 <p>See also <a href="#cm_discratescen">cm_DiscRateScen</a>.</p>
 </div>
-<div id="cm_esubgrowth" class="section level3 unnumbered">
-<h3 class="unnumbered">cm_esubGrowth</h3>
-<p>long term growth of the elasticity of substitution</p>
-<pre class="r"><code>cfg$gms$cm_esubGrowth &lt;- &quot;middle&quot;</code></pre>
-<p><strong>Possible Values:</strong></p>
-<ul>
-<li><code>&quot;low&quot;</code>: 1.3</li>
-<li><code>&quot;middle&quot;</code>: 1.5</li>
-<li><code>&quot;high&quot;</code>: 2</li>
-</ul>
-<p><strong>Description:</strong></p>
-<p>–</p>
-</div>
 <div id="cm_trdcst" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_trdcst</h3>
 <p>parameter to scale trade export cost for gas</p>
@@ -1888,8 +1884,8 @@ cfg$gms &lt;- list()</code></pre>
 <p>simplified logistic function start of null value (eg. 10% -&gt; between 10% and 100% the simplified logistic function will have the value 0). [%]</p>
 </div>
 </div>
-<div id="eu-specific-switches" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> EU specific switches</h2>
+<div id="eu-specific" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> EU specific</h2>
 <div id="cm_biosupply_adjust_eu" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_BioSupply_Adjust_EU</h3>
 <p>factor for scaling sub-EU bioenergy supply curves</p>
@@ -2115,6 +2111,55 @@ cfg$gms &lt;- list()</code></pre>
 <h1><span class="header-section-number">4</span> GAMS Compiler Flags</h1>
 <div id="general-5" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> General</h2>
+<div id="cm_esubgrowth" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_esubGrowth</h3>
+<p>long term growth of the elasticity of substitution</p>
+<pre class="r"><code>cfg$gms$cm_esubGrowth &lt;- &quot;middle&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li><code>&quot;low&quot;</code>: 1.3</li>
+<li><code>&quot;middle&quot;</code>: 1.5</li>
+<li><code>&quot;high&quot;</code>: 2</li>
+</ul>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
+<div id="c_regi_synfuelscen" class="section level3 unnumbered">
+<h3 class="unnumbered">c_regi_synfuelscen</h3>
+<p>region to apply synfuelscen to</p>
+<pre class="r"><code>cfg$gms$c_regi_synfuelscen &lt;- &quot;all&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
+<div id="c_earlyretire" class="section level3 unnumbered">
+<h3 class="unnumbered">c_EARLYRETIRE</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$c_EARLYRETIRE &lt;- &quot;on&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
+<div id="cm_fixco2price" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_fixCO2price</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$cm_fixCO2price &lt;- &quot;off&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
+<div id="cm_alttransbunkersshare" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_altTransBunkersShare</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$cm_altTransBunkersShare &lt;- &quot;off&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
 <div id="cm_magpie_coupling" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_MAgPIE_coupling</h3>
 <p>switch on coupling mode with MAgPIE</p>
@@ -2255,6 +2300,15 @@ cfg$gms &lt;- list()</code></pre>
 </ul>
 <p><strong>Description:</strong></p>
 <p>linked to population development <a href="#cm_popscen">cm_POPscen</a></p>
+</div>
+<div id="c_gdppcscen" class="section level3 unnumbered">
+<h3 class="unnumbered">c_GDPpcScen</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$c_GDPpcScen &lt;- &quot;SSP2EU&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>This is set automatically by <code>start_run()</code> (<code>scripts/start/prepare_and_run.R</code>) based on <a href="#cm_gdpscen">cm_GDPscen</a>.</p>
 </div>
 <div id="cm_demscen" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_demScen</h3>
@@ -2571,8 +2625,8 @@ cfg$gms &lt;- list()</code></pre>
 <p>–</p>
 </div>
 </div>
-<div id="calibration-switches" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Calibration Switches</h2>
+<div id="calibration" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Calibration</h2>
 <div id="c_ces_calibration_iterations" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_iterations</h3>
 <p>number of calibration iterations</p>
@@ -2581,6 +2635,24 @@ cfg$gms &lt;- list()</code></pre>
 <p>–</p>
 <p><strong>Description:</strong></p>
 <p>–</p>
+</div>
+<div id="c_ces_calibration_iteration" class="section level3 unnumbered">
+<h3 class="unnumbered">c_CES_calibration_iteration</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$c_CES_calibration_iteration &lt;- 1</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
+<div id="cm_ces_configuration" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_CES_configuration</h3>
+<p>–</p>
+<pre class="r"><code>cfg$gms$cm_CES_configuration &lt;- &quot;indu_subsectors-buil_simple-tran_edge_esm-POP_pop_SSP2EU-GDP_gdp_SSP2EU-En_gdp_SSP2EU-Kap_debt_limit-Reg_62eff8f7&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>The value is changed by <code>start_run()</code> (<code>scripts/start/prepare_and_run.R</code>).</p>
 </div>
 <div id="c_ces_calibration_new_structure" class="section level3 unnumbered">
 <h3 class="unnumbered">c_CES_calibration_new_structure</h3>
@@ -2753,8 +2825,8 @@ cfg$gms &lt;- list()</code></pre>
 <p>–</p>
 </div>
 </div>
-<div id="innopaths-switches" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> INNOPATHS switches</h2>
+<div id="innopaths" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> INNOPATHS</h2>
 <div id="cm_calibration_fe" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_calibration_FE</h3>
 <p>overwrite default fe trajectories with low, medium and high alternatives for buildings, transport and industry</p>

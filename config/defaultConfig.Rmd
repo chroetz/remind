@@ -153,6 +153,24 @@ cfg$force_replace <- FALSE
 
 
 
+### repositories {-}
+
+list of repositories containing input data
+
+```{r}
+cfg$repositories <- getOption("remind_repos")
+```
+
+**Possible Values:**
+
+--
+
+**Description:**
+
+The global option `"remind_repos"` may be defined in your local .Rprofile or on the cluster it is defined in `/p/projects/rd3mod/R/.Rprofile`.
+
+
+
 ### runstatistics {-}
 
 Folder run statistics should be submitted to
