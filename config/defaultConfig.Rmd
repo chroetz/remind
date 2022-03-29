@@ -3016,7 +3016,7 @@ value to which logit calibration markup of new fe2ue technologies in detailed bu
 
 ### cm_regipol_slope_beforeTarget {-}
 
-switch to generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year
+generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year
 
 ```{r}
 cfg$gms$cm_regipol_slope_beforeTarget <- "off"
