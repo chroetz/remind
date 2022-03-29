@@ -567,8 +567,6 @@ $setGlobal cm_magicc_config OLDDEFAULT !! def = OLDDEFAULT
 $setGlobal cm_magicc_temperatureImpulseResponse off !! def = off
 $setGlobal cm_damage_DiceLike_specification HowardNonCatastrophic !! def = HowardNonCatastrophic
 $setGlobal cm_conoptv conopt3 !! def = conopt3
-$setGlobal test_TS off !! def = off
-$setGlobal END2110 off !! def = off
 
 
 
@@ -577,6 +575,16 @@ $setGlobal END2110 off !! def = off
 ***                                  END OF WARNING ZONE
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+*--------------------more flags-------------------------------------------------------
+*-------------------------------------------------------------------------------------
+*AG* the remaining flags outside the warning zone are usually not changed
+*LB* default: 5 years time steps from 2005 to 2150
+*LB* test_TS: 2005,2010, 2020,2030,2040,2050,2070,2090,2110,2130,2150
+*LB* END2110: 2005:5:2105,2120
+***$setGlobal test_TS             !! def = off
+*GL* Flag for short time horizon
+***$setGlobal END2110             !! def = off
 
 *-------------------------------------------------------------------------------------
 *** automated checks and settings
