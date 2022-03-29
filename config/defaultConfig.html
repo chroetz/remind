@@ -2009,15 +2009,6 @@ cfg$gms &lt;- list()</code></pre>
 <p><strong>Description:</strong></p>
 <p>value to which logit calibration markup of new fe2ue technologies in detailed buildings module converges to</p>
 </div>
-<div id="cm_regipol_slope_beforetarget" class="section level3 unnumbered">
-<h3 class="unnumbered">cm_regipol_slope_beforeTarget</h3>
-<p>generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year</p>
-<pre class="r"><code>cfg$gms$cm_regipol_slope_beforeTarget &lt;- &quot;off&quot;</code></pre>
-<p><strong>Possible Values:</strong></p>
-<p>–</p>
-<p><strong>Description:</strong></p>
-<p>Switch to generate a co2 price trajectory in <a href="#regipol">47_regipol</a> with a different slope in the first years than in the last years before the target year, eg. <a href="#cm_regipol_slope_beforetarget">cm_regipol_slope_beforeTarget</a> = 2040.EUR 1.3 when pm_regiCO2target is set for 2050: linaer increase between 2040 and target year (2050) is 1.3 larger than the linear increase of the co2 price before 2040. This is useful if certain budget and year targets need to be fulfilled at the same time as an increase of this factor will induce stronger emissions reductions around the target year without necessarily reducing the emissions in the first years as much.</p>
-</div>
 <div id="cm_vre_supply_assumptions" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_VRE_supply_assumptions</h3>
 <p>assumptions on VRE supply</p>
@@ -2028,17 +2019,6 @@ cfg$gms &lt;- list()</code></pre>
 <li><code>1</code>: optimistic</li>
 <li><code>2</code>: sombre</li>
 <li><code>3</code>: bleak</li>
-</ul>
-<p><strong>Description:</strong></p>
-<p>–</p>
-</div>
-<div id="c_co2pricedependent_adjcosts" class="section level3 unnumbered">
-<h3 class="unnumbered">c_CO2priceDependent_AdjCosts</h3>
-<p>Should adjustment costs for advanced vehicles in dependence of CO2 prices be changed?</p>
-<pre class="r"><code>cfg$gms$c_CO2priceDependent_AdjCosts &lt;- &quot;on&quot;</code></pre>
-<p><strong>Possible Values:</strong></p>
-<ul>
-<li><code>&quot;on&quot;</code>: changes adjustment costs for advanced vehicles in dependence of CO2 prices</li>
 </ul>
 <p><strong>Description:</strong></p>
 <p>–</p>
@@ -2112,6 +2092,26 @@ cfg$gms &lt;- list()</code></pre>
 <h1><span class="header-section-number">4</span> GAMS Compiler Flags</h1>
 <div id="general-5" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> General</h2>
+<div id="cm_regipol_slope_beforetarget" class="section level3 unnumbered">
+<h3 class="unnumbered">cm_regipol_slope_beforeTarget</h3>
+<p>generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year</p>
+<pre class="r"><code>cfg$gms$cm_regipol_slope_beforeTarget &lt;- &quot;off&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<p>–</p>
+<p><strong>Description:</strong></p>
+<p>Switch to generate a co2 price trajectory in <a href="#regipol">47_regipol</a> with a different slope in the first years than in the last years before the target year, eg. <a href="#cm_regipol_slope_beforetarget">cm_regipol_slope_beforeTarget</a> = 2040.EUR 1.3 when pm_regiCO2target is set for 2050: linaer increase between 2040 and target year (2050) is 1.3 larger than the linear increase of the co2 price before 2040. This is useful if certain budget and year targets need to be fulfilled at the same time as an increase of this factor will induce stronger emissions reductions around the target year without necessarily reducing the emissions in the first years as much.</p>
+</div>
+<div id="c_co2pricedependent_adjcosts" class="section level3 unnumbered">
+<h3 class="unnumbered">c_CO2priceDependent_AdjCosts</h3>
+<p>Should adjustment costs for advanced vehicles in dependence of CO2 prices be changed?</p>
+<pre class="r"><code>cfg$gms$c_CO2priceDependent_AdjCosts &lt;- &quot;on&quot;</code></pre>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li><code>&quot;on&quot;</code>: changes adjustment costs for advanced vehicles in dependence of CO2 prices</li>
+</ul>
+<p><strong>Description:</strong></p>
+<p>–</p>
+</div>
 <div id="cm_esubgrowth" class="section level3 unnumbered">
 <h3 class="unnumbered">cm_esubGrowth</h3>
 <p>long term growth of the elasticity of substitution</p>

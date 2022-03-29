@@ -321,9 +321,7 @@ cm_startIter_EDGET "starting iteration of EDGE-T"
 cm_INNOPATHS_priceSensiBuild "Price sensitivity of energy carrier choice in buildings"
 cm_logitCal_markup_conv_b "long-term convergence value of detailed buildings fe2ue conventional techs price markup"
 cm_logitCal_markup_newtech_conv_b "long-term convergence value of detailed buildings fe2ue new techs price markup"
-cm_regipol_slope_beforeTarget "generate a co2 price trajectory in the regipol module with a different slope in the first years than in the last years before the target year"
 cm_VRE_supply_assumptions "assumptions on VRE supply"
-c_CO2priceDependent_AdjCosts "Should adjustment costs for advanced vehicles in dependence of CO2 prices be changed?"
 cm_carbonprice_temperatureLimit "not-to-exceed temperature target in degree above pre-industrial"
 cm_damages_BurkeLike_specification "empirical specification for Burke-like damage functions"
 cm_damages_BurkeLike_persistenceTime "persistence time in years for Burke-like damage functions"
@@ -436,9 +434,7 @@ cm_startIter_EDGET = 14; !! def = 14
 cm_INNOPATHS_priceSensiBuild = -3; !! def = -3
 cm_logitCal_markup_conv_b = 0.8; !! def = 0.8
 cm_logitCal_markup_newtech_conv_b = 0.3; !! def = 0.3
-cm_regipol_slope_beforeTarget = off; !! def = off
 cm_VRE_supply_assumptions = 0; !! def = 0
-c_CO2priceDependent_AdjCosts = on; !! def = on
 cm_carbonprice_temperatureLimit = 1.8; !! def = 1.8
 cm_damages_BurkeLike_specification = 0; !! def = 0
 cm_damages_BurkeLike_persistenceTime = 30; !! def = 30
@@ -453,6 +449,8 @@ c_BaselineAgriEmiRed = 0; !! def = 0
 *** ----------------------------------------------------------------------------
 *--------------------flags------------------------------------------------------
 
+$setGlobal cm_regipol_slope_beforeTarget off !! def = off
+$setGlobal c_CO2priceDependent_AdjCosts on !! def = on
 $setGlobal cm_esubGrowth middle !! def = middle
 $setGlobal c_regi_synfuelscen all !! def = all
 $setGlobal c_EARLYRETIRE on !! def = on
