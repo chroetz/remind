@@ -2590,7 +2590,7 @@ See [45_carbonprice].
 
 ### cm_flex_tax {-}
 
-switch for flexibility tax/subsidy, switching it on activates a tax on a number of technologies with flexible or inflexible electricity input.
+switch for flexibility tax, subsidy
 
 ```{r}
 cfg$gms$cm_flex_tax <- 0
@@ -2603,6 +2603,8 @@ cfg$gms$cm_flex_tax <- 0
 
 
 **Description:**
+
+switching it on activates a tax on a number of technologies with flexible or inflexible electricity input.
 
 Technologies with flexible electricity input get a subsidy corresponding to the lower-than-average electricity prices that they see, while inflexible technologies get a tax corresponding to the higher-than-average electricity prices that they see
 

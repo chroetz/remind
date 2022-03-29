@@ -40,22 +40,29 @@ stopifnot(identical(configDescr, configDescr2))
 
 
 # The cfg-object from defaultConfig.Rmd has the same values as from default.cfg
-source("config/default.cfg") # get cfg from default.cfg
+source("config/default_old.cfg") # get cfg from default.cfg
 cfgNew <- readCfgFromRmd(configRmdPath) # get cfg from defaultConfig.Rmd
+
 ## check same list entry names
 stopifnot(identical(sort(names(cfgNew)), sort(names(cfg))))
 nms <- names(cfgNew)
+
 ## check list entries without "files2export", "gms" to be identical
 x <- sapply(setdiff(nms, c("files2export", "gms")), function(nm) identical(cfgNew[[nm]], cfg[[nm]]))
 stopifnot(all(x))
+
 ## check files2export
 identical(sort(cfgNew$files2export$start), sort(cfg$files2export$start))
 stopifnot(is.null(cfgNew$files2export$end), is.null(cfg$files2export$end))
+
 ## check gms
+
 ### all params from old cfg contained in new one
 stopifnot(all(names(cfg$gms) %in% names(cfgNew$gms)))
+
 ### additional variables in new cfg
-setdiff(names(cfgNew$gms), names(cfg$gms)) # "test_TS", "END2110"
+setdiff(names(cfgNew$gms), names(cfg$gms)) # these flags were defined in main.gms but not in default.cfg
+
 ### check values
 nms <- names(cfg$gms)
 x <- sapply(nms, function(nm) identical(cfgNew$gms[[nm]], cfg$gms[[nm]]))

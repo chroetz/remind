@@ -298,7 +298,7 @@ cm_frac_NetNegEmi "tax on CDR to reflect risk of overshooting, formulated as fra
 cm_peakBudgYr "date of net-zero CO2 emissions for peak budget runs without overshoot"
 cm_taxCO2inc_after_peakBudgYr "annual increase of CO2 price after the Peak Budget Year in $ per tCO2"
 cm_CO2priceRegConvEndYr "Year at which regional CO2 prices converge for 45_carbonprice eq diffCurvPhaseIn2Lin"
-cm_flex_tax "switch for flexibility tax/subsidy, switching it on activates a tax on a number of technologies with flexible or inflexible electricity input."
+cm_flex_tax "switch for flexibility tax, subsidy"
 cm_TaxConvCheck "switch for enabling tax convergence check in nash mode"
 cm_H2targets "switches on capacity targets for electrolysis in NDC techpol following national Hydrogen Strategies"
 cm_PriceDurSlope_elh2 "slope of price duration curve of electrolysis"
