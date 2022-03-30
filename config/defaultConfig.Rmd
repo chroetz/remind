@@ -2810,6 +2810,7 @@ simplified logistic function start of null value (eg. 10% -> between 10% and 100
 
 ## EU specific
 
+The following switches are EU specific.
 
 ### cm_BioSupply_Adjust_EU {-}
 

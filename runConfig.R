@@ -52,7 +52,7 @@ x <- sapply(setdiff(nms, c("files2export", "gms")), function(nm) identical(cfgNe
 stopifnot(all(x))
 
 ## check files2export
-identical(sort(cfgNew$files2export$start), sort(cfg$files2export$start))
+stopifnot(identical(sort(cfgNew$files2export$start), sort(cfg$files2export$start)))
 stopifnot(is.null(cfgNew$files2export$end), is.null(cfg$files2export$end))
 
 ## check gms

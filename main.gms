@@ -404,7 +404,7 @@ cm_postTargetIncrease = 2; !! def = 2
 cm_DiscRateScen = 0; !! def = 0
 cm_noReboundEffect = 0; !! def = 0
 cm_trdcst = 1.5; !! def = 1.5
-cm_trdadj = 2.0; !! def = 2.0
+cm_trdadj = 2; !! def = 2
 c_refcapbnd = 0; !! def = 0
 cm_frac_CCS = 10; !! def = 10
 cm_frac_NetNegEmi = 0.5; !! def = 0.5

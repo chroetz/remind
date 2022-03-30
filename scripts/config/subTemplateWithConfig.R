@@ -23,10 +23,16 @@ subTemplateWithConfig <- function(
 
   configDescr <- parseConfigRmd(configRmdPath)
 
-  params <- unlist(configDescr$`R Parameters`, recursive=FALSE, use.names=FALSE)
-  modules <- unlist(configDescr$Modules, recursive=FALSE, use.names=FALSE)
-  switches <- unlist(configDescr$`GAMS Switches`, recursive=FALSE, use.names=FALSE)
-  flags <- unlist(configDescr$`GAMS Compiler Flags`, recursive=FALSE, use.names=FALSE)
+  extractSubsubsectionList <- function(section) {
+    unlist(
+      lapply(section$content, function(x) x$content),
+      recursive=FALSE,
+      use.names=FALSE)
+  }
+  params <- extractSubsubsectionList(configDescr$content$`R Parameters`)
+  modules <- extractSubsubsectionList(configDescr$content$Modules)
+  switches <- extractSubsubsectionList(configDescr$content$`GAMS Switches`)
+  flags <- extractSubsubsectionList(configDescr$content$`GAMS Compiler Flags`)
 
   titleGmsText <- gmsTitle(params)
   lines[iTitl] <- titleGmsText
