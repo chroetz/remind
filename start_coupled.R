@@ -9,14 +9,14 @@
 ##################################################################
 
 # This function will be called in start_coupled() instead of the regular
-# submit() (for REMIND) and start_run (for MAgPIE) functions if the debug 
+# submit() (for REMIND) and start_run (for MAgPIE) functions if the debug
 # mode is set to TRUE in start_coupled().
-# It creates empty output folders and copies dummy reports into them 
+# It creates empty output folders and copies dummy reports into them
 # without calling the start scripts of the models.
 
 debug_coupled <- function(model = NULL,cfg) {
    if(is.null(model)) stop("COUPLING DEBUG: Coupling was run in debug mode but no model was specified")
-   
+
    cat("   Creating results folder",cfg$results_folder,"\n")
    if (!file.exists(cfg$results_folder)) {
      dir.create(cfg$results_folder, recursive = TRUE, showWarnings = FALSE)
@@ -27,7 +27,7 @@ debug_coupled <- function(model = NULL,cfg) {
      unlink(cfg$results_folder, recursive = TRUE)
      dir.create(cfg$results_folder, recursive = TRUE, showWarnings = FALSE)
    }
- 
+
    if (model == "rem") {
       cat("COUPLING DEBUG: assuming REMIND\n")
       report <- "/home/dklein/REMIND_generic_C_SSP2EU-Tall-PkBudg1020-imp-rem-5.mif"
@@ -39,9 +39,9 @@ debug_coupled <- function(model = NULL,cfg) {
    } else {
      stop("COUPLING DEBUG: Coupling was started in debug mode but model is unknown")
    }
-   
+
    cat("COUPLING DEBUG: to =",to,"\n")
-   
+
    if(!file.copy(from = report, to = to)) cat(paste0("Could not copy ",report," to ",to,"\n"))
    return(cfg$results_folder)
 }
@@ -50,39 +50,50 @@ debug_coupled <- function(model = NULL,cfg) {
 ################# D E F I N E  start_coupled #####################
 ##################################################################
 
-start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_iterations=5,start_iter=1,n600_iterations=0,report=NULL,qos) {
-  
+start_coupled <- function(
+  path_remind,
+  path_magpie,
+  cfg_rem,
+  cfg_mag,
+  runname,
+  max_iterations=5,
+  start_iter=1,
+  n600_iterations=0,
+  report=NULL,
+  qos
+) {
+
   require(lucode2)
   require(gms)
   require(magclass)
   require(gdx)
   library(methods)
   library(remind2)
-  
+
   # delete entries in stack that contain needle and append new
   .setgdxcopy <- function(needle,stack,new){
     matches <- grepl(needle,stack)
     out <- c(stack[!matches],new)
     return(out)
   }
-  
+
   # start coupling in debug mode (just create empty results folders and copy dummy reports without running the models)
   debug <- FALSE
-  
+
   mainwd <- getwd() # save folder in which this script is executed
-  
+
   # Retrieve REMIND settings
-  cfg_rem <- check_config(cfg_rem,paste0(path_remind,"config/default.cfg"),paste0(path_remind,"modules")) 
+  cfg_rem <- check_config(cfg_rem,paste0(path_remind,"config/default.cfg"),paste0(path_remind,"modules"))
   cfg_rem$slurmConfig   <- "direct"
   cm_iteration_max_tmp <- cfg_rem$gms$cm_iteration_max # save default setting
   cfg_rem_original <- c(setdiff(cfg_rem$output, "emulator"), "emulator") # save default remind output config and add "emulator" if missing
 
   # retrieve MAgPIE settings
-  cfg_mag <- check_config(cfg_mag,paste0(path_magpie,"config/default.cfg"),paste0(path_magpie,"modules")) 
+  cfg_mag <- check_config(cfg_mag,paste0(path_magpie,"config/default.cfg"),paste0(path_magpie,"modules"))
   cfg_mag$sequential <- TRUE
   cfg_mag$force_replace <- TRUE
   cfg_mag$output     <- c("rds_report") # ,"remind","report") # rds_report: MAgPIE4; remind,report: MAgPIE3 (glo.modelstat.csv)
-  
+
   if (start_iter > max_iterations ) stop("### COUPLING ### start_iter > max_iterations")
 
   # Start REMIND and MAgPIE iteratively
@@ -100,7 +111,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     setwd(path_remind)
     cat(" to",getwd(),"\n")
     source("scripts/start/submit.R") # provide source of "get_magpie_data" and "start_run"
-    
+
     cfg_rem$results_folder <- paste0("output/",runname,"-rem-",i)
     cfg_rem$title          <- paste0(runname,"-rem-",i)
     cfg_rem$force_replace  <- TRUE # overwrite existing output folders
@@ -115,15 +126,15 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
       cfg_rem$files2export$start["input_bau.gdx"] <- paste0("output/",runname,"-rem-",i-1,"/input_bau.gdx")
       cfg_rem$files2export$start["input_ref.gdx"] <- paste0("output/",runname,"-rem-",i-1,"/input_ref.gdx")
     }
-    
+
     # Control Negishi iterations
     itr_offset <- 1 # Choose this if negishi iterations should only be adjusted for coupling iteration numbers below 3
     #itr_offset <- start_iter # Choose this if negishi iterations should be adjusted for the first three iterations (regardless of their number)
                   #	This is the case after the coupling was restarted continuing from existing iterations.
-    
+
     double_iterations <- 1
-    if (cfg_rem$gms$cm_SlowConvergence == "on") double_iterations <- 2 
-    
+    if (cfg_rem$gms$cm_SlowConvergence == "on") double_iterations <- 2
+
     if(i==itr_offset) {
       # Set negisgi iteration to 1 for the first run
       cfg_rem$gms$cm_iteration_max <- 1*double_iterations
@@ -136,7 +147,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
       cfg_rem$gms$cm_iteration_max <- cm_iteration_max_tmp
     }
     cat("Set Negishi iterations to",cfg_rem$gms$cm_iteration_max,"\n")
-    
+
     # Switch off generation of needless output for all but the last REMIND iteration
     if (i < max_iterations) {
       cfg_rem$output <- c("reporting","emulator","rds_report")
@@ -190,7 +201,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     }
 
     if (!file.exists(report)) stop(paste0("### COUPLING ### Could not find report: ", report,"\n"))
-    
+
     # If in the last iteration don't run MAgPIE
     if (i == max_iterations) break
 
@@ -220,7 +231,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
      gdxlist <- paste0("output/",runname,"-mag-",i-1,"/magpie_y",seq(cfg_rem$gms$cm_startyear,2150,5),".gdx")
      cfg_mag$files2export$start <- .setgdxcopy(".gdx",cfg_mag$files2export$start,gdxlist)
     }
-    
+
     cat("### COUPLING ### MAgPIE will be started with\n    Report = ",report,"\n    Folder=",cfg_mag$results_folder,"\n")
     cfg_mag$path_to_report_bioenergy <- report
     # if no different mif was set for GHG prices use the same as for bioenergy
@@ -230,7 +241,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     ######################################
     cat("### COUPLING ### MAgPIE output was stored in ",outfolder_mag,"\n")
     report <- paste0(path_magpie,outfolder_mag,"/report.mif")
-      
+
     # Checking whether MAgPIE is optimal in all years
     file_modstat <- paste0(outfolder_mag,"/glo.magpie_modelstat.csv")
     if (debug) {
@@ -240,23 +251,23 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     } else {
       modstat_mag <- readGDX(paste0(outfolder_mag,"/fulldata.gdx"),"p80_modelstat","o_modelstat", format="first_found")
     }
-    
-    if(!all((modstat_mag==2) | (modstat_mag==7))) 
+
+    if(!all((modstat_mag==2) | (modstat_mag==7)))
       stop("Iteration stopped! MAgPIE modelstat is not 2 or 7 for all years.\n")
 
   } # End of coupling iteration loop
-  
+
   cat("### COUPLING ### Last coupling iteration completed\n");
   cat("### COUPLING ### Set working directory from",getwd());
   setwd(mainwd)
   cat(" to",getwd(),"\n")
-  
+
   # for the sbatch command of the subsequent runs below set the number of tasks per node
   # this not clean, because we use the number of regions of the *current* run to set the number of tasks for the *subsequent* runs
   # but it is sufficiently clean, since the number of regions should not differ between current and subsequent
   if (cfg_rem$gms$optimization == "nash" && cfg_rem$gms$cm_nash_mode == "parallel") {
     # for nash: set the number of CPUs per node to number of regions + 1
-    nr_of_regions <- length(levels(read.csv2(cfg_rem$regionmapping)$RegionCode)) + 1 
+    nr_of_regions <- length(levels(read.csv2(cfg_rem$regionmapping)$RegionCode)) + 1
   } else {
     # for negishi: use only one CPU
     nr_of_regions <- 1
@@ -264,7 +275,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
 
   # extract subsequent runs from list: take the name of the rows that have the current scenario (= runname without "C_") in the path_gdx_ref column
   subsequent_runs <- rownames(cfg_rem$RunsUsingTHISgdxAsInput[cfg_rem$RunsUsingTHISgdxAsInput[,"path_gdx_ref"] == gsub("^C_","",runname),])
-  
+
   # Start subsequent runs via sbatch
   for(run in subsequent_runs){
     cat("Submitting subsequent run",run,"\n")
@@ -273,7 +284,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     load(paste0("C_",run,".RData"),envir=subseq.env)
     system(paste0("sbatch --qos=",subseq.env$qos," --job-name=C_",run," --output=C_",run,".log --mail-type=END --comment=REMIND-MAgPIE --tasks-per-node=",nr_of_regions," --wrap=\"Rscript start_coupled.R coupled_config=C_",run,".RData\""))
   }
-  
+
   # Read runtime of ALL coupled runs (not just the current scenario) and produce comparison pdf
   remindpath <- paste0(path_remind,"output")
   magpiepath <- paste0(path_magpie,"output")
@@ -283,7 +294,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
   ret  <- findIterations(runs,modelpath=c(remindpath,magpiepath),latest=FALSE)
   readRuntime(ret,plot=TRUE,coupled=TRUE)
   unlink(c("runtime.log","runtime.out","runtime.rda"))
-  
+
   # combine REMIND and MAgPIE reports of last coupling iteration (and REMIND water reporting if existing)
   report_rem <- paste0(path_remind,outfolder_rem,"/REMIND_generic_",cfg_rem$title,".mif")
   if (exists("outfolder_mag")) {
@@ -309,7 +320,7 @@ start_coupled <- function(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_it
     #getNames(tmp3,dim=2) <- gsub("REMIND|MAgPIE","REMIND-MAGPIE",getNames(tmp3,dim=2))
     write.report(tmp3,file=paste0("output/",runname,".mif"))
   }
-  
+
   # set required variables and execute script to create convergence plots
   cat("### COUPLING ### Preparing convergence pdf\n");
   source_include <- TRUE
@@ -328,5 +339,15 @@ require(lucode2)
 
 readArgs("coupled_config")
 load(coupled_config)
-start_coupled(path_remind,path_magpie,cfg_rem,cfg_mag,runname,max_iterations,start_iter,n600_iterations,path_report,qos)
+start_coupled(
+  path_remind,
+  path_magpie,
+  cfg_rem,
+  cfg_mag,
+  runname,
+  max_iterations,
+  start_iter,
+  n600_iterations,
+  path_report,
+  qos)
 

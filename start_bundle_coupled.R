@@ -10,13 +10,13 @@
 
 # Please provide all files and paths relative to the folder where start_coupled is executed
 path_remind <- paste0(getwd(),"/")   # provide path to REMIND. Default: the actual path which the script is started from
-path_magpie <- "/p/projects/piam/abrahao/GSCF_dk/magpie/"
+path_magpie <- paste0(getwd(),"/../magpie/")
 
 # Paths to the files where scenarios are defined
 # path_settings_remind contains the detailed configuration of the REMIND scenarios
 # path_settings_coupled defines which runs will be started, coupling infos, and optimal gdx and report information that overrides path_settings_remind
-path_settings_coupled <- paste0(path_remind,"config/scenario_config_coupled_SSPSDP.csv")
-path_settings_remind  <- paste0(path_remind,"config/scenario_config_SSPSDP.csv")
+path_settings_coupled <- paste0(path_remind,"config/scenario_config_coupled_LimitedCDR.csv")
+path_settings_remind  <- paste0(path_remind,"config/scenario_config_LimitedCDR.csv")
 
 # You can put a prefix in front of the names of your runs, this will turn e.g. "SSP2-Base" into "prefix_SSP2-Base".
 # This allows storing results of multiple coupled runs (which have the same scenario names) in the same MAgPIE and REMIND output folders.
@@ -187,9 +187,9 @@ for(scen in common){
   # configure MAgPIE according to magpie_scen (scenario needs to be available in scenario_config.cfg)
   if(!is.null(scenarios_coupled[scen, "magpie_scen"])) cfg_mag <- setScenario(cfg_mag,c(trimws(unlist(strsplit(scenarios_coupled[scen, "magpie_scen"],split = ",|\\|"))),"coupling"),scenario_config=paste0(path_magpie,"config/scenario_config.csv"))
   cfg_mag <- check_config(cfg_mag, reference_file=paste0(path_magpie,"config/default.cfg"),modulepath = paste0(path_magpie,"modules/"))
-  
+
   # GHG prices will be set to zero (in start_run() of MAgPIE) until and including the year specified here
-  cfg_mag$mute_ghgprices_until <- scenarios_coupled[scen, "no_ghgprices_land_until"] 
+  cfg_mag$mute_ghgprices_until <- scenarios_coupled[scen, "no_ghgprices_land_until"]
 
   # if provided use ghg prices for land (MAgPIE) from a different REMIND run than the one MAgPIE runs coupled to
   path_mif_ghgprice_land <- NULL
@@ -205,7 +205,7 @@ for(scen in common){
         cfg_mag$path_to_report_ghgprices <- path_mif_ghgprice_land
     }
   }
-  
+
   # How to provide the exogenous TC to MAgPIE:
   # Running MAgPIE with exogenous TC requires a path with exogenous TC. Using exo_indc_MAR17 the path is chosen via c13_tau_scen.
   # Using exo_JUN13 the path is given in the file modules/13_tc/exo_JUN13/input/tau_scenario.csv
@@ -224,24 +224,31 @@ for(scen in common){
   #cfg_rem$gms$biomass <- "magpie_linear"
 
   # Configure Afforestation in MAgPIE
-  # if (grepl("-aff760",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to 760\n")
-  #    cfg_mag$gms$s32_max_aff_area <- 760
-  #} else if (grepl("-aff900",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to 900\n")
-  #    cfg_mag$gms$s32_max_aff_area <- 900
-  #} else if (grepl("-affInf",scen)) {
-  #    cat("Setting MAgPIE max_aff_area to Inf\n")
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #} else if (grepl("-cost2",scen)) {
-  #    cat("Setting MAgPIE cprice_red_factor to 0.2\n")
-  #    cfg_mag$gms$s56_cprice_red_factor <- 0.2
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #} else if (grepl("-cost3",scen)) {
-  #    cat("Setting MAgPIE cprice_red_factor to 0.3\n")
-  #    cfg_mag$gms$s56_cprice_red_factor <- 0.3
-  #    cfg_mag$gms$s32_max_aff_area <- Inf
-  #}
+  if (grepl("-aff760",scen)) {
+      cat("Setting MAgPIE max_aff_area to 760\n")
+      cfg_mag$gms$s32_max_aff_area <- 760
+  } else if (grepl("-aff900",scen)) {
+      cat("Setting MAgPIE max_aff_area to 900\n")
+      cfg_mag$gms$s32_max_aff_area <- 900
+  } else if (grepl("-affInf",scen)) {
+      cat("Setting MAgPIE max_aff_area to Inf\n")
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-cost2",scen)) {
+      cat("Setting MAgPIE cprice_red_factor to 0.2\n")
+      cfg_mag$gms$s56_cprice_red_factor <- 0.2
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-cost3",scen)) {
+      cat("Setting MAgPIE cprice_red_factor to 0.3\n")
+      cfg_mag$gms$s56_cprice_red_factor <- 0.3
+      cfg_mag$gms$s32_max_aff_area <- Inf
+  } else if (grepl("-affSust",scen)) {
+      cat("Setting MAgPIE max_aff_area to 375\n")
+      cfg_mag$gms$s32_max_aff_area  <- 500 #valid for NPI/NDC + C price driven Afforestation area
+      cfg_mag$gms$c32_aff_mask <- "onlytropical" #applicable only for C price driven Afforestation
+  } else if (grepl("-RefAff",scen)){
+    cat("Setting MAgPIE to REF afforestation\n")
+    cfg_mag$gms$s56_c_price_induced_aff <- 0
+  }
 
   #cfg$logoption  <- 2  # Have the log output written in a file (not on the screen)
 
@@ -299,7 +306,7 @@ for(scen in common){
   if ("path_gdx_carbonprice" %in% colnames(settings_remind)) { if (!is.na(settings_remind[scen,"path_gdx_carbonprice"])){
     has_carbonprice_path <- TRUE
   }}
-  
+
   if (has_carbonprice_path) {
     cp_start_now <- (substr(settings_remind[scen,"path_gdx_carbonprice"], nchar(settings_remind[scen,"path_gdx_carbonprice"])-3, nchar(settings_remind[scen,"path_gdx_carbonprice"])) == ".gdx"
                 | is.na(settings_remind[scen,"path_gdx_carbonprice"]))
@@ -325,7 +332,7 @@ for(scen in common){
         cfg_rem$files2export$start['input_carbonprice.gdx'] <- paste0(path_remind,"output/",prefix_runname,settings_remind[scen,"path_gdx_carbonprice"],"-rem-",max_iterations,"/fulldata.gdx")
       }
 
-      # If the preceding run has already finished (= its gdx file exist) start 
+      # If the preceding run has already finished (= its gdx file exist) start
       # the current run immediately. This might be the case e.g. if you started
       # the NDC run in a first batch and now want to start the subsequent policy
       # runs by hand after the NDC has finished.
