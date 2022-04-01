@@ -43,13 +43,7 @@ paramConfigDescr <- function(descr, gms) {
     "cfg$", if (gms) "gms$", name, " <- ", descr$default, "\n",
     "```\n",
     "\n",
-    "**Possible Values:**\n",
-    "\n",
-    descr$possibleValues, "\n",
-    "\n",
-    "**Description:**\n", # long description
-    "\n",
-    descr$description, "\n",
+    descr$further, "\n",
     "\n",
     "\n")
 }

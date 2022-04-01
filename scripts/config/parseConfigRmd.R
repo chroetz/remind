@@ -10,25 +10,25 @@
 #'
 #' Each parameter section starts with \code{### <NAME> {-}} followed by a
 #' one-line short description (without markdown) followed by an R-code chunk
-#' setting its default value (using a single \code{<-}). Thereafter two further
-#' parts are expected: One starting with \code{**Description:**} for a longer
-#' description and one starting with \code{**Possible Values:**}. These parts
-#' may contain markdown. Everything below the end of the code chunk but before
-#' the two further parts is ignored.
+#' setting its default value. The right hand side of the first assignment via
+#' \code{<-} in the first code chunk of the subsubsection is treated as the
+#' default (an expression, which evaluated is the default value). Thereafter
+#' further documentation may be written and may contain markdown.
 #'
 #' @param path A single string. The path to the config-Rmd-file.
 #' @return A nested list resembling the section structure of the input document.
 #'   The return value is a list with the entries \code{head} and \code{content}.
 #'   \code{head} is the text that comes before the first section. \code{content}
-#'   is a list representing the sections. The Section and subsection
+#'   is a list representing the sections. The section and subsection
 #'   representations have the entries \code{name}, \code{head}, and
-#'   \code{content} which contain the title, text before the first nested
+#'   \code{content} which contain the title, the text before the first nested
 #'   (sub)subsection, and the representation of the nested (sub)subsections,
 #'   respectively. The representation of the subsubsections, is a list
 #'   containing the information on the parameters. It has the entries
 #'   \code{name} (title of the section and name of the parameter),
 #'   \code{default} (the default value from the R-code chunk), \code{short} (the
-#'   one line short description), \code{possibleValues}, and \code{description}.
+#'   one line short description), and \code{further} (everything below the first
+#'   R-code-chunk).
 parseConfigRmd <- function(path) {
   lines <- readLines(path)
   line <- paste0(lines, collapse="\n")
@@ -73,13 +73,27 @@ parseSubsubsection <- function(subsubsection) {
 
   # Extract the R-code chunk and get the default value (as text) from the R-Code.
   chunkStart <- which(startsWith(lns, "```{r"))[1]
+  if (is.na(chunkStart)) stop("Did not find an R-code-chunk in subsubsection ", name)
   chunkEnd <- which(startsWith(lns, "```") & seq_along(lns) > chunkStart)[1]
   chunkInner <- lns[(chunkStart+1):(chunkEnd-1)]
   chunkExprs <- rlang::parse_exprs(paste0(chunkInner, collapse="\n"))
   isAssign <- sapply(
     chunkExprs,
     function(ex) identical(ex[[1]], rlang::expr(`<-`)))
-  assignExpr <- chunkExprs[[which(isAssign)[[1]]]]
+  assignIdx <- which(isAssign)[1]
+  if (is.na(assignIdx)) stop("Did not find assignment (<-) in subsubsection ", name)
+  assignExpr <- chunkExprs[[assignIdx]]
+  lhs <- rlang::expr_text(assignExpr[[2]])
+  lhsName <- sub("^cfg\\$", "", lhs)
+  lhsName <- sub("^gms\\$", "", lhsName)
+  expectedName <- sub("^\\d{2}_", "", name) # Remove leading digits for modules.
+  if (lhsName != expectedName) {
+    stop("Name derived from title (",
+         expectedName,
+         ") is not eqaual to assigned variable (",
+         lhsName,
+         ").")
+  }
   default <- rlang::expr_text(assignExpr[[3]])
 
   # Get the one line description, which is located before the code chunk.
@@ -89,38 +103,30 @@ parseSubsubsection <- function(subsubsection) {
     short <- paste0(lns[2:(chunkStart-1)], collapse="\n")
     short <- trimws(short)
   }
+  if (grepl("\"", short)) {
+    warning("Short description of ", name, " contains \". Replaced by '.", call. = FALSE)
+    short <- gsub("\"", "'", short)
+  }
+  if (grepl("\n", short)) {
+    warning("Short description of ", name, " contains a new line character. Replaced by space.", call. = FALSE)
+    short <- gsub("\n", " ", short)
+  }
+  if (nchar(short) > 253) { # Max length is 255, but may need 2 for quotes.
+    warning("Short description of ", name, " has more than 253 characters. Cutting it.", call. = FALSE)
+    short <- substr(short, 1, 253)
+  }
+  if (!grepl("[a-zA-Z]", short)) {
+    warning("Short description of ", name, " does not contain any letters. Is it missing?", call. = FALSE)
+  }
 
-  # Get the two further parts, i.e., long description and possible values.
-  possiValStart <- which(startsWith(lns, "**Possible Values:**"))[1]
-  descrStart <- which(startsWith(lns, "**Description:**"))[1]
-  descr <- NA
-  possiVal <- NA
-  if (!is.na(possiValStart)) {
-    if (!is.na(descrStart) && descrStart > possiValStart) {
-      possiVal <- paste0(lns[possiValStart:(descrStart-1)], collapse="\n")
-      descr <- paste0(lns[descrStart:length(lns)], collapse="\n")
-    } else {
-      possiVal <- paste0(lns[possiValStart:length(lns)], collapse="\n")
-      if (!is.na(descrStart)) {
-        descr <- paste0(lns[descrStart:(possiValStart-1)], collapse="\n")
-      }
-    }
-  }
-  if (!is.na(descr)) {
-    descr <- gsub("^\\*\\*Description:\\*\\*", "", descr)
-    descr <- trimws(descr)
-  }
-  if (!is.na(possiVal)) {
-    possiVal <- gsub("^\\*\\*Possible Values:\\*\\*", "", possiVal)
-    possiVal <- trimws(possiVal)
-  }
+  # Get everything below the first code chunk, i.e., any further description.
+  further <- trimws(paste0(lns[(chunkEnd+1):length(lns)], collapse="\n"))
 
   # Return gathered values as a list.
   res <- list(
     name = name,
     default = default,
     short = short,
-    possibleValues = possiVal,
-    description = descr)
+    further = further)
   return(res)
 }
