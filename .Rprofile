@@ -19,7 +19,7 @@ latest_snapshot <- ifelse (length(snapshots) > 0, snapshots[[1]], NA)
 # to the model output folder. Otherwise, the run itself will again use the
 # default library set!
 
-# snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_03"
+snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_04_11"
 # snapshot <- latest_snapshot
 
 if(exists("snapshot") && file.exists(snapshot)) {
