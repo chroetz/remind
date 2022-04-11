@@ -1,6 +1,7 @@
 title;start;oldrun;path_report;magpie_scen;no_ghgprices_land_until;path_gdx;path_gdx_ref;path_gdx_bau;path_gdx_opt;qos
 SSP2-Base;0;;;SSP2,NPI;y2150;;;;;medium
 SSP2-NDC;0;;;SSP2,NDC;y2150;;;;;medium
+SSP2-NPi;0;;;SSP2,NPI;y2150;;;;;medium
 SSP2-1150-all-vegC50;1;;;SSP2,NDC;y2150;;;;;medium
 SSP2-1150-all-vegC50-limbio;0;;;SSP2,NDC;y2150;;;;;medium
 SSP2-1150-all-vegC50-noCCSlim;0;;;SSP2,NDC;y2150;;;;;medium
