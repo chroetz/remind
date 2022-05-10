@@ -182,6 +182,7 @@ $endif
         biogas          "gasification of biomass"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
+        biochar         "biomass to biochar and biooil"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
@@ -1139,6 +1140,7 @@ $endif
         biogas          "gasification of biomass"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
+        biochar         "biomass to biochar and biooil"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
@@ -1248,6 +1250,7 @@ $endif
   biogas          "gasification of biomass"
   bioftrec        "biomass based fischer-tropsch recycle"
   bioftcrec       "biomass based fischer-tropsch with capture recycle"
+  biochar         "biomass to biochar and biooil"
   bioh2           "biomass to hydrogen"
   bioh2c          "biomass to hydrogen with capture"
   bioethl         "biomass to ethanol"
@@ -1365,6 +1368,7 @@ teBio(all_te)      "biomass energy systems technologies"
         biogas      "gasification of biomass"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
+        biochar     "biomass to biochar and biooil"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1382,6 +1386,7 @@ teRe(all_te)     "renewable technologies including biomass"
         biogas      "gasification of biomass"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
+        biochar     "biomass to biochar and biooil"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1499,6 +1504,7 @@ teBioPebiolc(all_te)      "biomass technologies using pebiolc"
         biogas
         bioftrec
         bioftcrec
+        biochar
         bioh2
         bioh2c
         bioethl
@@ -2346,6 +2352,7 @@ $endif
         pecoal.seliqfos.coalftcrec
         pebiolc.seliqbio.bioftrec
         pebiolc.seliqbio.bioftcrec
+        pebiolc.seliqbio.biochar
         pebioil.seliqbio.biodiesel
         pebios.seliqbio.bioeths
         pebiolc.seliqbio.bioethl
@@ -2566,6 +2573,8 @@ $endif
         peoil.seel.dot.n2o
         pebiolc.seliqbio.bioftcrec.co2
         pebiolc.seliqbio.bioftcrec.cco2
+        pebiolc.seliqbio.biochar.co2
+        pebiolc.seliqbio.biochar.cco2
         pebiolc.seh2.bioh2c.co2
         pebiolc.seh2.bioh2c.cco2
         pebiolc.sesobio.biotr.bc
@@ -2744,7 +2753,7 @@ $IFTHEN.WindOff %cm_wind_offshore% == "1"
 $ENDIF.WindOff
         spv,csp,refliq,hydro,geohe,geohdr,solhe,ngcc,ngccc,ngt,gaschp,gashp,gash2,gash2c,gastr,gasftrec,gasftcrec,dot,
        igcc,igccc,pc,coaltr,coalgas,coalh2,coalh2c,coalchp,coalhp,coalftrec,coalftcrec,
-       biotr,biotrmod,biogas,bioftrec,bioftcrec,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
+       biotr,biotrmod,biogas,bioftrec,bioftcrec,biochar,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
        elh2,h2turb,elh2VRE,h2turbVRE,bioethl,bioeths,biodiesel,tnrs,fnrs
 $ifthen setGlobal cm_ccsfosall
        pcc, pco
