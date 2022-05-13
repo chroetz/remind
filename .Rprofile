@@ -20,7 +20,7 @@ latest_snapshot <- ifelse (length(snapshots) > 0, snapshots[[1]], NA)
 # default library set!
 
 # snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_03"
-# snapshot <- latest_snapshot
+snapshot <- latest_snapshot
 
 if(exists("snapshot") && file.exists(snapshot)) {
   message("libPaths was manually set to: ",snapshot)
