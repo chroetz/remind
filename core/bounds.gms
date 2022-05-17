@@ -9,9 +9,6 @@
 *** setting bounds
 *** -----------------------------------------------------------
 
-*CS: Test BioChar (TODO: remove)
-vm_cap.lo("2050", regi, "biochar") = 1e-2;
-
 
 
 *RP 20160126 set vm_costTeCapital to pm_inco0_t for all technologies that are non-learning

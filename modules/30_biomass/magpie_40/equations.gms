@@ -116,6 +116,13 @@ q30_limitTeBio(t,regi)$(cm_emiscen ne 1)..
         =l=
         0.5 * p30_demPe(t,regi);
 
+*** CS: Use only purpose grown biomass (not residues) in every technology but biochar.
+q30_feedstockMatching(t,regi)..
+        sum(pe2se("pebiolc",enty,te)$(te <> "biochar"), vm_demPe(t,regi,"pebiolc",enty,te))
+        =l=
+        vm_fuExtr(t,regi,"pebiolc","1")
+;
+
 *** FS: calculate total biomass production
 q30_BioPEProdTotal(t,regi)..
         v30_BioPEProdTotal(t,regi)
