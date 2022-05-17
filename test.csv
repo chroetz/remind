@@ -1,2 +1,2 @@
 title;start;cm_nash_autoconverge;cm_iteration_max;carbonprice;cm_co2_tax_2020
-test;1;0;1;exponential;20
+test;1;0;5;exponential;200
