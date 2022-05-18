@@ -1,2 +1,2 @@
-title;start;cm_nash_autoconverge;cm_iteration_max;carbonprice;cm_co2_tax_2020
-test;1;0;5;exponential;200
+title;start;cm_rcp_scen;cm_iterative_target_adj;carbonprice;cm_co2_tax_2020
+test;1;rcp26;0;diffCurvPhaseIn2Lin;150
