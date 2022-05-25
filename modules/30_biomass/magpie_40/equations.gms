@@ -116,12 +116,20 @@ q30_limitTeBio(t,regi)$(cm_emiscen ne 1)..
         =l=
         0.5 * p30_demPe(t,regi);
 
+$IFTHEN setGlobal cm_feedstockMatchingBiomass
 *** CS: Use only purpose grown biomass (not residues) in every technology in teBioPebiolcPurposeGrown.
-q30_feedstockMatching(t,regi)..
+q30_feedstockMatchingPurposeGrownBiomass(t,regi)..
         sum(pe2se("pebiolc",enty,teBioPebiolcPurposeGrown), vm_demPe(t,regi,"pebiolc",enty,teBioPebiolcPurposeGrown))
         =l=
-        vm_fuExtr(t,regi,"pebiolc","1")
+        vm_fuExtr(t,regi,"pebiolc","1") - vm_Xport(t,regi,"pebiolc") + vm_Mport(t,regi,"pebiolc")
 ;
+*** CS: Use only residues (not purpose grown biomass) in every technology in teBioPebiolcResidues.
+q30_feedstockMatchingResidueBiomass(t,regi)..
+        sum(pe2se("pebiolc",enty,teBioPebiolcResidues), vm_demPe(t,regi,"pebiolc",enty,teBioPebiolcResidues))
+        =l=
+        vm_fuExtr(t,regi,"pebiolc","2") - vm_Xport(t,regi,"pebiolc") + vm_Mport(t,regi,"pebiolc")
+;
+$ENDIF
 
 *** FS: calculate total biomass production
 q30_BioPEProdTotal(t,regi)..

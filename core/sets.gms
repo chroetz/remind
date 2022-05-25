@@ -1361,6 +1361,7 @@ $endif
   coalftcrec  "coal based fischer-tropsch with capture recycle"
   coalh2c     "coal to hydrogen with capture"
   bioftcrec   "biomass based fischer-tropsch with capture recycle"
+  biochar  
   bioh2c      "biomass to hydrogen with capture"
   bioigccc    "integrated biomass gasification combined cycle with CCS"
 /
@@ -2516,6 +2517,7 @@ pc2te(all_enty,all_enty,all_te,all_enty)    "mapping for own consumption of tech
         pebiolc.seliqbio.bioethl.seel
         pebiolc.seliqbio.bioftrec.seel
         pebiolc.seliqbio.bioftcrec.seel
+        pebiolc.seliqbio.biochar.seel
         pegas.seel.gaschp.sehe
         pecoal.seh2.coalh2.seel
         pecoal.seh2.coalh2c.seel
