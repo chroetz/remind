@@ -352,6 +352,7 @@ parameters
   cm_CESMkup_build               "switch for setting markup cost to CES nodes in buildings" 
   c_BaselineAgriEmiRed     "switch to lower agricultural base line emissions as fraction of standard assumption, a value of 0.25 will lower emissions by a fourth"
   cm_deuCDRmax                 "switch to limit maximum annual CDR amount in Germany in MtCO2 per y"
+  cm_feedstockMatchingBiomass "feedstock matching of purpose grown biomass vs residues, see teBioPebiolcPurposeGrown and teBioPebiolcResidues"
 ;
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -582,6 +583,9 @@ $setGlobal cm_CESMkup_build  standard !! def = standard
 c_BaselineAgriEmiRed = 0; !! def = 0
 
 cm_deuCDRmax = -1; !! def = -1
+
+cm_feedstockMatchingBiomass = 0; !! def = 0
+
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ***                           YOU ARE IN THE WARNING ZONE (DON'T DO CHANGES HERE)

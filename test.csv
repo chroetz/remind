@@ -1,4 +1,5 @@
-title;start;cm_rcp_scen;cm_iterative_target_adj;carbonprice;cm_co2_tax_2020;cm_emiscen;cm_startyear;path_gdx;path_gdx_ref;path_gdx_bau
-Base;1;none;0;none;-1;1;2005;;;
-NDC;1;rcp45;3;NDC;1;9;2015;;Base;Base
-policy;1;rcp26;0;diffCurvPhaseIn2Lin;150;9;2025;;NDC;NDC
+title;start;cm_feedstockMatchingBiomass;cm_rcp_scen;cm_iterative_target_adj;cm_nash_autoconverge;cm_iteration_max;carbonprice;cm_co2_tax_2020;cm_emiscen;cm_startyear;path_gdx;path_gdx_ref;path_gdx_bau
+Base;1;0;none;0;0;1;none;-1;1;2005;;;
+NDC;1;0;rcp45;3;0;1;NDC;1;9;2015;;Base;Base
+policy;1;0;rcp26;0;0;1;diffCurvPhaseIn2Lin;100;9;2025;;NDC;NDC
+policyFsm;1;1;rcp26;0;0;1;diffCurvPhaseIn2Lin;100;9;2025;;NDC;NDC
