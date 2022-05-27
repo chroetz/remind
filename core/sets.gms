@@ -1360,8 +1360,7 @@ $ifthen setGlobal cm_ccsfosall
 $endif
   coalftcrec  "coal based fischer-tropsch with capture recycle"
   coalh2c     "coal to hydrogen with capture"
-  bioftcrec   "biomass based fischer-tropsch with capture recycle"
-  biochar  
+  bioftcrec   "biomass based fischer-tropsch with capture recycle"  
   bioh2c      "biomass to hydrogen with capture"
   bioigccc    "integrated biomass gasification combined cycle with CCS"
 /
@@ -2727,7 +2726,6 @@ emiMac2sector(all_enty,emi_sectors,sector_types,all_enty)            "mapping of
 emiBECCS2te(all_enty,all_enty,all_te,all_enty) "mapping of BECCS PE,SE,technology and captured emissions"
 /
         pebiolc.seliqbio.bioftcrec.cco2
-        pebiolc.seliqbio.biochar.cco2
         pebiolc.seel.bioigccc.cco2
         pebiolc.seh2.bioh2c.cco2
 /
