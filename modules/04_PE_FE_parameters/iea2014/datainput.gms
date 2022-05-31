@@ -252,6 +252,10 @@ p04_prodCoupleGlob("cco2","ico2","ccsinje","seel")          = -0.005;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffT","feelt")   = -0.1;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffH2T","feelt") = -0.2;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffH2T","feh2t") = -0.1;
+
+*** Set p04_prodCoupleGlob for biochar to values read from switches.
+if (cm_biochar_seel GE 0 , p04_prodCoupleGlob("pebiolc","seliqbio","biochar","seel") = cm_biochar_seel;);
+
 *** use global data for coule products if regional data form IEA are 0
 loop(pc2te(enty,enty2,te,enty3),
     loop(regi,

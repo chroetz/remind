@@ -143,6 +143,16 @@ $include "./core/input/generisdata_tech.prn"
 $include "./core/input/generisdata_trade.prn"
 ;
 
+*** Set fm_dataglob for biochar to values read from switches 
+if (cm_biochar_tech_stat GE 0 , fm_dataglob("tech_stat","biochar") = cm_biochar_tech_stat;);
+if (cm_biochar_inco0 GE 0 , fm_dataglob("inco0","biochar") = cm_biochar_inco0;);
+if (cm_biochar_constrTme GE 0 , fm_dataglob("constrTme","biochar") = cm_biochar_constrTme;);
+if (cm_biochar_mix0 GE 0 , fm_dataglob("mix0","biochar") = cm_biochar_mix0;);
+if (cm_biochar_eta GE 0 , fm_dataglob("eta","biochar") = cm_biochar_eta;);
+if (cm_biochar_omf GE 0 , fm_dataglob("omf","biochar") = cm_biochar_omf;);
+if (cm_biochar_omv GE 0 , fm_dataglob("omv","biochar") = cm_biochar_omv;);
+if (cm_biochar_lifetime GE 0 , fm_dataglob("lifetime","biochar") = cm_biochar_lifetime;);
+
 !! Modify spv and storspv parameters for optimistic VRE supply assumptions
 if (cm_VRE_supply_assumptions eq 1,
   if (fm_dataglob("learn","spv") ne 0.207,
@@ -254,6 +264,10 @@ p_inco0(ttot,regi,te)               = sm_DpKW_2_TDpTW       * p_inco0(ttot,regi,
 table fm_dataemiglob(all_enty,all_enty,all_te,all_enty)  "read-in of emissions factors co2,cco2"
 $include "./core/input/generisdata_emi.prn"
 ;
+
+*** Set fm_dataemiglob for biochar to values read from switches 
+if (cm_biochar_co2 GE 0 , fm_dataglob("pebiolc", "seliqbio", "biochar", "co2") = cm_biochar_co2;);
+if (cm_biochar_cco2 GE 0 , fm_dataglob("pebiolc", "seliqbio", "biochar", "cco2") = cm_biochar_cco2;);
 
 pm_esCapCost(tall,all_regi,all_teEs) = 0;
 
@@ -472,6 +486,8 @@ $offdelim
 ;
 $Onlisting
 
+*** Set f_cf for biochar to values read from switches.
+if (cm_biochar_cf GE 0 , f_cf(t,regi,"biochar") = cm_biochar_cf;);
 
 *CG* setting wind off capacity factor to be the same as onshore here (later adjusting it in vm_capFac)
 $IFTHEN.WindOff %cm_wind_offshore% == "1"

@@ -353,6 +353,18 @@ parameters
   c_BaselineAgriEmiRed     "switch to lower agricultural base line emissions as fraction of standard assumption, a value of 0.25 will lower emissions by a fourth"
   cm_deuCDRmax                 "switch to limit maximum annual CDR amount in Germany in MtCO2 per y"
   cm_feedstockMatchingBiomass "feedstock matching of purpose grown biomass vs residues, see teBioPebiolcPurposeGrown and teBioPebiolcResidues"
+  cm_biochar_tech_stat "biochar parameter switch"
+  cm_biochar_inco0 "biochar parameter switch"
+  cm_biochar_constrTme "biochar parameter switch"
+  cm_biochar_mix0 "biochar parameter switch"
+  cm_biochar_eta "biochar parameter switch"
+  cm_biochar_omf "biochar parameter switch"
+  cm_biochar_omv "biochar parameter switch"
+  cm_biochar_lifetime "biochar parameter switch"
+  cm_biochar_co2 "biochar parameter switch"
+  cm_biochar_cco2 "biochar parameter switch"
+  cm_biochar_cf "biochar parameter switch"
+  cm_biochar_seel "biochar parameter switch"
 ;
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -585,6 +597,19 @@ c_BaselineAgriEmiRed = 0; !! def = 0
 cm_deuCDRmax = -1; !! def = -1
 
 cm_feedstockMatchingBiomass = 0; !! def = 0
+
+cm_biochar_tech_stat = -1; !! def = -1
+cm_biochar_inco0 = -1; !! def = -1
+cm_biochar_constrTme = -1; !! def = -1
+cm_biochar_mix0 = -1; !! def = -1
+cm_biochar_eta = -1; !! def = -1
+cm_biochar_omf = -1; !! def = -1
+cm_biochar_omv = -1; !! def = -1
+cm_biochar_lifetime = -1; !! def = -1
+cm_biochar_co2 = -1; !! def = -1
+cm_biochar_cco2 = -1; !! def = -1
+cm_biochar_cf = -1; !! def = -1
+cm_biochar_seel = -1; !! def = -1
 
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
