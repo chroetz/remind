@@ -9,6 +9,8 @@
 *** setting bounds
 *** -----------------------------------------------------------
 
+
+
 *RP 20160126 set vm_costTeCapital to pm_inco0_t for all technologies that are non-learning
 vm_costTeCapital.fx(ttot,regi,teNoLearn)  = pm_inco0_t("2005",regi,teNoLearn);  !! use 2005 value for the past
 vm_costTeCapital.fx(t,regi,teNoLearn)     = pm_inco0_t(t,regi,teNoLearn);

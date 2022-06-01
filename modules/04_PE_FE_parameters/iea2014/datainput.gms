@@ -243,6 +243,7 @@ p04_prodCoupleGlob("pecoal","seh2","coalh2c","seel")        = 0.054;
 ***p04_prodCoupleGlob("pebiolc","seel","biochp","sehe")        = 0.72;
 p04_prodCoupleGlob("pebiolc","seliqbio","bioftrec","seel")  = 0.147; !! from Liu et al. 2011 (Making Fischer-Tropsch Fuels and Electricity from Coal and Biomass: Performance and Cost Analysis)
 p04_prodCoupleGlob("pebiolc","seliqbio","bioftcrec","seel") = 0.108; !! from Liu et al. 2011 (Making Fischer-Tropsch Fuels and Electricity from Coal and Biomass: Performance and Cost Analysis)
+p04_prodCoupleGlob("pebiolc","seliqbio","biochar","seel")   = 0.05;
 p04_prodCoupleGlob("pebiolc","seliqbio","bioethl","seel")   = 0.153;
 p04_prodCoupleGlob("segabio","fegas","tdbiogas","seel")     = -0.05;
 p04_prodCoupleGlob("segafos","fegas","tdfosgas","seel")     = -0.05;
@@ -251,6 +252,10 @@ p04_prodCoupleGlob("cco2","ico2","ccsinje","seel")          = -0.005;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffT","feelt")   = -0.1;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffH2T","feelt") = -0.2;
 p04_prodCoupleGlob("fedie","uedit","apcardiEffH2T","feh2t") = -0.1;
+
+*** Set p04_prodCoupleGlob for biochar to values read from switches.
+if (cm_biochar_seel GE 0 , p04_prodCoupleGlob("pebiolc","seliqbio","biochar","seel") = cm_biochar_seel;);
+
 *** use global data for coule products if regional data form IEA are 0
 loop(pc2te(enty,enty2,te,enty3),
     loop(regi,
