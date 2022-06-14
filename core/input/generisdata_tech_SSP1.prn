@@ -64,6 +64,17 @@ omf                            0.03        0.04        0.04        0.04        0
 omv                                       30.11       25.00       31.50       50.50       10.90       10.60       10.60       97.27       38.99        5.05                   10.60
 lifetime              35         35          40          40          40          40          40          35          35          35          35          35          35          35
 
+
++              biocharin  biocharlo   biocharel
+tech_stat              1          0           3
+inco0               2000       1000        2000
+constrTme              4          1           4
+eta                 0.30       0.30        0.30
+omf                 0.05       0.01        0.05
+omv                10.00       1.00       10.00
+lifetime              25         25          25
+
+
 +                geohdr       geohe       hydro        wind         windoff     spv       solhe         csp
 tech_stat            1
 inco0               3600        1200        2700        2400         5000       5160        9999       10320
