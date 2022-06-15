@@ -1,0 +1,4 @@
+title;start;cm_rcp_scen;cm_iterative_target_adj;cm_abortOnConsecFail ;carbonprice;cm_co2_tax_2020;cm_emiscen;cm_startyear;path_gdx;path_gdx_ref;path_gdx_bau
+Base;1;none;0;2;none;-1;1;2005;;;
+NDC;1;rcp45;3;2;NDC;1;9;2015;;Base;Base
+policy;1;rcp26;0;2;diffCurvPhaseIn2Lin;100;9;2025;;NDC;NDC
