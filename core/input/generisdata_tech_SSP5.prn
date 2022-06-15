@@ -75,6 +75,9 @@ omv                10.00       1.00       10.00
 lifetime              25         25          25
 
 
++           biochar4soil
+lifetime             100
+
 
 +                geohdr       geohe       hydro        wind       windoff        spv       solhe         csp
 tech_stat            1
