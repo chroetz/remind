@@ -190,6 +190,7 @@ $endif
         bioethl         "biomass to ethanol"
         bioeths         "sugar and starch biomass to ethanol"
         biodiesel       "oil biomass to biodiesel"
+        biochar4soil    "use biochar for soil amendment"
         geohdr          "geothermal electric hot dry rock"
         geohe           "geothermal heat"
         hydro           "hydro electric"
@@ -1165,6 +1166,7 @@ $endif
         bioethl         "biomass to ethanol"
         bioeths         "sugar and starch biomass to ethanol"
         biodiesel       "oil biomass to biodiesel"
+        biochar4soil    "use biochar for soil amendment"
         geohdr          "geothermal electric hot dry rock"
         geohe           "geothermal heat"
         hydro           "hydro electric"
@@ -2784,6 +2786,7 @@ demSeOth2te(all_enty,all_te)      "map other se demands not directly following t
   seh2.csp
   segabio.csp
   segafos.csp
+  sebiochar.biochar4soil
 /
 
 prodSeOth2te(all_enty,all_te)      "map other se production not directly following the sedem-route through technologies"
