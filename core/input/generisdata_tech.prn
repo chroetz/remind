@@ -67,11 +67,11 @@ lifetime              35         35          40          40          40         
 
 +              biocharin  biocharlo   biocharel  
 tech_stat              1          0           3
-inco0                200        100         300
+inco0                400        200        1000
 constrTme              2          1           3
 eta                 0.30       0.30        0.30
 omf                 0.05       0.01        0.05
-omv                 0.10       0.01        0.01
+omv                 2.00       1.00        2.00
 lifetime              25         25          25
 
 
