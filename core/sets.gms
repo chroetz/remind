@@ -2528,7 +2528,7 @@ pc2te(all_enty,all_enty,all_te,all_enty)    "mapping for own consumption of tech
         pebiolc.seliqbio.bioethl.seel
         pebiolc.seliqbio.bioftrec.seel
         pebiolc.seliqbio.bioftcrec.seel
-        pebiolc.seliqbio.biocharel.seel
+        pebiolc.sebiochar.biocharel.seel
         pegas.seel.gaschp.sehe
         pecoal.seh2.coalh2.seel
         pecoal.seh2.coalh2c.seel
@@ -2618,9 +2618,9 @@ $endif
         peoil.seel.dot.n2o
         pebiolc.seliqbio.bioftcrec.co2
         pebiolc.seliqbio.bioftcrec.cco2
-        pebiolc.seliqbio.biocharin.co2
-        pebiolc.seliqbio.biocharlo.co2
-        pebiolc.seliqbio.biocharel.co2
+        pebiolc.sebiochar.biocharin.co2
+        pebiolc.sebiochar.biocharlo.co2
+        pebiolc.sebiochar.biocharel.co2
         pebiolc.seh2.bioh2c.co2
         pebiolc.seh2.bioh2c.cco2
         pebiolc.sesobio.biotr.bc
