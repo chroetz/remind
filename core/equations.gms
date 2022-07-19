@@ -302,7 +302,6 @@ q_cap(ttot,regi,te2rlf(te,rlf))$(ttot.val ge cm_startyear)..
                 * pm_omeg(regi,opTimeYr+1,te)
                 * vm_deltaCap(ttot-(pm_tsu2opTimeYr(ttot,opTimeYr)-1),regi,te,rlf)
             )
-        )
 $ifthen setGlobal END2110
     - ( pm_ts(ttot) / 2
       * pm_omeg(regi,"11",te)

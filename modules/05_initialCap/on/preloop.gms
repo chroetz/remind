@@ -87,7 +87,7 @@ loop(regi,
     p05_aux_vintage_renormalization(regi,te)
       = sum(opTimeYr2te(te,opTimeYr)$( opTime5(opTimeYr) AND (opTimeYr.val ge 1) ),
           (pm_vintage_in(regi,opTimeYr,te) * pm_omeg(regi,opTimeYr+1,te))
-        )
+        );
 *--- Normalization
     if(p05_aux_vintage_renormalization(regi,te) gt 0,
       p05_vintage(regi,opTimeYr,te) = pm_vintage_in(regi,opTimeYr,te)/p05_aux_vintage_renormalization(regi,te);
