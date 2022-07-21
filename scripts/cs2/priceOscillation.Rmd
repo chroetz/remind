@@ -105,6 +105,8 @@ quart3RV %>%
   )
 ```
 
+\newpage
+
 ### By Variable an Region
 
 ```{r}
@@ -116,7 +118,7 @@ showRelativeVariation <- function(relVariData, var) {
     pivot_wider(names_from = region, values_from = value)
   d %>% 
     kbl(
-      caption = "3rd Quartile of Relative Variation of Prices over Regions",
+      caption = paste0(var, ": Relative Variation"),
       booktabs = TRUE
     ) %>%
     kable_styling(
@@ -135,19 +137,24 @@ showRelativeVariation <- function(relVariData, var) {
 walk(varsPE, showRelativeVariation, relVariData = relVariData)
 ```
 
+\newpage
+
 #### SE Prices
 
 
-```{r}
+```{r results='asis'}
 walk(varsSE, showRelativeVariation, relVariData = relVariData)
 ```
 
+\newpage
+
 #### FE Prices
 
-```{r}
+```{r results='asis'}
 walk(varsFE, showRelativeVariation, relVariData = relVariData)
 ``` 
 
+\newpage
 
 
 ## Line Plots
@@ -161,12 +168,12 @@ walk(varsPE, showLinePlots, data = dPrice, scale = "fixed")
 ### SE Prices
 
 
-```{r results='asis'}
+```{r}
 walk(varsSE, showLinePlots, data = dPrice, scale = "fixed")
 ```
 
 ### FE Prices
 
-```{r results='asis'}
+```{r}
 walk(varsFE, showLinePlots, data = dPrice, scale = "fixed")
 ``` 
