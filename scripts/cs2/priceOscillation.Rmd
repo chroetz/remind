@@ -1,6 +1,7 @@
 # Price Oscillations
 
 ```{r}
+# filter the price variables
 dPrice <-
   data %>%
     filter(scenario != "historical") %>%
@@ -23,11 +24,29 @@ varsFE <-
     negate = TRUE)
 ```
 
+```{r}
+# create a table for output in the default styling
+kableDefault <- function(tbl, caption) {
+  tbl %>% 
+    kbl(
+      caption = caption,
+      booktabs = TRUE,
+      digits = 2,
+    ) %>%
+    kable_styling(
+      bootstrap_options = c("striped", "condensed"),
+      latex_options = c("striped", "HOLD_position"),
+      full_width = FALSE
+    )
+}
+```
+
+
 
 ## Relative Variation
 
 ```{r}
-relativeVariation <- function(v, p=seq_along(v)) {
+relativeVariation <- function(v, p) {
   sum(abs(diff(v))) / (max(v) - min(v))
 }
 
@@ -53,16 +72,7 @@ summaryData <-
     "3rd Qu." = quantile(value, probs=0.75, na.rm=TRUE),
     "Max." = max(value, na.rm=TRUE))
 
-summaryData %>% 
-  kbl(
-    caption = "Overall Relative Variation Summary of Prices",
-    booktabs = TRUE
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "condensed"),
-    latex_options = c("striped", "hold_position"),
-    full_width = FALSE
-  )
+kableDefault(summaryData, "Overall Relative Variation Summary of Prices")
 ```
 
 ### By Variable
@@ -74,16 +84,7 @@ medianRV <-
   summarise(value = median(value, na.rm = TRUE)) %>% 
   pivot_wider(names_from = scenario, values_from = value)
 
-medianRV %>% 
-  kbl(
-    caption = "Median Relative Variation of Prices over Regions",
-    booktabs = TRUE
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "condensed"),
-    latex_options = c("striped", "hold_position"),
-    full_width = FALSE
-  )
+kableDefault(medianRV, "Median Relative Variation of Prices over Regions")
 ```
 
 ```{r}
@@ -93,16 +94,7 @@ quart3RV <-
   summarise(value = quantile(value, probs=0.75, na.rm=TRUE)) %>% 
   pivot_wider(names_from = scenario, values_from = value)
 
-quart3RV %>% 
-  kbl(
-    caption = "3rd Quartile of Relative Variation of Prices over Regions",
-    booktabs = TRUE
-  ) %>%
-  kable_styling(
-    bootstrap_options = c("striped", "condensed"),
-    latex_options = c("striped", "hold_position"),
-    full_width = FALSE
-  )
+kableDefault(quart3RV, "3rd Quartile of Relative Variation of Prices over Regions")
 ```
 
 \newpage
@@ -117,15 +109,7 @@ showRelativeVariation <- function(relVariData, var) {
     select(scenario, region, value) %>% 
     pivot_wider(names_from = region, values_from = value)
   d %>% 
-    kbl(
-      caption = paste0(var, ": Relative Variation"),
-      booktabs = TRUE
-    ) %>%
-    kable_styling(
-      bootstrap_options = c("striped", "condensed"),
-      latex_options = c("striped", "hold_position"),
-      full_width = FALSE
-    ) %>% 
+    kableDefault(paste0(var, ": Relative Variation")) %>% 
     cat("\n\n")
 }
 ```
