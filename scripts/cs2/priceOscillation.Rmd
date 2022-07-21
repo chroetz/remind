@@ -72,7 +72,7 @@ summaryData <-
     "3rd Qu." = quantile(value, probs=0.75, na.rm=TRUE),
     "Max." = max(value, na.rm=TRUE))
 
-kableDefault(summaryData, "Overall Relative Variation Summary of Prices")
+kableDefault(summaryData, "Relative Variation of Prices: summary over variables and regions")
 ```
 
 ### By Variable
@@ -84,22 +84,22 @@ medianRV <-
   summarise(value = median(value, na.rm = TRUE)) %>% 
   pivot_wider(names_from = scenario, values_from = value)
 
-kableDefault(medianRV, "Median Relative Variation of Prices over Regions")
+kableDefault(medianRV, "Relative Variation of Prices: median over Regions")
 ```
 
 ```{r}
-quart3RV <- 
+maxRV <- 
   relVariData %>% 
   group_by(scenario, variable) %>% 
-  summarise(value = quantile(value, probs=0.75, na.rm=TRUE)) %>% 
+  summarise(value = max(value, na.rm=TRUE)) %>% 
   pivot_wider(names_from = scenario, values_from = value)
 
-kableDefault(quart3RV, "3rd Quartile of Relative Variation of Prices over Regions")
+kableDefault(maxRV, "Relative Variation of Prices: max over Regions")
 ```
 
 \newpage
 
-### By Variable an Region
+### By Variable and Region
 
 ```{r}
 showRelativeVariation <- function(relVariData, var) {
