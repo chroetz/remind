@@ -17,4 +17,4 @@ AriadneDEU;;;;;;;;;seq(2005, 2050, 5);c(seq(1990, 2020, 1), seq(2025, 2050, 5));
 # summary: show only the summary chapter;;;;;;;;;;;;;;;;;;;;
 summary;;;;;;;;;;;;;;;c(0,1,99);;;;;
 # show metrics on oscillation of prices;;;;;;;;;;;;;;;;;;;;
-priceOscillation;;;;;;;;;;;;;;;c(0,99);'scripts/cs2/priceOscillation.Rmd';;;;
+priceOscillation;;;;;;;;;;;;;;;c(0,99);normalizePath('scripts/cs2/priceOscillation.Rmd');;;;
