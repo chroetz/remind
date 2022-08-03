@@ -1,4 +1,4 @@
-# |  (C) 2006-2020 Potsdam Institute for Climate Impact Research (PIK)
+# |  (C) 2006-2022 Potsdam Institute for Climate Impact Research (PIK)
 # |  authors, and contributors see CITATION.cff file. This file is part
 # |  of REMIND and licensed under AGPL-3.0-or-later. Under Section 7 of
 # |  AGPL-3.0, you are granted additional permissions described in the
@@ -69,7 +69,7 @@ submit <- function(cfg, restart = FALSE, stopOnFolderCreateError = TRUE) {
   
   # send prepare_and_run.R to cluster 
   cat("   Executing prepare_and_run.R for",cfg$results_folder,"\n")
-  if(cfg$slurmConfig=="direct") {
+  if (grepl("^direct", cfg$slurmConfig)) {
     log <- format(Sys.time(), paste0(cfg$title,"-%Y-%H-%M-%S-%OS3.log"))
     system("Rscript prepare_and_run.R")
   } else {

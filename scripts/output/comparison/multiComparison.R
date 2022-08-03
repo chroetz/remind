@@ -1,4 +1,4 @@
-# |  (C) 2006-2020 Potsdam Institute for Climate Impact Research (PIK)
+# |  (C) 2006-2022 Potsdam Institute for Climate Impact Research (PIK)
 # |  authors, and contributors see CITATION.cff file. This file is part
 # |  of REMIND and licensed under AGPL-3.0-or-later. Under Section 7 of
 # |  AGPL-3.0, you are granted additional permissions described in the
@@ -40,7 +40,7 @@ compareScenTable <- function(listofruns){
 
       def_choice <- fls[length(fls)]
       cat(sprintf("Select the correct output directory (%s): ", def_choice))
-      n <- as.integer(get_line())
+      n <- as.integer(gms::getLine())
       if(is.na(n))
         choice <- def_choice
       else

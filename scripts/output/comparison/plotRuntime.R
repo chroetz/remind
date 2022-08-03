@@ -1,17 +1,14 @@
+# |  (C) 2006-2022 Potsdam Institute for Climate Impact Research (PIK)
+# |  authors, and contributors see CITATION.cff file. This file is part
+# |  of REMIND and licensed under AGPL-3.0-or-later. Under Section 7 of
+# |  AGPL-3.0, you are granted additional permissions described in the
+# |  REMIND License Exception, version 1.0 (see LICENSE file).
+# |  Contact: remind@pik-potsdam.de
+
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(magclass)
-
-getLine <- function() {
-  # gets and returns characters (line) from the terminal or from a connection
-  if (interactive()) {
-    s <- readline()
-  } else {
-    s <- readLines(withr::local_connection(file("stdin")), 1, warn = FALSE)
-  }
-  return(s)
-}
 
 if (!exists("source_include")) {
   ## Define arguments that can be read from command line
@@ -24,7 +21,7 @@ print(outputdirs)
 defaultFilenameKeywords <- "Base, NDC, PkBudg900"
 cat("Which filename keywords (case-insensitive regex) do you want to compare? Separate with commas. (default: ",
     defaultFilenameKeywords, ") ")
-filenameKeywords <- getLine()
+filenameKeywords <- gms::getLine()
 if (identical(filenameKeywords, "")) {
   filenameKeywords <- defaultFilenameKeywords
 }
@@ -32,7 +29,7 @@ filenameKeywords <- trimws(strsplit(filenameKeywords, ",", fixed = TRUE)[[1]])
 
 defaultComparisonProperty <- "config$gms$buildings"
 cat("Which property in runstatistics.rda do you want to compare? (default: ", defaultComparisonProperty, ") ")
-comparisonProperty <- getLine()
+comparisonProperty <- gms::getLine()
 if (identical(comparisonProperty, "")) {
   comparisonProperty <- defaultComparisonProperty
 }
