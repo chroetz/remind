@@ -484,6 +484,12 @@ $offdelim
 ;
 $Onlisting
 
+* TODO: remove. Set capacity factors if not set before.
+f_cf(t,regi,"biocharin")$(f_cf(t,regi,"biocharin") eq 0) = 0.9;
+f_cf(t,regi,"biocharlo")$(f_cf(t,regi,"biocharlo") eq 0) = 0.9;
+f_cf(t,regi,"biocharel")$(f_cf(t,regi,"biocharel") eq 0) = 0.9;
+f_cf(t,regi,"biochar4soil")$(f_cf(t,regi,"biochar4soil") eq 0) = 0.9;
+
 
 *CG* setting wind off capacity factor to be the same as onshore here (later adjusting it in vm_capFac)
 $IFTHEN.WindOff %cm_wind_offshore% == "1"
