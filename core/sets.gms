@@ -1524,10 +1524,8 @@ teFosNoCCS(all_te)  "fossil technologies without CCS"
         coaltr       "transformation of coal"
 $IF %cm_OILRETIRE% == "on"   refliq
 /
-teBioPebiolc(all_te)      "biomass technologies using pebiolc"
+teBioPebiolcPurposeGrown(all_te)      "biomass technologies using purpose grown pebiolc"
 /
-        biotr
-        biotrmod
         biochp
         biohp
         bioigcc
@@ -1536,12 +1534,22 @@ teBioPebiolc(all_te)      "biomass technologies using pebiolc"
         biogasc
         bioftrec
         bioftcrec
-        biocharin
-        biocharlo
-        biocharel
         bioh2
         bioh2c
         bioethl
+/
+teBioPebiolcResidues(all_te)      "biomass technologies using pebiolc from residues"
+/
+        biotr
+        biotrmod
+        biocharin
+        biocharlo
+        biocharel
+/
+teBioPebiolc(all_te)      "biomass technologies using pebiolc"
+/
+        set.teBioPebiolcPurposeGrown
+        set.teBioPebiolcResidues
 /
 teNoTransform(all_te) "all technologies that do not transform energy but still have investment and O&M costs (like storage or grid)"
 /
