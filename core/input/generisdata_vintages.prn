@@ -92,9 +92,7 @@ $endif
 
 
 +     biocharMedTech   biocharLowTech   biocharHighTech 
-1           1.0         1.0         1.0  
-6           1.0         1.0         1.0  
-11          1.0         1.0         1.0  
+1               1.0              1.0               1.0  
 
 
 +       hydro          wind           spv         solhe           csp          elh2        geohdr         geohe     h2turb   h22ch4   MeOH
