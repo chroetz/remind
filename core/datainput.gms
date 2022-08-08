@@ -485,9 +485,9 @@ $offdelim
 $Onlisting
 
 * TODO: remove. Set capacity factors if not set before.
-f_cf(t,regi,"biocharin")$(f_cf(t,regi,"biocharin") eq 0) = 0.9;
-f_cf(t,regi,"biocharlo")$(f_cf(t,regi,"biocharlo") eq 0) = 0.9;
-f_cf(t,regi,"biocharel")$(f_cf(t,regi,"biocharel") eq 0) = 0.9;
+f_cf(t,regi,"biocharMedTech")$(f_cf(t,regi,"biocharMedTech") eq 0) = 0.9;
+f_cf(t,regi,"biocharLowTech")$(f_cf(t,regi,"biocharLowTech") eq 0) = 0.9;
+f_cf(t,regi,"biocharHighTech")$(f_cf(t,regi,"biocharHighTech") eq 0) = 0.9;
 f_cf(t,regi,"biochar4soil")$(f_cf(t,regi,"biochar4soil") eq 0) = 0.9;
 
 

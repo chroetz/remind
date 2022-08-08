@@ -183,9 +183,9 @@ $endif
         biogasc         "gasification of biomass with capture"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
-        biocharin       "biomass to biochar; large, centralized facilities"
-        biocharlo       "biomass to biochar; small, decentralized facilities"
-        biocharel       "biomass to biochar; high-tech, uses electrical heating"
+        biocharMedTech       "biomass to biochar; large, centralized facilities"
+        biocharLowTech       "biomass to biochar; small, decentralized facilities"
+        biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
@@ -1160,9 +1160,9 @@ $endif
         biogasc         "gasification of biomass with capture"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
-        biocharin       "biomass to biochar; large, centralized facilities"
-        biocharlo       "biomass to biochar; small, decentralized facilities"
-        biocharel       "biomass to biochar; high-tech, uses electrical heating"
+        biocharMedTech       "biomass to biochar; large, centralized facilities"
+        biocharLowTech       "biomass to biochar; small, decentralized facilities"
+        biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
@@ -1273,9 +1273,9 @@ $endif
   biogasc         "gasification of biomass with capture"
   bioftrec        "biomass based fischer-tropsch recycle"
   bioftcrec       "biomass based fischer-tropsch with capture recycle"
-  biocharin       "biomass to biochar; large, centralized facilities"
-  biocharlo       "biomass to biochar; small, decentralized facilities"
-  biocharel       "biomass to biochar; high-tech, uses electrical heating"        
+  biocharMedTech       "biomass to biochar; large, centralized facilities"
+  biocharLowTech       "biomass to biochar; small, decentralized facilities"
+  biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"        
   bioh2           "biomass to hydrogen"
   bioh2c          "biomass to hydrogen with capture"
   bioethl         "biomass to ethanol"
@@ -1394,9 +1394,9 @@ teBio(all_te)      "biomass energy systems technologies"
         biogasc     "gasification of biomass with capture"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
-        biocharin   "biomass to biochar; large, centralized facilities"
-        biocharlo   "biomass to biochar; small, decentralized facilities"
-        biocharel   "biomass to biochar; high-tech, uses electrical heating"
+        biocharMedTech   "biomass to biochar; large, centralized facilities"
+        biocharLowTech   "biomass to biochar; small, decentralized facilities"
+        biocharHighTech   "biomass to biochar; high-tech, uses electrical heating"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1415,9 +1415,9 @@ teRe(all_te)     "renewable technologies including biomass"
         biogasc     "gasification of biomass with capture"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
-        biocharin   "biomass to biochar; large, centralized facilities"
-        biocharlo   "biomass to biochar; small, decentralized facilities"
-        biocharel   "biomass to biochar; high-tech, uses electrical heating"
+        biocharMedTech   "biomass to biochar; large, centralized facilities"
+        biocharLowTech   "biomass to biochar; small, decentralized facilities"
+        biocharHighTech   "biomass to biochar; high-tech, uses electrical heating"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1542,9 +1542,9 @@ teBioPebiolcResidues(all_te)      "biomass technologies using pebiolc from resid
 /
         biotr
         biotrmod
-        biocharin
-        biocharlo
-        biocharel
+        biocharMedTech
+        biocharLowTech
+        biocharHighTech
 /
 teBioPebiolc(all_te)      "biomass technologies using pebiolc"
 /
@@ -2408,9 +2408,9 @@ $endif
         pecoal.seliqfos.coalftcrec
         pebiolc.seliqbio.bioftrec
         pebiolc.seliqbio.bioftcrec
-        pebiolc.sebiochar.biocharin
-        pebiolc.sebiochar.biocharlo
-        pebiolc.sebiochar.biocharel
+        pebiolc.sebiochar.biocharMedTech
+        pebiolc.sebiochar.biocharLowTech
+        pebiolc.sebiochar.biocharHighTech
         pebioil.seliqbio.biodiesel
         pebios.seliqbio.bioeths
         pebiolc.seliqbio.bioethl
@@ -2550,7 +2550,7 @@ pc2te(all_enty,all_enty,all_te,all_enty)    "mapping for own consumption of tech
         pebiolc.seliqbio.bioethl.seel
         pebiolc.seliqbio.bioftrec.seel
         pebiolc.seliqbio.bioftcrec.seel
-        pebiolc.sebiochar.biocharel.seel
+        pebiolc.sebiochar.biocharHighTech.seel
         pegas.seel.gaschp.sehe
         pecoal.seh2.coalh2.seel
         pecoal.seh2.coalh2c.seel
@@ -2640,9 +2640,9 @@ $endif
         peoil.seel.dot.n2o
         pebiolc.seliqbio.bioftcrec.co2
         pebiolc.seliqbio.bioftcrec.cco2
-        pebiolc.sebiochar.biocharin.co2
-        pebiolc.sebiochar.biocharlo.co2
-        pebiolc.sebiochar.biocharel.co2
+        pebiolc.sebiochar.biocharMedTech.co2
+        pebiolc.sebiochar.biocharLowTech.co2
+        pebiolc.sebiochar.biocharHighTech.co2
         pebiolc.seh2.bioh2c.co2
         pebiolc.seh2.bioh2c.cco2
         pebiolc.sesobio.biotr.bc
@@ -2827,7 +2827,7 @@ $IFTHEN.WindOff %cm_wind_offshore% == "1"
 $ENDIF.WindOff
         spv,csp,refliq,hydro,geohe,geohdr,solhe,ngcc,ngccc,ngt,gaschp,gashp,gash2,gash2c,gastr,gasftrec,gasftcrec,dot,
        igcc,igccc,pc,coaltr,coalgas,coalh2,coalh2c,coalchp,coalhp,coalftrec,coalftcrec,
-       biotr,biotrmod,biogas,biogasc,bioftrec,bioftcrec,biocharin,biocharlo,biocharel,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
+       biotr,biotrmod,biogas,biogasc,bioftrec,bioftcrec,biocharMedTech,biocharLowTech,biocharHighTech,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
        elh2,h2turb,elh2VRE,h2turbVRE,bioethl,bioeths,biodiesel,tnrs,fnrs
 $ifthen setGlobal cm_ccsfosall
        pcc, pco

@@ -91,7 +91,7 @@ $endif
 41       1.0        
 
 
-+     biocharin   biocharlo   biocharel 
++     biocharMedTech   biocharLowTech   biocharHighTech 
 1           1.0         1.0         1.0  
 6           1.0         1.0         1.0  
 11          1.0         1.0         1.0  
