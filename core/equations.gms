@@ -862,12 +862,11 @@ q_smoothphaseoutCapEarlyReti(ttot,regi,te)$(ttot.val lt 2120 AND pm_ttot_val(tto
 q_costEnergySys(ttot,regi)$( ttot.val ge cm_startyear ) ..
     vm_costEnergySys(ttot,regi)
   =e=
-    ( v_costFu(ttot,regi) 
+    v_costFu(ttot,regi) 
     + v_costOM(ttot,regi) 
-    + v_costInv(ttot,regi)
-    ) 
-  + sum(emiInd37, vm_IndCCSCost(ttot,regi,emiInd37))
-  + pm_CementDemandReductionCost(ttot,regi)
+    + ((v_costInv(ttot,regi) + v_costInv(ttot+1,regi)) / 2)$(ttot.val LT 2150)
+    + sum(emiInd37, vm_IndCCSCost(ttot,regi,emiInd37))
+    + pm_CementDemandReductionCost(ttot,regi)
 ;
 
 
