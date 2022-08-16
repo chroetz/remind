@@ -68,12 +68,15 @@ lifetime              35         35          40          40          40         
 
 +              biocharMedTech  biocharLowTech   biocharHighTech  
 tech_stat                   1               0                 3
-inco0                     500               1              1000
-constrTme                   2               1                 3
-eta                      0.45            0.45              0.45
-omf                      0.05            0.00              0.05
-omv                      5.00            0.10              5.00
-lifetime                   25               1                25
+inco0                    3500               0              7000
+incolearn                3360                              6720
+ccap0                0.000005                          0.000001
+learn                    0.15                             0.134 
+constrTme                   2               0                 3
+eta                      0.45            0.50              0.35
+omf                         0               0                 0
+omv                        60              60                60
+lifetime                   20               1                20
 
 
 +           biochar4soil
