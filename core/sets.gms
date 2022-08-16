@@ -1350,6 +1350,8 @@ $IFTHEN.WindOff %cm_wind_offshore% == "1"
 $ENDIF.WindOff
         storcsp     "storage technology for csp"
         elh2        "hydrogen elecrolysis"
+        biocharMedTech
+        biocharHighTech
 /
 
 teNoLearn(all_te)   "Technologies without learning effect"
