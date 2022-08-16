@@ -989,6 +989,15 @@ sets
 
 regi(all_regi)  "all regions used in the solution process"
 
+regiOECD(all_regi) "OECD regions"
+/
+  EUR
+  USA
+  CAZ
+  JPN
+  NEU
+/
+
 *** region sets used for MAGICC
 RCP_regions_world_bunkers "five RCP regions plus total (world) and bunkers"
 /
