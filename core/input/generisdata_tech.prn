@@ -66,16 +66,16 @@ omv                                       30.11       25.00       31.50       50
 lifetime              35         35          40          40          40          40          40          40          35          35          35          35          35          35          35
 
 
-+              biocharMedTech  biocharLowTech   biocharHighTech  
++              biocharMedTech  biocharLowTech   biocharHighTech
 tech_stat                   1               0                 3
-inco0                    3500               0              7000
-incolearn                3360                              6720
-ccap0                0.000005                          0.000001
-learn                    0.15                             0.134 
+inco0                    4769               0              9537
+incolearn                4578                              8774
+ccap0                0.000009                          0.000009
+learn                   0.148                             0.118
 constrTme                   2               0                 3
-eta                      0.45            0.50              0.35
+eta                      0.32            0.50              0.35
 omf                         0               0                 0
-omv                        60              60                60
+omv                        58             156                70
 lifetime                   20               1                20
 
 
