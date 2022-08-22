@@ -55,7 +55,7 @@ q_costInv(t,regi)..
 q_costInvTeDir(t,regi,te)..
   v_costInvTeDir(t,regi,te)
   =e=
-  vm_costTeCapital(t,regi,te) * sum(te2rlf(te,rlf), vm_deltaCap(t,regi,te,rlf) )
+  vm_costTeCapital(t,regi,te) * sum(te2rlf(te,rlf), vm_deltaCap(t,regi,te,rlf)) * 1.05**(pm_ts(t) / 2)
 ;
 
 
@@ -66,7 +66,9 @@ v_adjFactorGlob.fx(t,regi,te) = 0;
 q_costInvTeAdj(t,regi,teAdj)..
   v_costInvTeAdj(t,regi,teAdj)
   =e=
-  vm_costTeCapital(t,regi,teAdj) * ( (p_adj_coeff(t,regi,teAdj) * v_adjFactor(t,regi,teAdj)) + (p_adj_coeff_glob(teAdj) * v_adjFactorGlob(t,regi,teAdj) ) )
+  vm_costTeCapital(t,regi,teAdj) * (
+    (p_adj_coeff(t,regi,teAdj) * v_adjFactor(t,regi,teAdj)) + (p_adj_coeff_glob(teAdj) * v_adjFactorGlob(t,regi,teAdj))
+  ) * 1.05**(pm_ts(t) / 2)
 ;
 
 ***---------------------------------------------------------------------------
