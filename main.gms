@@ -340,21 +340,26 @@ parameters
   cm_import_EU                "EU switch for different scenarios of EU SE import assumptions"
   cm_logitCal_markup_conv_b   "value to which logit calibration markup of standard fe2ue technologies in detailed buildings module converges to"
   cm_logitCal_markup_newtech_conv_b "value to which logit calibration markup of new fe2ue technologies in detailed buildings module converges to"
-  cm_noPeFosCCDeu              "switch to suppress Pe2Se Fossil Carbon Capture in Germany"
-  cm_HeatLim_b                "switch to set maximum share of district heating in FE buildings"
-  cm_ElLim_b                  "switch to set maximum share of electricity in FE buildings"
-  cm_startIter_EDGET          "starting iteration of EDGE-T"
-  cm_ARIADNE_FeShareBounds    "switch for minimum share of liquids and gases for industry needed for the ARIADNE project"
+  cm_noPeFosCCDeu                "switch to suppress Pe2Se Fossil Carbon Capture in Germany"
+  cm_HeatLim_b                   "switch to set maximum share of district heating in FE buildings"
+  cm_ElLim_b                     "switch to set maximum share of electricity in FE buildings"
+  cm_startIter_EDGET             "starting iteration of EDGE-T"
+  cm_ARIADNE_FeShareBounds       "switch for minimum share of liquids and gases for industry needed for the ARIADNE project"
   cm_ariadne_VRECapFac_adj       "switch for enabling increase of VRE capacity factors for wind and solar PV in Germany until 2040 in line with ARIADNE assumptions"
-  c_VREPot_Factor             "switch for rescaling renewable potentials in all grades which have not been used by 2020"
-  cm_FEtax_trajectory_abs     "switch for setting the aboslute FE tax level explicitly from a given year onwards, before tax levels increases or decreases linearly to that value"
-  cm_FEtax_trajectory_rel     "factor for scaling the FE tax level relative to cm_startyear from a given year onwards, before tax levels increases or decreases linearly to that value"
+  c_VREPot_Factor                "switch for rescaling renewable potentials in all grades which have not been used by 2020"
+  cm_FEtax_trajectory_abs        "switch for setting the aboslute FE tax level explicitly from a given year onwards, before tax levels increases or decreases linearly to that value"
+  cm_FEtax_trajectory_rel        "factor for scaling the FE tax level relative to cm_startyear from a given year onwards, before tax levels increases or decreases linearly to that value"
   cm_CESMkup_ind                 "switch for setting markup cost to CES nodes in industry" 
   cm_CESMkup_build               "switch for setting markup cost to CES nodes in buildings" 
-  c_BaselineAgriEmiRed     "switch to lower agricultural base line emissions as fraction of standard assumption, a value of 0.25 will lower emissions by a fourth"
-  cm_deuCDRmax                 "switch to limit maximum annual CDR amount in Germany in MtCO2 per y"
-  cm_EnSecScen             "switch for running an ARIADNE energy security scenario, introducing a tax on PE fossil energy in Germany"
-  cm_Ger_Pol               "switch for selecting different policies for Germany used in the ARIADNE scenarios"
+  c_BaselineAgriEmiRed           "switch to lower agricultural base line emissions as fraction of standard assumption, a value of 0.25 will lower emissions by a fourth"
+  cm_deuCDRmax                   "switch to limit maximum annual CDR amount in Germany in MtCO2 per y"
+  cm_EnSecScen                   "switch for running an ARIADNE energy security scenario, introducing a tax on PE fossil energy in Germany"
+  cm_Ger_Pol                     "switch for selecting different policies for Germany used in the ARIADNE scenarios"
+  cm_feedstockMatchingBiomass    "feedstock matching of purpose grown biomass vs residues, see teBioPebiolcPurposeGrown and teBioPebiolcResidues"
+  cm_biocharRegionalMatching     "do not allow OECD countries to use low tech biochar"
+  cm_biocharLowTech_cf           "capacity factor of low tech biochar production. Set to 0 to turn off; e.g., 0.9 to turn on"
+  cm_biocharMedTech_cf           "capacity factor of medium tech biochar production. Set to 0 to turn off; e.g., 0.9 to turn on"
+  cm_biocharHighTech_cf          "capacity factor of high tech biochar production. Set to 0 to turn off; e.g., 0.9 to turn on"
 ;
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -591,6 +596,14 @@ $setGlobal cm_CESMkup_build  standard !! def = standard
 c_BaselineAgriEmiRed = 0; !! def = 0
 
 cm_deuCDRmax = -1; !! def = -1
+
+cm_feedstockMatchingBiomass = 0; !! def = 0
+  
+cm_biocharRegionalMatching = 0; !! def = 0
+
+cm_biocharLowTech_cf = 0; !! def = 0
+cm_biocharMedTech_cf = 0; !! def = 0
+cm_biocharHighTech_cf = 0; !! def = 0
 
 *** --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ***                           YOU ARE IN THE WARNING ZONE (DON'T DO CHANGES HERE)

@@ -183,11 +183,15 @@ $endif
         biogasc         "gasification of biomass with capture"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
+        biocharMedTech       "biomass to biochar; large, centralized facilities"
+        biocharLowTech       "biomass to biochar; small, decentralized facilities"
+        biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
         bioeths         "sugar and starch biomass to ethanol"
         biodiesel       "oil biomass to biodiesel"
+        biochar4soil    "use biochar for soil amendment"
         geohdr          "geothermal electric hot dry rock"
         geohe           "geothermal heat"
         hydro           "hydro electric"
@@ -350,6 +354,7 @@ all_enty             "all types of quantities"
 		segafos      "SE gas from fossil pe"
                 segasyn      "SE synthetic gas from H2"
         sehe         "SE district heating and heat pumps"
+        sebiochar    "biochar from pyrolysis, not consumed as energy"
         fegas        "FE gas stationary"
         fegab
         fegai
@@ -984,6 +989,15 @@ sets
 
 regi(all_regi)  "all regions used in the solution process"
 
+regiOECD(all_regi) "OECD regions"
+/
+  EUR
+  USA
+  CAZ
+  JPN
+  NEU
+/
+
 *** region sets used for MAGICC
 RCP_regions_world_bunkers "five RCP regions plus total (world) and bunkers"
 /
@@ -1155,11 +1169,15 @@ $endif
         biogasc         "gasification of biomass with capture"
         bioftrec        "biomass based fischer-tropsch recycle"
         bioftcrec       "biomass based fischer-tropsch with capture recycle"
+        biocharMedTech       "biomass to biochar; large, centralized facilities"
+        biocharLowTech       "biomass to biochar; small, decentralized facilities"
+        biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"
         bioh2           "biomass to hydrogen"
         bioh2c          "biomass to hydrogen with capture"
         bioethl         "biomass to ethanol"
         bioeths         "sugar and starch biomass to ethanol"
         biodiesel       "oil biomass to biodiesel"
+        biochar4soil    "use biochar for soil amendment"
         geohdr          "geothermal electric hot dry rock"
         geohe           "geothermal heat"
         hydro           "hydro electric"
@@ -1264,6 +1282,9 @@ $endif
   biogasc         "gasification of biomass with capture"
   bioftrec        "biomass based fischer-tropsch recycle"
   bioftcrec       "biomass based fischer-tropsch with capture recycle"
+  biocharMedTech       "biomass to biochar; large, centralized facilities"
+  biocharLowTech       "biomass to biochar; small, decentralized facilities"
+  biocharHighTech       "biomass to biochar; high-tech, uses electrical heating"        
   bioh2           "biomass to hydrogen"
   bioh2c          "biomass to hydrogen with capture"
   bioethl         "biomass to ethanol"
@@ -1329,6 +1350,8 @@ $IFTHEN.WindOff %cm_wind_offshore% == "1"
 $ENDIF.WindOff
         storcsp     "storage technology for csp"
         elh2        "hydrogen elecrolysis"
+        biocharMedTech
+        biocharHighTech
 /
 
 teNoLearn(all_te)   "Technologies without learning effect"
@@ -1382,6 +1405,9 @@ teBio(all_te)      "biomass energy systems technologies"
         biogasc     "gasification of biomass with capture"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
+        biocharMedTech   "biomass to biochar; large, centralized facilities"
+        biocharLowTech   "biomass to biochar; small, decentralized facilities"
+        biocharHighTech   "biomass to biochar; high-tech, uses electrical heating"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1400,6 +1426,9 @@ teRe(all_te)     "renewable technologies including biomass"
         biogasc     "gasification of biomass with capture"
         bioftrec    "biomass based fischer-tropsch recycle"
         bioftcrec   "biomass based fischer-tropsch with capture recycle"
+        biocharMedTech   "biomass to biochar; large, centralized facilities"
+        biocharLowTech   "biomass to biochar; small, decentralized facilities"
+        biocharHighTech   "biomass to biochar; high-tech, uses electrical heating"
         bioh2       "biomass to hydrogen"
         bioh2c      "biomass to hydrogen with capture"
         bioethl     "biomass to ethanol"
@@ -1506,10 +1535,8 @@ teFosNoCCS(all_te)  "fossil technologies without CCS"
         coaltr       "transformation of coal"
 $IF %cm_OILRETIRE% == "on"   refliq
 /
-teBioPebiolc(all_te)      "biomass technologies using pebiolc"
+teBioPebiolcPurposeGrown(all_te)      "biomass technologies using purpose grown pebiolc"
 /
-        biotr
-        biotrmod
         biochp
         biohp
         bioigcc
@@ -1521,6 +1548,19 @@ teBioPebiolc(all_te)      "biomass technologies using pebiolc"
         bioh2
         bioh2c
         bioethl
+/
+teBioPebiolcResidues(all_te)      "biomass technologies using pebiolc from residues"
+/
+        biotr
+        biotrmod
+        biocharMedTech
+        biocharLowTech
+        biocharHighTech
+/
+teBioPebiolc(all_te)      "biomass technologies using pebiolc"
+/
+        set.teBioPebiolcPurposeGrown
+        set.teBioPebiolcResidues
 /
 teNoTransform(all_te) "all technologies that do not transform energy but still have investment and O&M costs (like storage or grid)"
 /
@@ -1609,6 +1649,7 @@ enty(all_enty)       "all types of quantities"
 	segafos      "secondary energy gas from fossil primary energy"
         segasyn      "secondary energy synthetic gas from H2"
         sehe         "secondary energy district heating and heat pumps"
+        sebiochar    "biochar from pyrolysis, not consumed as energy"
         fegas        "final energy gas stationary"
         fehos        "final energy heating oil stationary"
         fesos        "final energy solids stationary"
@@ -1753,6 +1794,7 @@ entySe(all_enty)       "secondary energy types"
 	segafos      "secondary energy gas from fossil primary energy"
         segasyn      "secondary energy synthetic gas from H2"
         sehe         "SE district heating nd heat pumps"
+        sebiochar    "biochar from pyrolysis, not consumed as energy"
 /
 
 entySeBio(all_enty)       "biomass secondary energy types"
@@ -1760,6 +1802,7 @@ entySeBio(all_enty)       "biomass secondary energy types"
 	seliqbio     "secondary energy liquids from biomass"
 	sesobio      "secondary energy solids from biomass"
 	segabio      "secondary energy gas from biomass"
+        sebiochar    "biochar from pyrolysis, not consumed as energy"
 /
 
 entySeSyn(all_enty)       "synfuel secondary energy types"
@@ -2376,6 +2419,9 @@ $endif
         pecoal.seliqfos.coalftcrec
         pebiolc.seliqbio.bioftrec
         pebiolc.seliqbio.bioftcrec
+        pebiolc.sebiochar.biocharMedTech
+        pebiolc.sebiochar.biocharLowTech
+        pebiolc.sebiochar.biocharHighTech
         pebioil.seliqbio.biodiesel
         pebios.seliqbio.bioeths
         pebiolc.seliqbio.bioethl
@@ -2515,6 +2561,10 @@ pc2te(all_enty,all_enty,all_te,all_enty)    "mapping for own consumption of tech
         pebiolc.seliqbio.bioethl.seel
         pebiolc.seliqbio.bioftrec.seel
         pebiolc.seliqbio.bioftcrec.seel
+        pebiolc.sebiochar.biocharMedTech.segabio
+        pebiolc.sebiochar.biocharHighTech.segabio
+        pebiolc.sebiochar.biocharHighTech.seliqbio
+        pebiolc.sebiochar.biocharHighTech.seel
         pegas.seel.gaschp.sehe
         pecoal.seh2.coalh2.seel
         pecoal.seh2.coalh2c.seel
@@ -2604,6 +2654,9 @@ $endif
         peoil.seel.dot.n2o
         pebiolc.seliqbio.bioftcrec.co2
         pebiolc.seliqbio.bioftcrec.cco2
+        pebiolc.sebiochar.biocharMedTech.co2
+        pebiolc.sebiochar.biocharLowTech.co2
+        pebiolc.sebiochar.biocharHighTech.co2
         pebiolc.seh2.bioh2c.co2
         pebiolc.seh2.bioh2c.cco2
         pebiolc.sesobio.biotr.bc
@@ -2725,7 +2778,7 @@ emiMac2sector(all_enty,emi_sectors,sector_types,all_enty)            "mapping of
 emiBECCS2te(all_enty,all_enty,all_te,all_enty) "mapping of BECCS PE,SE,technology and captured emissions"
 /
         pebiolc.seliqbio.bioftcrec.cco2
-        pebiolc. seel.bioigccc.cco2
+        pebiolc.seel.bioigccc.cco2
         pebiolc.seh2.bioh2c.cco2
 /
 
@@ -2772,6 +2825,7 @@ demSeOth2te(all_enty,all_te)      "map other se demands not directly following t
   seh2.csp
   segabio.csp
   segafos.csp
+  sebiochar.biochar4soil
 /
 
 prodSeOth2te(all_enty,all_te)      "map other se production not directly following the sedem-route through technologies"
@@ -2787,7 +2841,7 @@ $IFTHEN.WindOff %cm_wind_offshore% == "1"
 $ENDIF.WindOff
         spv,csp,refliq,hydro,geohe,geohdr,solhe,ngcc,ngccc,ngt,gaschp,gashp,gash2,gash2c,gastr,gasftrec,gasftcrec,dot,
        igcc,igccc,pc,coaltr,coalgas,coalh2,coalh2c,coalchp,coalhp,coalftrec,coalftcrec,
-       biotr,biotrmod,biogas,biogasc,bioftrec,bioftcrec,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
+       biotr,biotrmod,biogas,biogasc,bioftrec,bioftcrec,biocharMedTech,biocharLowTech,biocharHighTech,bioh2,bioh2c,biohp,biochp,bioigcc,bioigccc,
        elh2,h2turb,elh2VRE,h2turbVRE,bioethl,bioeths,biodiesel,tnrs,fnrs
 $ifthen setGlobal cm_ccsfosall
        pcc, pco

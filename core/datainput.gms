@@ -474,7 +474,13 @@ $include "./core/input/p_PE_histCap.cs3r"
 $offdelim
 ;
 
-*** installed capacity availability
+
+********************
+* CAPACITY FACTORS *
+********************
+
+*** Capacity Factors form Input Data ***
+
 *** read-in of f_cf.cs3r
 $Offlisting
 table   f_cf(tall,all_regi,all_te)     "installed capacity availability"
@@ -484,14 +490,17 @@ $offdelim
 ;
 $Onlisting
 
-
 *CG* setting wind off capacity factor to be the same as onshore here (later adjusting it in vm_capFac)
 $IFTHEN.WindOff %cm_wind_offshore% == "1"
 f_cf(ttot,regi,"windoff") = f_cf(ttot,regi,"wind");
 $ENDIF.WindOff
 
 pm_cf(ttot,regi,te) =  f_cf(ttot,regi,te);
-*RP short-term fix: set capacity factors here by hand, because the input data procudure won't be updated in time
+
+
+*** Hard Coded Capacity Factors ***
+
+*RP* short-term fix: set capacity factors here by hand, because the input data procudure won't be updated in time
 pm_cf(ttot,regi,"apcardiefft") = 1;
 pm_cf(ttot,regi,"apcardieffH2t") = 1;
 ***pm_cf(ttot,regi,"h2turbVRE") = 0.15;
@@ -512,11 +521,23 @@ pm_cf(ttot,regi,"ngt")$(ttot.val eq 2035) = 0.7 * pm_cf(ttot,regi,"ngt");
 pm_cf(ttot,regi,"ngt")$(ttot.val eq 2040) = 0.5 * pm_cf(ttot,regi,"ngt");
 pm_cf(ttot,regi,"ngt")$(ttot.val ge 2045) = 0.4 * pm_cf(ttot,regi,"ngt");
 
-
-
-*** FS: set CF of additional t&d H2 for buildings and industry to t&d H2 stationary value
+*FS* set CF of additional t&d H2 for buildings and industry to t&d H2 stationary value
 pm_cf(ttot,regi,"tdh2b") = pm_cf(ttot,regi,"tdh2s");
 pm_cf(ttot,regi,"tdh2i") = pm_cf(ttot,regi,"tdh2s");
+
+*CS* Set capacity factors for biochar technologies to switch values. Set switches to 0 to deactivate biochar.
+pm_cf(t,regi,"biocharLowTech" ) = cm_biocharLowTech_cf;
+pm_cf(t,regi,"biocharMedTech" ) = cm_biocharMedTech_cf;
+pm_cf(t,regi,"biocharHighTech") = cm_biocharHighTech_cf;
+pm_cf(t,regi,"biochar4soil"   ) = 1.0;
+* regional mathing: OECD regions are not allowed to use low tech biochar
+if (cm_biocharRegionalMatching EQ 1, 
+  pm_cf(t,regiOECD,"biocharLowTech") = 0;
+);
+
+
+
+
 
 
 *SB* Region- and tech-specific early retirement rates
